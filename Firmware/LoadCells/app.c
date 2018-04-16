@@ -411,6 +411,36 @@ void core_callback_t_500us(void)
 
 void core_callback_t_1ms(void)
 {
+   /* Update pots on Port 0 if the board is re-connected */
+   if (read_CS0_1)
+   {      
+      if (!port0_is_plugged)
+      {
+         update_pots_port0_counter = 4;
+      }
+      
+      port0_is_plugged = true;
+   }
+   else
+   {
+      port0_is_plugged = false;
+   }
+   
+   /* Update pots on Port 1 if the board is re-connected */ 
+   if (read_CS1_1)
+   {          
+      if (!port1_is_plugged)
+      {
+         update_pots_port1_counter = 4;
+      }
+          
+      port1_is_plugged = true;
+   }
+   else
+   {
+      port1_is_plugged = false;
+   }
+   
    /* Read Load Cells */
    if (app_regs.REG_START)
    {
@@ -420,34 +450,12 @@ void core_callback_t_1ms(void)
       {
          /* If ADC board is plugged into Port0, set ADC CONVST */
          set_CS0_0;
-         
-         if (!port0_is_plugged)
-         {
-            update_pots_port0_counter = 4;
-         }
-                  
-         port0_is_plugged = true;
-      }
-      else
-      {
-         port0_is_plugged = false;
       }
       
       if (read_CS1_1)
       {
          /* If ADC board is plugged into Port1, set ADC CONVST */
          set_CS1_0;
-         
-         if (!port1_is_plugged)
-         {
-            update_pots_port1_counter = 4;
-         }
-                  
-         port1_is_plugged = true;
-      }
-      else
-      {
-         port1_is_plugged = false;
       }
       
       /* Start timer with 30 us */
