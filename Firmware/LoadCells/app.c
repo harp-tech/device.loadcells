@@ -287,16 +287,6 @@ void core_callback_registers_were_reinitialized(void)
 {   
    /* Update outputs with the saved state */
    app_write_REG_DO_OUT(&app_regs.REG_DO_OUT);
-   
-   /* Update offsets on all input channels */
-   update_offsets(0);
-   update_offsets(1);
-   update_offsets(2);
-   update_offsets(3);
-   update_offsets(4);
-   update_offsets(5);
-   update_offsets(6);
-   update_offsets(7);
 }
 
 /************************************************************************/
