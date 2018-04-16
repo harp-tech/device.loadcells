@@ -171,7 +171,7 @@ bool app_write_REG_DI0(void *a) { return false; }
 /************************************************************************/
 void app_read_REG_DO0(void)
 {
-   app_regs.REG_DO0 = app_regs.REG_DO_OUT & (1<<8) ? B_DO0 : 0;
+   app_regs.REG_DO0 = app_regs.REG_DO_OUT & (1<<0) ? B_DO0 : 0;
 }
 
 bool app_write_REG_DO0(void *a)
@@ -181,13 +181,13 @@ bool app_write_REG_DO0(void *a)
    if (reg & 1)
    {
       PORTB_OUTSET = (1<<1);
-      app_regs.REG_DO_OUT |= (1<<8);
+      app_regs.REG_DO_OUT |= (1<<0);
       pulse_counter_ms = app_regs.REG_DO0_PULSE + 1;
    }
    else
    {
       PORTB_OUTCLR = (1<<1);
-      app_regs.REG_DO_OUT &= ~(1<<8);
+      app_regs.REG_DO_OUT &= ~(1<<0);
    }
    
    app_regs.REG_DO0 = reg;
