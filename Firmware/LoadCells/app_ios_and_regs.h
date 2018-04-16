@@ -307,7 +307,7 @@ typedef struct
 #define GM_DO0_DIG                         (0<<0)       // Use as a pure digital output
 #define GM_DO0_TGL_EACH_SEC                (1<<0)       // Toogle each second when acquiring
 #define GM_DO0_PULSE                       (2<<0)       // The digital output will be ONE during period specified by register DO0_PULSE
-#define MSK_DO0_CH                         (16<<0)      // 
+#define MSK_DO_CH                          (16<<0)      // 
 #define GM_CH0                             (0<<0)       // Load Cell channel 0
 #define GM_CH1                             (1<<0)       // Load Cell channel 1
 #define GM_CH2                             (2<<0)       // Load Cell channel 2
