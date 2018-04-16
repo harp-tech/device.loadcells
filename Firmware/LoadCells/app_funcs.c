@@ -534,9 +534,10 @@ bool app_write_REG_RESERVED5(void *a)
 void app_read_REG_DO0_CH(void) {}
 bool app_write_REG_DO0_CH(void *a)
 {
-	uint8_t reg = *((uint8_t*)a);
+	if (*((uint8_t*)a) > GM_SOFTWARE)
+      return false;
 
-	app_regs.REG_DO0_CH = reg;
+	app_regs.REG_DO0_CH = *((uint8_t*)a);
 	return true;
 }
 
@@ -547,10 +548,11 @@ bool app_write_REG_DO0_CH(void *a)
 void app_read_REG_DO1_CH(void) {}
 bool app_write_REG_DO1_CH(void *a)
 {
-	uint8_t reg = *((uint8_t*)a);
+   if (*((uint8_t*)a) > GM_SOFTWARE)
+      return false;
 
-	app_regs.REG_DO1_CH = reg;
-	return true;
+   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   return true;
 }
 
 
@@ -560,10 +562,11 @@ bool app_write_REG_DO1_CH(void *a)
 void app_read_REG_DO2_CH(void) {}
 bool app_write_REG_DO2_CH(void *a)
 {
-	uint8_t reg = *((uint8_t*)a);
+   if (*((uint8_t*)a) > GM_SOFTWARE)
+      return false;
 
-	app_regs.REG_DO2_CH = reg;
-	return true;
+   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   return true;
 }
 
 
@@ -573,10 +576,11 @@ bool app_write_REG_DO2_CH(void *a)
 void app_read_REG_DO3_CH(void) {}
 bool app_write_REG_DO3_CH(void *a)
 {
-	uint8_t reg = *((uint8_t*)a);
+   if (*((uint8_t*)a) > GM_SOFTWARE)
+      return false;
 
-	app_regs.REG_DO3_CH = reg;
-	return true;
+   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   return true;
 }
 
 
@@ -586,10 +590,11 @@ bool app_write_REG_DO3_CH(void *a)
 void app_read_REG_DO4_CH(void) {}
 bool app_write_REG_DO4_CH(void *a)
 {
-	uint8_t reg = *((uint8_t*)a);
+   if (*((uint8_t*)a) > GM_SOFTWARE)
+      return false;
 
-	app_regs.REG_DO4_CH = reg;
-	return true;
+   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   return true;
 }
 
 
@@ -599,10 +604,11 @@ bool app_write_REG_DO4_CH(void *a)
 void app_read_REG_DO5_CH(void) {}
 bool app_write_REG_DO5_CH(void *a)
 {
-	uint8_t reg = *((uint8_t*)a);
+   if (*((uint8_t*)a) > GM_SOFTWARE)
+      return false;
 
-	app_regs.REG_DO5_CH = reg;
-	return true;
+   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   return true;
 }
 
 
@@ -612,10 +618,11 @@ bool app_write_REG_DO5_CH(void *a)
 void app_read_REG_DO6_CH(void) {}
 bool app_write_REG_DO6_CH(void *a)
 {
-	uint8_t reg = *((uint8_t*)a);
+   if (*((uint8_t*)a) > GM_SOFTWARE)
+      return false;
 
-	app_regs.REG_DO6_CH = reg;
-	return true;
+   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   return true;
 }
 
 
@@ -625,10 +632,11 @@ bool app_write_REG_DO6_CH(void *a)
 void app_read_REG_DO7_CH(void) {}
 bool app_write_REG_DO7_CH(void *a)
 {
-	uint8_t reg = *((uint8_t*)a);
+   if (*((uint8_t*)a) > GM_SOFTWARE)
+      return false;
 
-	app_regs.REG_DO7_CH = reg;
-	return true;
+   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   return true;
 }
 
 
