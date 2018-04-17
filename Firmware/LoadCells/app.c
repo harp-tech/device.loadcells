@@ -406,7 +406,7 @@ void core_callback_t_1ms(void)
    {      
       if (!port0_is_plugged)
       {
-         update_pots_port0_counter = 4;
+         update_pots_port0_counter = 250 + 4;   // 250 ms before update the pots
       }
       
       port0_is_plugged = true;
@@ -421,7 +421,7 @@ void core_callback_t_1ms(void)
    {          
       if (!port1_is_plugged)
       {
-         update_pots_port1_counter = 4;
+         update_pots_port1_counter = 250 + 4;   // 250 ms before update the pots
       }
           
       port1_is_plugged = true;
