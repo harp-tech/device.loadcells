@@ -83,6 +83,9 @@ ISR(PORTB_INT0_vect, ISR_NAKED)
 ISR(TCC0_OVF_vect, ISR_NAKED)
 {
    timer_type0_stop(&TCC0);
+   
+   bool port0_has_board = read_CS0_1 ? true : false;
+   bool port1_has_board = read_CS1_1 ? true : false;
  
    clr_CS0_1;     // Clear Port0 ADC !CS
    clr_CS1_1;     // Clear Port1 ADC !CS
@@ -111,7 +114,8 @@ ISR(TCC0_OVF_vect, ISR_NAKED)
    set_CS0_1;     // Set Port0 ADC !CS
    set_CS1_1;     // Set Port1 ADC !CS
 
-   if (!read_CS0_1)
+   
+   if (!port0_has_board)
    {
       app_regs.REG_LOAD_CELLS[0] = 0;
       app_regs.REG_LOAD_CELLS[1] = 0;
@@ -119,7 +123,7 @@ ISR(TCC0_OVF_vect, ISR_NAKED)
       app_regs.REG_LOAD_CELLS[3] = 0;
    }
    
-   if (!read_CS1_1)
+   if (!port1_has_board)
    {
       app_regs.REG_LOAD_CELLS[4] = 0;
       app_regs.REG_LOAD_CELLS[5] = 0;
