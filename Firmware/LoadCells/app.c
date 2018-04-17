@@ -64,7 +64,7 @@ void core_callback_catastrophic_error_detected(void)
 #define _4_CLOCK_CYCLES _2_CLOCK_CYCLES; _2_CLOCK_CYCLES
 #define _8_CLOCK_CYCLES _4_CLOCK_CYCLES; _4_CLOCK_CYCLES
 
-
+/* With CPU @ 32 MHz this function takes 39.2 us to run */
 void AD5204_set_channel(uint8_t channel,
                         uint8_t * data,
                         uint8_t n_of_devices,
@@ -116,8 +116,9 @@ void AD5204_set_channel(uint8_t channel,
    spi->CTRL = current_spi_ctrl;
 }
 
+/* With CPU @ 32 MHz this function takes 82.8 us to run */
 void update_offsets (uint8_t load_cell_channel)
-{  
+{
    if (load_cell_channel == 0 || load_cell_channel == 2)
    {
       uint8_t port0_pot_channel4[2] = {0,0};

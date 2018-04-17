@@ -86,7 +86,10 @@ ISR(TCC0_OVF_vect, ISR_NAKED)
    
    bool port0_has_board = read_CS0_1 ? true : false;
    bool port1_has_board = read_CS1_1 ? true : false;
- 
+   
+   /* From (A) to (B) With CPU @ 32 MHz this lines takes 24 us to run */
+   //--------------------------------------------------------------------(A)
+   
    clr_CS0_1;     // Clear Port0 ADC !CS
    clr_CS1_1;     // Clear Port1 ADC !CS
       
@@ -113,7 +116,8 @@ ISR(TCC0_OVF_vect, ISR_NAKED)
    clr_CS1_0;     // CLear Port1 ADC CONVST
    set_CS0_1;     // Set Port0 ADC !CS
    set_CS1_1;     // Set Port1 ADC !CS
-
+   
+   //--------------------------------------------------------------------(B)
    
    if (!port0_has_board)
    {
