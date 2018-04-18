@@ -551,7 +551,7 @@ bool app_write_REG_DO1_CH(void *a)
    if (*((uint8_t*)a) > GM_SOFTWARE)
       return false;
 
-   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   app_regs.REG_DO1_CH = *((uint8_t*)a);
    return true;
 }
 
@@ -565,7 +565,7 @@ bool app_write_REG_DO2_CH(void *a)
    if (*((uint8_t*)a) > GM_SOFTWARE)
       return false;
 
-   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   app_regs.REG_DO2_CH = *((uint8_t*)a);
    return true;
 }
 
@@ -579,7 +579,7 @@ bool app_write_REG_DO3_CH(void *a)
    if (*((uint8_t*)a) > GM_SOFTWARE)
       return false;
 
-   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   app_regs.REG_DO3_CH = *((uint8_t*)a);
    return true;
 }
 
@@ -593,7 +593,7 @@ bool app_write_REG_DO4_CH(void *a)
    if (*((uint8_t*)a) > GM_SOFTWARE)
       return false;
 
-   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   app_regs.REG_DO4_CH = *((uint8_t*)a);
    return true;
 }
 
@@ -607,7 +607,7 @@ bool app_write_REG_DO5_CH(void *a)
    if (*((uint8_t*)a) > GM_SOFTWARE)
       return false;
 
-   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   app_regs.REG_DO5_CH = *((uint8_t*)a);
    return true;
 }
 
@@ -621,7 +621,7 @@ bool app_write_REG_DO6_CH(void *a)
    if (*((uint8_t*)a) > GM_SOFTWARE)
       return false;
 
-   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   app_regs.REG_DO6_CH = *((uint8_t*)a);
    return true;
 }
 
@@ -635,7 +635,7 @@ bool app_write_REG_DO7_CH(void *a)
    if (*((uint8_t*)a) > GM_SOFTWARE)
       return false;
 
-   app_regs.REG_DO0_CH = *((uint8_t*)a);
+   app_regs.REG_DO7_CH = *((uint8_t*)a);
    return true;
 }
 
