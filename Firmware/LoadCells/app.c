@@ -221,7 +221,7 @@ void core_callback_reset_registers(void)
    app_regs.REG_DO0 = 0;
    
    app_regs.REG_DI0_CONF = GM_DI0_SYNC;
-   app_regs.REG_DO0_CONF = GM_DO0_TGL_EACH_SEC;
+   app_regs.REG_DO0_CONF = GM_DO0_DIG;
    app_regs.REG_DO0_PULSE = 10;
    
    app_regs.REG_DO_SET = 0;
