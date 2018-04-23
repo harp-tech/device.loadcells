@@ -191,7 +191,7 @@ bool app_write_REG_DO0(void *a)
    }
    
    app_regs.REG_DO0 = reg;
-   return false;
+   return true;
 }
 
 
