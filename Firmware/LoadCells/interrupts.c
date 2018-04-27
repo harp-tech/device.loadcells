@@ -37,9 +37,14 @@ ISR(PORTB_INT0_vect, ISR_NAKED)
       {
          case GM_DI0_SYNC:
             if (app_regs.REG_EVNT_ENABLE & B_EVT_DI0)
-            {               
+            {
+               uint8_t reg_dio = app_regs.REG_DI0;
                app_regs.REG_DI0 = B_DI0;
-               core_func_send_event(ADD_REG_DI0, true);
+               
+               if (reg_dio != app_regs.REG_DI0)
+               {
+                  core_func_send_event(ADD_REG_DI0, true);
+               }               
             }
             break;
             
@@ -59,8 +64,13 @@ ISR(PORTB_INT0_vect, ISR_NAKED)
          case GM_DI0_SYNC:
          if (app_regs.REG_EVNT_ENABLE & B_EVT_DI0)
          {
+            uint8_t reg_dio = app_regs.REG_DI0;
             app_regs.REG_DI0 = 0;
-            core_func_send_event(ADD_REG_DI0, true);
+               
+            if (reg_dio != app_regs.REG_DI0)
+            {
+               core_func_send_event(ADD_REG_DI0, true);
+            }
          }
          break;
          
