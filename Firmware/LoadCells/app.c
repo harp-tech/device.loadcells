@@ -435,7 +435,7 @@ void core_callback_t_1ms(void)
    /* Read Load Cells */
    if (app_regs.REG_START)
    {
-      core_func_mark_user_timestamp();      
+      core_func_mark_user_timestamp();
       
       if (read_CS0_1)
       {
@@ -449,8 +449,8 @@ void core_callback_t_1ms(void)
          set_CS1_0;
       }
       
-      /* Start timer with 30 us */
-      timer_type0_enable(&TCC0, TIMER_PRESCALER_DIV64, 15, INT_LEVEL_LOW);
+      /* Start timer with 350 us */
+      timer_type0_enable(&TCC0, TIMER_PRESCALER_DIV64, 175, INT_LEVEL_LOW);
    }
    
    update_pots_on_port0();
