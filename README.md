@@ -2,7 +2,7 @@
 
 This pair of boards can be used to acquire analog signals from load cells and output their data to a USB host. It is additionally able to emit programmable digital events.
 
-![LoadCellsInterface](./docs/assets/loadCellsInterface.png)
+![harploadcellsinterface](./docs/assets/pcb.png)
 
 ### Key Features ###
 
