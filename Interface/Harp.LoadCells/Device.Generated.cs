@@ -1171,9 +1171,9 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static DO0Configuration GetPayload(HarpMessage message)
+        public static byte GetPayload(HarpMessage message)
         {
-            return (DO0Configuration)message.GetPayloadByte();
+            return message.GetPayloadByte();
         }
 
         /// <summary>
@@ -1181,10 +1181,9 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<DO0Configuration> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<byte> GetTimestampedPayload(HarpMessage message)
         {
-            var payload = message.GetTimestampedPayloadByte();
-            return Timestamped.Create((DO0Configuration)payload.Value, payload.Seconds);
+            return message.GetTimestampedPayloadByte();
         }
 
         /// <summary>
@@ -1196,9 +1195,9 @@ namespace Harp.LoadCells
         /// A <see cref="HarpMessage"/> object for the <see cref="DO0PulseDuration"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, DO0Configuration value)
+        public static HarpMessage FromPayload(MessageType messageType, byte value)
         {
-            return HarpMessage.FromByte(Address, messageType, (byte)value);
+            return HarpMessage.FromByte(Address, messageType, value);
         }
 
         /// <summary>
@@ -1212,9 +1211,9 @@ namespace Harp.LoadCells
         /// A <see cref="HarpMessage"/> object for the <see cref="DO0PulseDuration"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, DO0Configuration value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, byte value)
         {
-            return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
+            return HarpMessage.FromByte(Address, timestamp, messageType, value);
         }
     }
 
@@ -1236,7 +1235,7 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<DO0Configuration> GetPayload(HarpMessage message)
+        public static Timestamped<byte> GetPayload(HarpMessage message)
         {
             return DO0PulseDuration.GetTimestampedPayload(message);
         }
@@ -6054,7 +6053,7 @@ namespace Harp.LoadCells
         [Range(min: 1, max: 255)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
         [Description("The value that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.")]
-        public DO0Configuration Value { get; set; } = 1;
+        public byte Value { get; set; } = 1;
 
         /// <summary>
         /// Creates an observable sequence that contains a single message

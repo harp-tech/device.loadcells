@@ -240,7 +240,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<DO0Configuration> ReadDO0PulseDurationAsync()
+        public async Task<byte> ReadDO0PulseDurationAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO0PulseDuration.Address));
             return DO0PulseDuration.GetPayload(reply);
@@ -253,7 +253,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<DO0Configuration>> ReadTimestampedDO0PulseDurationAsync()
+        public async Task<Timestamped<byte>> ReadTimestampedDO0PulseDurationAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO0PulseDuration.Address));
             return DO0PulseDuration.GetTimestampedPayload(reply);
@@ -264,7 +264,7 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO0PulseDurationAsync(DO0Configuration value)
+        public async Task WriteDO0PulseDurationAsync(byte value)
         {
             var request = DO0PulseDuration.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
