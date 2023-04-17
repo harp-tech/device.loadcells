@@ -294,7 +294,7 @@ registers:
       address: 90
       access: Write
       type: U8
-      bitMasks: LoadCellEvents
+      maskType: LoadCellEvents
       description: Specifies the active events in the device.
 bitMasks:
   DigitalOutputs:
