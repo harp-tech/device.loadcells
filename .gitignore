@@ -1,8 +1,11 @@
 desktop.ini
-**/Downloads
-**/downloads
-**/Debug
-**/debug
-*.atsuo
-*.o
-*.d
+
+# Visual studio files
+.vs
+.suo
+.nuget
+bin
+obj
+Debug
+packages
+*.componentinfo.xml
