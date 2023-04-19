@@ -11,50 +11,42 @@ registers:
     access: Write
     type: U8
     maskType: EnableFlag
-    description: Enables the data acquisition
+    description: Enables the data acquisition.
   LoadCellData:
     address: 33
     type: S16
     length: 8
     access: Event
-    description: Analog value of all Load Cells channels
+    description: Value of single ADC read from all load cell channels.
     payloadSpec:
       Channel0:
         offset: 0
-        description: Channel0
       Channel1:
         offset: 1
-        description: Channel1
       Channel2:
         offset: 2
-        description: Channel2
       Channel3:
         offset: 3
-        description: Channel3
       Channel4:
         offset: 4
-        description: Channel4
       Channel5:
         offset: 5
-        description: Channel5
       Channel6:
         offset: 6
-        description: Channel6
       Channel7:
         offset: 7
-        description: Channel7
-  DigitalInput0:
+  DI0:
       address: 34
       access: Event
       type: U8
       maskType: DigitalState
       description: Status of the digital input pin 0. An event will be emitted when DI0Mode == Input.
-  DigitalOutput0:
+  DO0:
       address: 35
       access: Event
       type: U8
       maskType: DigitalState
-      description: Status of the digital output pin 0. An periodic event will be emitted when When DO0Mode == ToggleEachSecond.
+      description: Status of the digital output pin 0. An periodic event will be emitted when DigitalOutput0Mode == ToggleEachSecond.
   BufferThresholds:
       address: 36
       access: Read
@@ -70,40 +62,40 @@ registers:
   Reserved1:
       <<: *ReservedReg
       address: 38
-  DigitalInput0Mode:
+  DI0Mode:
       address: 39
       access: Write
       type: U8
-      maskType: DigitalInput0Config #TODO
+      maskType: DI0ModeConfig
       description: Configuration of the digital input pin 0.
-  DigitalOutput0Mode:
+  DO0Mode:
       address: 40
       access: Write
       type: U8
-      maskType: DigitalOutput0Config
+      maskType: DO0ModeConfig
       description: Configuration of the digital output pin 0.
-  DigitalInput0PulseDuration:
+  DO0PulseDuration:
       address: 41
       access: Write
       type: U8
       minValue: 1
       maxValue: 255
       description: Pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.
-  OutputSet: &output
+  DOSet: &output
     address: 42
     type: U16
     access: Write
     maskType: DigitalOutputs
     description: Set the specified digital output lines.
-  OutputClear:
+  DOClear:
     <<: *output
     address: 43
     description: Clear the specified digital output lines.
-  OutputToggle:
+  DOToggle:
     <<: *output
     address: 44
     description: Toggle the specified digital output lines
-  OutputState:
+  DOState:
     <<: *output
     address: 45
     access: [Write, Event]
@@ -325,13 +317,13 @@ groupMasks:
     values:
       Low: 0
       High: 1
-  DI0Configuration:
+  DI0ModeConfig:
     description: Available configurations for DI0 pin.
     values:
       Input: 0
       StartOnRisingEdge: 1
       StartOnFallingEdge: 2
-  DO0Configuration:
+  DO0ModeConfig:
     description: Available configurations for DO0 pin.
     values:
       Output: 0
