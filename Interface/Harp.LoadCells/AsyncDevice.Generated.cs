@@ -234,39 +234,39 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO0PulseDuration register.
+        /// Asynchronously reads the contents of the DO0PulseWidth register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<byte> ReadDO0PulseDurationAsync()
+        public async Task<byte> ReadDO0PulseWidthAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DO0PulseDuration.Address));
-            return DO0PulseDuration.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(DO0PulseWidth.Address));
+            return DO0PulseWidth.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO0PulseDuration register.
+        /// Asynchronously reads the timestamped contents of the DO0PulseWidth register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<byte>> ReadTimestampedDO0PulseDurationAsync()
+        public async Task<Timestamped<byte>> ReadTimestampedDO0PulseWidthAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DO0PulseDuration.Address));
-            return DO0PulseDuration.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(DO0PulseWidth.Address));
+            return DO0PulseWidth.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO0PulseDuration register.
+        /// Asynchronously writes a value to the DO0PulseWidth register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO0PulseDurationAsync(byte value)
+        public async Task WriteDO0PulseWidthAsync(byte value)
         {
-            var request = DO0PulseDuration.FromPayload(MessageType.Write, value);
+            var request = DO0PulseWidth.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 

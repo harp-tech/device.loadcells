@@ -74,7 +74,7 @@ registers:
       type: U8
       maskType: DO0ModeConfig
       description: Configuration of the digital output pin 0.
-  DO0PulseDuration:
+  DO0PulseWidth:
       address: 41
       access: Write
       type: U8

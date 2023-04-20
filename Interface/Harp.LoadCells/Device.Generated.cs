@@ -43,7 +43,7 @@ namespace Harp.LoadCells
             { 35, typeof(DO0) },
             { 39, typeof(DI0Mode) },
             { 40, typeof(DO0Mode) },
-            { 41, typeof(DO0PulseDuration) },
+            { 41, typeof(DO0PulseWidth) },
             { 42, typeof(DOSet) },
             { 43, typeof(DOClear) },
             { 44, typeof(DOToggle) },
@@ -123,7 +123,7 @@ namespace Harp.LoadCells
     /// <seealso cref="DO0"/>
     /// <seealso cref="DI0Mode"/>
     /// <seealso cref="DO0Mode"/>
-    /// <seealso cref="DO0PulseDuration"/>
+    /// <seealso cref="DO0PulseWidth"/>
     /// <seealso cref="DOSet"/>
     /// <seealso cref="DOClear"/>
     /// <seealso cref="DOToggle"/>
@@ -175,7 +175,7 @@ namespace Harp.LoadCells
     [XmlInclude(typeof(DO0))]
     [XmlInclude(typeof(DI0Mode))]
     [XmlInclude(typeof(DO0Mode))]
-    [XmlInclude(typeof(DO0PulseDuration))]
+    [XmlInclude(typeof(DO0PulseWidth))]
     [XmlInclude(typeof(DOSet))]
     [XmlInclude(typeof(DOClear))]
     [XmlInclude(typeof(DOToggle))]
@@ -248,7 +248,7 @@ namespace Harp.LoadCells
     /// <seealso cref="DO0"/>
     /// <seealso cref="DI0Mode"/>
     /// <seealso cref="DO0Mode"/>
-    /// <seealso cref="DO0PulseDuration"/>
+    /// <seealso cref="DO0PulseWidth"/>
     /// <seealso cref="DOSet"/>
     /// <seealso cref="DOClear"/>
     /// <seealso cref="DOToggle"/>
@@ -300,7 +300,7 @@ namespace Harp.LoadCells
     [XmlInclude(typeof(DO0))]
     [XmlInclude(typeof(DI0Mode))]
     [XmlInclude(typeof(DO0Mode))]
-    [XmlInclude(typeof(DO0PulseDuration))]
+    [XmlInclude(typeof(DO0PulseWidth))]
     [XmlInclude(typeof(DOSet))]
     [XmlInclude(typeof(DOClear))]
     [XmlInclude(typeof(DOToggle))]
@@ -352,7 +352,7 @@ namespace Harp.LoadCells
     [XmlInclude(typeof(TimestampedDO0))]
     [XmlInclude(typeof(TimestampedDI0Mode))]
     [XmlInclude(typeof(TimestampedDO0Mode))]
-    [XmlInclude(typeof(TimestampedDO0PulseDuration))]
+    [XmlInclude(typeof(TimestampedDO0PulseWidth))]
     [XmlInclude(typeof(TimestampedDOSet))]
     [XmlInclude(typeof(TimestampedDOClear))]
     [XmlInclude(typeof(TimestampedDOToggle))]
@@ -422,7 +422,7 @@ namespace Harp.LoadCells
     /// <seealso cref="DO0"/>
     /// <seealso cref="DI0Mode"/>
     /// <seealso cref="DO0Mode"/>
-    /// <seealso cref="DO0PulseDuration"/>
+    /// <seealso cref="DO0PulseWidth"/>
     /// <seealso cref="DOSet"/>
     /// <seealso cref="DOClear"/>
     /// <seealso cref="DOToggle"/>
@@ -474,7 +474,7 @@ namespace Harp.LoadCells
     [XmlInclude(typeof(DO0))]
     [XmlInclude(typeof(DI0Mode))]
     [XmlInclude(typeof(DO0Mode))]
-    [XmlInclude(typeof(DO0PulseDuration))]
+    [XmlInclude(typeof(DO0PulseWidth))]
     [XmlInclude(typeof(DOSet))]
     [XmlInclude(typeof(DOClear))]
     [XmlInclude(typeof(DOToggle))]
@@ -1149,25 +1149,25 @@ namespace Harp.LoadCells
     /// Represents a register that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.
     /// </summary>
     [Description("Pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.")]
-    public partial class DO0PulseDuration
+    public partial class DO0PulseWidth
     {
         /// <summary>
-        /// Represents the address of the <see cref="DO0PulseDuration"/> register. This field is constant.
+        /// Represents the address of the <see cref="DO0PulseWidth"/> register. This field is constant.
         /// </summary>
         public const int Address = 41;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="DO0PulseDuration"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="DO0PulseWidth"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U8;
 
         /// <summary>
-        /// Represents the length of the <see cref="DO0PulseDuration"/> register. This field is constant.
+        /// Represents the length of the <see cref="DO0PulseWidth"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="DO0PulseDuration"/> register messages.
+        /// Returns the payload data for <see cref="DO0PulseWidth"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
@@ -1177,7 +1177,7 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="DO0PulseDuration"/> register messages.
+        /// Returns the timestamped payload data for <see cref="DO0PulseWidth"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
@@ -1187,12 +1187,12 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="DO0PulseDuration"/> register.
+        /// Returns a Harp message for the <see cref="DO0PulseWidth"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DO0PulseDuration"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DO0PulseWidth"/> register
         /// with the specified message type and payload.
         /// </returns>
         public static HarpMessage FromPayload(MessageType messageType, byte value)
@@ -1201,14 +1201,14 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="DO0PulseDuration"/>
+        /// Returns a timestamped Harp message for the <see cref="DO0PulseWidth"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DO0PulseDuration"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DO0PulseWidth"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
         public static HarpMessage FromPayload(double timestamp, MessageType messageType, byte value)
@@ -1219,25 +1219,25 @@ namespace Harp.LoadCells
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// DO0PulseDuration register.
+    /// DO0PulseWidth register.
     /// </summary>
-    /// <seealso cref="DO0PulseDuration"/>
-    [Description("Filters and selects timestamped messages from the DO0PulseDuration register.")]
-    public partial class TimestampedDO0PulseDuration
+    /// <seealso cref="DO0PulseWidth"/>
+    [Description("Filters and selects timestamped messages from the DO0PulseWidth register.")]
+    public partial class TimestampedDO0PulseWidth
     {
         /// <summary>
-        /// Represents the address of the <see cref="DO0PulseDuration"/> register. This field is constant.
+        /// Represents the address of the <see cref="DO0PulseWidth"/> register. This field is constant.
         /// </summary>
-        public const int Address = DO0PulseDuration.Address;
+        public const int Address = DO0PulseWidth.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="DO0PulseDuration"/> register messages.
+        /// Returns timestamped payload data for <see cref="DO0PulseWidth"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
         public static Timestamped<byte> GetPayload(HarpMessage message)
         {
-            return DO0PulseDuration.GetTimestampedPayload(message);
+            return DO0PulseWidth.GetTimestampedPayload(message);
         }
     }
 
@@ -5584,7 +5584,7 @@ namespace Harp.LoadCells
     /// <seealso cref="CreateDO0Payload"/>
     /// <seealso cref="CreateDI0ModePayload"/>
     /// <seealso cref="CreateDO0ModePayload"/>
-    /// <seealso cref="CreateDO0PulseDurationPayload"/>
+    /// <seealso cref="CreateDO0PulseWidthPayload"/>
     /// <seealso cref="CreateDOSetPayload"/>
     /// <seealso cref="CreateDOClearPayload"/>
     /// <seealso cref="CreateDOTogglePayload"/>
@@ -5636,7 +5636,7 @@ namespace Harp.LoadCells
     [XmlInclude(typeof(CreateDO0Payload))]
     [XmlInclude(typeof(CreateDI0ModePayload))]
     [XmlInclude(typeof(CreateDO0ModePayload))]
-    [XmlInclude(typeof(CreateDO0PulseDurationPayload))]
+    [XmlInclude(typeof(CreateDO0PulseWidthPayload))]
     [XmlInclude(typeof(CreateDOSetPayload))]
     [XmlInclude(typeof(CreateDOClearPayload))]
     [XmlInclude(typeof(CreateDOTogglePayload))]
@@ -6042,10 +6042,10 @@ namespace Harp.LoadCells
     /// Represents an operator that creates a sequence of message payloads
     /// that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.
     /// </summary>
-    [DisplayName("DO0PulseDurationPayload")]
+    [DisplayName("DO0PulseWidthPayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
     [Description("Creates a sequence of message payloads that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.")]
-    public partial class CreateDO0PulseDurationPayload : HarpCombinator
+    public partial class CreateDO0PulseWidthPayload : HarpCombinator
     {
         /// <summary>
         /// Gets or sets the value that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.
@@ -6084,7 +6084,7 @@ namespace Harp.LoadCells
         /// </returns>
         public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
         {
-            return source.Select(_ => DO0PulseDuration.FromPayload(MessageType, Value));
+            return source.Select(_ => DO0PulseWidth.FromPayload(MessageType, Value));
         }
     }
 
