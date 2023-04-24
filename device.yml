@@ -35,19 +35,19 @@ registers:
         offset: 6
       Channel7:
         offset: 7
-  DI0:
+  DI0State:
       address: 34
       access: Event
       type: U8
       maskType: DigitalState
-      description: Status of the digital input pin 0. An event will be emitted when DI0Mode == Input.
-  DO0:
+      description: Status of the digital input pin 0. An event will be emitted when DI0Trigger == Input.
+  DO0State:
       address: 35
       access: Event
       type: U8
       maskType: DigitalState
-      description: Status of the digital output pin 0. An periodic event will be emitted when DigitalOutput0Mode == ToggleEachSecond.
-  BufferThresholds:
+      description: Status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
+  BufferThresholdsState:
       address: 36
       access: Read
       visibility: private
@@ -62,17 +62,17 @@ registers:
   Reserved1:
       <<: *ReservedReg
       address: 38
-  DI0Mode:
+  DI0Trigger:
       address: 39
       access: Write
       type: U8
-      maskType: DI0ModeConfig
+      maskType: DI0TriggerConfig
       description: Configuration of the digital input pin 0.
-  DO0Mode:
+  DO0Sync:
       address: 40
       access: Write
       type: U8
-      maskType: DO0ModeConfig
+      maskType: DO0SyncConfig
       description: Configuration of the digital output pin 0.
   DO0PulseWidth:
       address: 41
@@ -80,26 +80,26 @@ registers:
       type: U8
       minValue: 1
       maxValue: 255
-      description: Pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.
-  DOSet: &output
+      description: Pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
+  DigitalOutputSet: &output
     address: 42
     type: U16
     access: Write
     maskType: DigitalOutputs
     description: Set the specified digital output lines.
-  DOClear:
+  DigitalOutputClear:
     <<: *output
     address: 43
     description: Clear the specified digital output lines.
-  DOToggle:
+  DigitalOutputToggle:
     <<: *output
     address: 44
     description: Toggle the specified digital output lines
-  DOState:
+  DigitalOutputState:
     <<: *output
     address: 45
     access: [Write, Event]
-    description: Write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold crossing event.
+    description: Write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
   Reserved2:
       <<: *ReservedReg
       address: 46
@@ -307,24 +307,19 @@ bitMasks:
       DigitalOutput0: 0x4
       Thresholds: 0x8
 groupMasks:
-  EnableFlag:
-    description: The state of an abstract functionality.
-    values:
-      Disabled: 0
-      Enabled: 1
   DigitalState:
     description: The state of a digital pin.
     values:
       Low: 0
       High: 1
-  DI0ModeConfig:
-    description: Available configurations for DI0 pin.
+  DI0TriggerConfig:
+    description: Available configurations for when using DI0 as an acquisition trigger.
     values:
       Input: 0
       StartOnRisingEdge: 1
       StartOnFallingEdge: 2
-  DO0ModeConfig:
-    description: Available configurations for DO0 pin.
+  DO0SyncConfig:
+    description: Available configurations when using DO0 pin to report firmware events.
     values:
       Output: 0
       ToggleEachSecond: 1
