@@ -37,17 +37,17 @@ namespace Harp.LoadCells
         public static new IReadOnlyDictionary<int, Type> RegisterMap { get; } = new Dictionary<int, Type>
             (Bonsai.Harp.Device.RegisterMap.ToDictionary(entry => entry.Key, entry => entry.Value))
         {
-            { 32, typeof(StartAcquisition) },
+            { 32, typeof(AcquisitionState) },
             { 33, typeof(LoadCellData) },
-            { 34, typeof(DI0) },
-            { 35, typeof(DO0) },
-            { 39, typeof(DI0Mode) },
-            { 40, typeof(DO0Mode) },
+            { 34, typeof(DI0State) },
+            { 35, typeof(DO0State) },
+            { 39, typeof(DI0Trigger) },
+            { 40, typeof(DO0Sync) },
             { 41, typeof(DO0PulseWidth) },
-            { 42, typeof(DOSet) },
-            { 43, typeof(DOClear) },
-            { 44, typeof(DOToggle) },
-            { 45, typeof(DOState) },
+            { 42, typeof(DigitalOutputSet) },
+            { 43, typeof(DigitalOutputClear) },
+            { 44, typeof(DigitalOutputToggle) },
+            { 45, typeof(DigitalOutputState) },
             { 48, typeof(OffsetLoadCell0) },
             { 49, typeof(OffsetLoadCell1) },
             { 50, typeof(OffsetLoadCell2) },
@@ -117,17 +117,17 @@ namespace Harp.LoadCells
     /// Represents an operator that filters register-specific messages
     /// reported by the <see cref="LoadCells"/> device.
     /// </summary>
-    /// <seealso cref="StartAcquisition"/>
+    /// <seealso cref="AcquisitionState"/>
     /// <seealso cref="LoadCellData"/>
-    /// <seealso cref="DI0"/>
-    /// <seealso cref="DO0"/>
-    /// <seealso cref="DI0Mode"/>
-    /// <seealso cref="DO0Mode"/>
+    /// <seealso cref="DI0State"/>
+    /// <seealso cref="DO0State"/>
+    /// <seealso cref="DI0Trigger"/>
+    /// <seealso cref="DO0Sync"/>
     /// <seealso cref="DO0PulseWidth"/>
-    /// <seealso cref="DOSet"/>
-    /// <seealso cref="DOClear"/>
-    /// <seealso cref="DOToggle"/>
-    /// <seealso cref="DOState"/>
+    /// <seealso cref="DigitalOutputSet"/>
+    /// <seealso cref="DigitalOutputClear"/>
+    /// <seealso cref="DigitalOutputToggle"/>
+    /// <seealso cref="DigitalOutputState"/>
     /// <seealso cref="OffsetLoadCell0"/>
     /// <seealso cref="OffsetLoadCell1"/>
     /// <seealso cref="OffsetLoadCell2"/>
@@ -169,17 +169,17 @@ namespace Harp.LoadCells
     /// <seealso cref="DO7BufferFallingEdge"/>
     /// <seealso cref="DO8BufferFallingEdge"/>
     /// <seealso cref="EnableEvents"/>
-    [XmlInclude(typeof(StartAcquisition))]
+    [XmlInclude(typeof(AcquisitionState))]
     [XmlInclude(typeof(LoadCellData))]
-    [XmlInclude(typeof(DI0))]
-    [XmlInclude(typeof(DO0))]
-    [XmlInclude(typeof(DI0Mode))]
-    [XmlInclude(typeof(DO0Mode))]
+    [XmlInclude(typeof(DI0State))]
+    [XmlInclude(typeof(DO0State))]
+    [XmlInclude(typeof(DI0Trigger))]
+    [XmlInclude(typeof(DO0Sync))]
     [XmlInclude(typeof(DO0PulseWidth))]
-    [XmlInclude(typeof(DOSet))]
-    [XmlInclude(typeof(DOClear))]
-    [XmlInclude(typeof(DOToggle))]
-    [XmlInclude(typeof(DOState))]
+    [XmlInclude(typeof(DigitalOutputSet))]
+    [XmlInclude(typeof(DigitalOutputClear))]
+    [XmlInclude(typeof(DigitalOutputToggle))]
+    [XmlInclude(typeof(DigitalOutputState))]
     [XmlInclude(typeof(OffsetLoadCell0))]
     [XmlInclude(typeof(OffsetLoadCell1))]
     [XmlInclude(typeof(OffsetLoadCell2))]
@@ -229,7 +229,7 @@ namespace Harp.LoadCells
         /// </summary>
         public FilterMessage()
         {
-            Register = new StartAcquisition();
+            Register = new AcquisitionState();
         }
 
         string INamedElement.Name
@@ -242,17 +242,17 @@ namespace Harp.LoadCells
     /// Represents an operator which filters and selects specific messages
     /// reported by the LoadCells device.
     /// </summary>
-    /// <seealso cref="StartAcquisition"/>
+    /// <seealso cref="AcquisitionState"/>
     /// <seealso cref="LoadCellData"/>
-    /// <seealso cref="DI0"/>
-    /// <seealso cref="DO0"/>
-    /// <seealso cref="DI0Mode"/>
-    /// <seealso cref="DO0Mode"/>
+    /// <seealso cref="DI0State"/>
+    /// <seealso cref="DO0State"/>
+    /// <seealso cref="DI0Trigger"/>
+    /// <seealso cref="DO0Sync"/>
     /// <seealso cref="DO0PulseWidth"/>
-    /// <seealso cref="DOSet"/>
-    /// <seealso cref="DOClear"/>
-    /// <seealso cref="DOToggle"/>
-    /// <seealso cref="DOState"/>
+    /// <seealso cref="DigitalOutputSet"/>
+    /// <seealso cref="DigitalOutputClear"/>
+    /// <seealso cref="DigitalOutputToggle"/>
+    /// <seealso cref="DigitalOutputState"/>
     /// <seealso cref="OffsetLoadCell0"/>
     /// <seealso cref="OffsetLoadCell1"/>
     /// <seealso cref="OffsetLoadCell2"/>
@@ -294,17 +294,17 @@ namespace Harp.LoadCells
     /// <seealso cref="DO7BufferFallingEdge"/>
     /// <seealso cref="DO8BufferFallingEdge"/>
     /// <seealso cref="EnableEvents"/>
-    [XmlInclude(typeof(StartAcquisition))]
+    [XmlInclude(typeof(AcquisitionState))]
     [XmlInclude(typeof(LoadCellData))]
-    [XmlInclude(typeof(DI0))]
-    [XmlInclude(typeof(DO0))]
-    [XmlInclude(typeof(DI0Mode))]
-    [XmlInclude(typeof(DO0Mode))]
+    [XmlInclude(typeof(DI0State))]
+    [XmlInclude(typeof(DO0State))]
+    [XmlInclude(typeof(DI0Trigger))]
+    [XmlInclude(typeof(DO0Sync))]
     [XmlInclude(typeof(DO0PulseWidth))]
-    [XmlInclude(typeof(DOSet))]
-    [XmlInclude(typeof(DOClear))]
-    [XmlInclude(typeof(DOToggle))]
-    [XmlInclude(typeof(DOState))]
+    [XmlInclude(typeof(DigitalOutputSet))]
+    [XmlInclude(typeof(DigitalOutputClear))]
+    [XmlInclude(typeof(DigitalOutputToggle))]
+    [XmlInclude(typeof(DigitalOutputState))]
     [XmlInclude(typeof(OffsetLoadCell0))]
     [XmlInclude(typeof(OffsetLoadCell1))]
     [XmlInclude(typeof(OffsetLoadCell2))]
@@ -346,17 +346,17 @@ namespace Harp.LoadCells
     [XmlInclude(typeof(DO7BufferFallingEdge))]
     [XmlInclude(typeof(DO8BufferFallingEdge))]
     [XmlInclude(typeof(EnableEvents))]
-    [XmlInclude(typeof(TimestampedStartAcquisition))]
+    [XmlInclude(typeof(TimestampedAcquisitionState))]
     [XmlInclude(typeof(TimestampedLoadCellData))]
-    [XmlInclude(typeof(TimestampedDI0))]
-    [XmlInclude(typeof(TimestampedDO0))]
-    [XmlInclude(typeof(TimestampedDI0Mode))]
-    [XmlInclude(typeof(TimestampedDO0Mode))]
+    [XmlInclude(typeof(TimestampedDI0State))]
+    [XmlInclude(typeof(TimestampedDO0State))]
+    [XmlInclude(typeof(TimestampedDI0Trigger))]
+    [XmlInclude(typeof(TimestampedDO0Sync))]
     [XmlInclude(typeof(TimestampedDO0PulseWidth))]
-    [XmlInclude(typeof(TimestampedDOSet))]
-    [XmlInclude(typeof(TimestampedDOClear))]
-    [XmlInclude(typeof(TimestampedDOToggle))]
-    [XmlInclude(typeof(TimestampedDOState))]
+    [XmlInclude(typeof(TimestampedDigitalOutputSet))]
+    [XmlInclude(typeof(TimestampedDigitalOutputClear))]
+    [XmlInclude(typeof(TimestampedDigitalOutputToggle))]
+    [XmlInclude(typeof(TimestampedDigitalOutputState))]
     [XmlInclude(typeof(TimestampedOffsetLoadCell0))]
     [XmlInclude(typeof(TimestampedOffsetLoadCell1))]
     [XmlInclude(typeof(TimestampedOffsetLoadCell2))]
@@ -406,7 +406,7 @@ namespace Harp.LoadCells
         /// </summary>
         public Parse()
         {
-            Register = new StartAcquisition();
+            Register = new AcquisitionState();
         }
 
         string INamedElement.Name => $"{nameof(LoadCells)}.{GetElementDisplayName(Register)}";
@@ -416,17 +416,17 @@ namespace Harp.LoadCells
     /// Represents an operator which formats a sequence of values as specific
     /// LoadCells register messages.
     /// </summary>
-    /// <seealso cref="StartAcquisition"/>
+    /// <seealso cref="AcquisitionState"/>
     /// <seealso cref="LoadCellData"/>
-    /// <seealso cref="DI0"/>
-    /// <seealso cref="DO0"/>
-    /// <seealso cref="DI0Mode"/>
-    /// <seealso cref="DO0Mode"/>
+    /// <seealso cref="DI0State"/>
+    /// <seealso cref="DO0State"/>
+    /// <seealso cref="DI0Trigger"/>
+    /// <seealso cref="DO0Sync"/>
     /// <seealso cref="DO0PulseWidth"/>
-    /// <seealso cref="DOSet"/>
-    /// <seealso cref="DOClear"/>
-    /// <seealso cref="DOToggle"/>
-    /// <seealso cref="DOState"/>
+    /// <seealso cref="DigitalOutputSet"/>
+    /// <seealso cref="DigitalOutputClear"/>
+    /// <seealso cref="DigitalOutputToggle"/>
+    /// <seealso cref="DigitalOutputState"/>
     /// <seealso cref="OffsetLoadCell0"/>
     /// <seealso cref="OffsetLoadCell1"/>
     /// <seealso cref="OffsetLoadCell2"/>
@@ -468,17 +468,17 @@ namespace Harp.LoadCells
     /// <seealso cref="DO7BufferFallingEdge"/>
     /// <seealso cref="DO8BufferFallingEdge"/>
     /// <seealso cref="EnableEvents"/>
-    [XmlInclude(typeof(StartAcquisition))]
+    [XmlInclude(typeof(AcquisitionState))]
     [XmlInclude(typeof(LoadCellData))]
-    [XmlInclude(typeof(DI0))]
-    [XmlInclude(typeof(DO0))]
-    [XmlInclude(typeof(DI0Mode))]
-    [XmlInclude(typeof(DO0Mode))]
+    [XmlInclude(typeof(DI0State))]
+    [XmlInclude(typeof(DO0State))]
+    [XmlInclude(typeof(DI0Trigger))]
+    [XmlInclude(typeof(DO0Sync))]
     [XmlInclude(typeof(DO0PulseWidth))]
-    [XmlInclude(typeof(DOSet))]
-    [XmlInclude(typeof(DOClear))]
-    [XmlInclude(typeof(DOToggle))]
-    [XmlInclude(typeof(DOState))]
+    [XmlInclude(typeof(DigitalOutputSet))]
+    [XmlInclude(typeof(DigitalOutputClear))]
+    [XmlInclude(typeof(DigitalOutputToggle))]
+    [XmlInclude(typeof(DigitalOutputState))]
     [XmlInclude(typeof(OffsetLoadCell0))]
     [XmlInclude(typeof(OffsetLoadCell1))]
     [XmlInclude(typeof(OffsetLoadCell2))]
@@ -528,7 +528,7 @@ namespace Harp.LoadCells
         /// </summary>
         public Format()
         {
-            Register = new StartAcquisition();
+            Register = new AcquisitionState();
         }
 
         string INamedElement.Name => $"{nameof(LoadCells)}.{GetElementDisplayName(Register)}";
@@ -538,25 +538,25 @@ namespace Harp.LoadCells
     /// Represents a register that enables the data acquisition.
     /// </summary>
     [Description("Enables the data acquisition.")]
-    public partial class StartAcquisition
+    public partial class AcquisitionState
     {
         /// <summary>
-        /// Represents the address of the <see cref="StartAcquisition"/> register. This field is constant.
+        /// Represents the address of the <see cref="AcquisitionState"/> register. This field is constant.
         /// </summary>
         public const int Address = 32;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="StartAcquisition"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="AcquisitionState"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U8;
 
         /// <summary>
-        /// Represents the length of the <see cref="StartAcquisition"/> register. This field is constant.
+        /// Represents the length of the <see cref="AcquisitionState"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="StartAcquisition"/> register messages.
+        /// Returns the payload data for <see cref="AcquisitionState"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
@@ -566,7 +566,7 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="StartAcquisition"/> register messages.
+        /// Returns the timestamped payload data for <see cref="AcquisitionState"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
@@ -577,12 +577,12 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="StartAcquisition"/> register.
+        /// Returns a Harp message for the <see cref="AcquisitionState"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="StartAcquisition"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="AcquisitionState"/> register
         /// with the specified message type and payload.
         /// </returns>
         public static HarpMessage FromPayload(MessageType messageType, EnableFlag value)
@@ -591,14 +591,14 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="StartAcquisition"/>
+        /// Returns a timestamped Harp message for the <see cref="AcquisitionState"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="StartAcquisition"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="AcquisitionState"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
         public static HarpMessage FromPayload(double timestamp, MessageType messageType, EnableFlag value)
@@ -609,25 +609,25 @@ namespace Harp.LoadCells
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// StartAcquisition register.
+    /// AcquisitionState register.
     /// </summary>
-    /// <seealso cref="StartAcquisition"/>
-    [Description("Filters and selects timestamped messages from the StartAcquisition register.")]
-    public partial class TimestampedStartAcquisition
+    /// <seealso cref="AcquisitionState"/>
+    [Description("Filters and selects timestamped messages from the AcquisitionState register.")]
+    public partial class TimestampedAcquisitionState
     {
         /// <summary>
-        /// Represents the address of the <see cref="StartAcquisition"/> register. This field is constant.
+        /// Represents the address of the <see cref="AcquisitionState"/> register. This field is constant.
         /// </summary>
-        public const int Address = StartAcquisition.Address;
+        public const int Address = AcquisitionState.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="StartAcquisition"/> register messages.
+        /// Returns timestamped payload data for <see cref="AcquisitionState"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
         public static Timestamped<EnableFlag> GetPayload(HarpMessage message)
         {
-            return StartAcquisition.GetTimestampedPayload(message);
+            return AcquisitionState.GetTimestampedPayload(message);
         }
     }
 
@@ -758,28 +758,28 @@ namespace Harp.LoadCells
     }
 
     /// <summary>
-    /// Represents a register that status of the digital input pin 0. An event will be emitted when DI0Mode == Input.
+    /// Represents a register that status of the digital input pin 0. An event will be emitted when DI0Trigger == Input.
     /// </summary>
-    [Description("Status of the digital input pin 0. An event will be emitted when DI0Mode == Input.")]
-    public partial class DI0
+    [Description("Status of the digital input pin 0. An event will be emitted when DI0Trigger == Input.")]
+    public partial class DI0State
     {
         /// <summary>
-        /// Represents the address of the <see cref="DI0"/> register. This field is constant.
+        /// Represents the address of the <see cref="DI0State"/> register. This field is constant.
         /// </summary>
         public const int Address = 34;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="DI0"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="DI0State"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U8;
 
         /// <summary>
-        /// Represents the length of the <see cref="DI0"/> register. This field is constant.
+        /// Represents the length of the <see cref="DI0State"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="DI0"/> register messages.
+        /// Returns the payload data for <see cref="DI0State"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
@@ -789,7 +789,7 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="DI0"/> register messages.
+        /// Returns the timestamped payload data for <see cref="DI0State"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
@@ -800,12 +800,12 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="DI0"/> register.
+        /// Returns a Harp message for the <see cref="DI0State"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DI0"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DI0State"/> register
         /// with the specified message type and payload.
         /// </returns>
         public static HarpMessage FromPayload(MessageType messageType, DigitalState value)
@@ -814,14 +814,14 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="DI0"/>
+        /// Returns a timestamped Harp message for the <see cref="DI0State"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DI0"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DI0State"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
         public static HarpMessage FromPayload(double timestamp, MessageType messageType, DigitalState value)
@@ -832,51 +832,51 @@ namespace Harp.LoadCells
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// DI0 register.
+    /// DI0State register.
     /// </summary>
-    /// <seealso cref="DI0"/>
-    [Description("Filters and selects timestamped messages from the DI0 register.")]
-    public partial class TimestampedDI0
+    /// <seealso cref="DI0State"/>
+    [Description("Filters and selects timestamped messages from the DI0State register.")]
+    public partial class TimestampedDI0State
     {
         /// <summary>
-        /// Represents the address of the <see cref="DI0"/> register. This field is constant.
+        /// Represents the address of the <see cref="DI0State"/> register. This field is constant.
         /// </summary>
-        public const int Address = DI0.Address;
+        public const int Address = DI0State.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="DI0"/> register messages.
+        /// Returns timestamped payload data for <see cref="DI0State"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
         public static Timestamped<DigitalState> GetPayload(HarpMessage message)
         {
-            return DI0.GetTimestampedPayload(message);
+            return DI0State.GetTimestampedPayload(message);
         }
     }
 
     /// <summary>
-    /// Represents a register that status of the digital output pin 0. An periodic event will be emitted when DigitalOutput0Mode == ToggleEachSecond.
+    /// Represents a register that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
     /// </summary>
-    [Description("Status of the digital output pin 0. An periodic event will be emitted when DigitalOutput0Mode == ToggleEachSecond.")]
-    public partial class DO0
+    [Description("Status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.")]
+    public partial class DO0State
     {
         /// <summary>
-        /// Represents the address of the <see cref="DO0"/> register. This field is constant.
+        /// Represents the address of the <see cref="DO0State"/> register. This field is constant.
         /// </summary>
         public const int Address = 35;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="DO0"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="DO0State"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U8;
 
         /// <summary>
-        /// Represents the length of the <see cref="DO0"/> register. This field is constant.
+        /// Represents the length of the <see cref="DO0State"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="DO0"/> register messages.
+        /// Returns the payload data for <see cref="DO0State"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
@@ -886,7 +886,7 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="DO0"/> register messages.
+        /// Returns the timestamped payload data for <see cref="DO0State"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
@@ -897,12 +897,12 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="DO0"/> register.
+        /// Returns a Harp message for the <see cref="DO0State"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DO0"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DO0State"/> register
         /// with the specified message type and payload.
         /// </returns>
         public static HarpMessage FromPayload(MessageType messageType, DigitalState value)
@@ -911,14 +911,14 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="DO0"/>
+        /// Returns a timestamped Harp message for the <see cref="DO0State"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DO0"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DO0State"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
         public static HarpMessage FromPayload(double timestamp, MessageType messageType, DigitalState value)
@@ -929,25 +929,25 @@ namespace Harp.LoadCells
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// DO0 register.
+    /// DO0State register.
     /// </summary>
-    /// <seealso cref="DO0"/>
-    [Description("Filters and selects timestamped messages from the DO0 register.")]
-    public partial class TimestampedDO0
+    /// <seealso cref="DO0State"/>
+    [Description("Filters and selects timestamped messages from the DO0State register.")]
+    public partial class TimestampedDO0State
     {
         /// <summary>
-        /// Represents the address of the <see cref="DO0"/> register. This field is constant.
+        /// Represents the address of the <see cref="DO0State"/> register. This field is constant.
         /// </summary>
-        public const int Address = DO0.Address;
+        public const int Address = DO0State.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="DO0"/> register messages.
+        /// Returns timestamped payload data for <see cref="DO0State"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
         public static Timestamped<DigitalState> GetPayload(HarpMessage message)
         {
-            return DO0.GetTimestampedPayload(message);
+            return DO0State.GetTimestampedPayload(message);
         }
     }
 
@@ -955,70 +955,70 @@ namespace Harp.LoadCells
     /// Represents a register that configuration of the digital input pin 0.
     /// </summary>
     [Description("Configuration of the digital input pin 0.")]
-    public partial class DI0Mode
+    public partial class DI0Trigger
     {
         /// <summary>
-        /// Represents the address of the <see cref="DI0Mode"/> register. This field is constant.
+        /// Represents the address of the <see cref="DI0Trigger"/> register. This field is constant.
         /// </summary>
         public const int Address = 39;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="DI0Mode"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="DI0Trigger"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U8;
 
         /// <summary>
-        /// Represents the length of the <see cref="DI0Mode"/> register. This field is constant.
+        /// Represents the length of the <see cref="DI0Trigger"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="DI0Mode"/> register messages.
+        /// Returns the payload data for <see cref="DI0Trigger"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static DI0ModeConfig GetPayload(HarpMessage message)
+        public static DI0TriggerConfig GetPayload(HarpMessage message)
         {
-            return (DI0ModeConfig)message.GetPayloadByte();
+            return (DI0TriggerConfig)message.GetPayloadByte();
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="DI0Mode"/> register messages.
+        /// Returns the timestamped payload data for <see cref="DI0Trigger"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<DI0ModeConfig> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<DI0TriggerConfig> GetTimestampedPayload(HarpMessage message)
         {
             var payload = message.GetTimestampedPayloadByte();
-            return Timestamped.Create((DI0ModeConfig)payload.Value, payload.Seconds);
+            return Timestamped.Create((DI0TriggerConfig)payload.Value, payload.Seconds);
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="DI0Mode"/> register.
+        /// Returns a Harp message for the <see cref="DI0Trigger"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DI0Mode"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DI0Trigger"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, DI0ModeConfig value)
+        public static HarpMessage FromPayload(MessageType messageType, DI0TriggerConfig value)
         {
             return HarpMessage.FromByte(Address, messageType, (byte)value);
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="DI0Mode"/>
+        /// Returns a timestamped Harp message for the <see cref="DI0Trigger"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DI0Mode"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DI0Trigger"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, DI0ModeConfig value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, DI0TriggerConfig value)
         {
             return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
         }
@@ -1026,25 +1026,25 @@ namespace Harp.LoadCells
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// DI0Mode register.
+    /// DI0Trigger register.
     /// </summary>
-    /// <seealso cref="DI0Mode"/>
-    [Description("Filters and selects timestamped messages from the DI0Mode register.")]
-    public partial class TimestampedDI0Mode
+    /// <seealso cref="DI0Trigger"/>
+    [Description("Filters and selects timestamped messages from the DI0Trigger register.")]
+    public partial class TimestampedDI0Trigger
     {
         /// <summary>
-        /// Represents the address of the <see cref="DI0Mode"/> register. This field is constant.
+        /// Represents the address of the <see cref="DI0Trigger"/> register. This field is constant.
         /// </summary>
-        public const int Address = DI0Mode.Address;
+        public const int Address = DI0Trigger.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="DI0Mode"/> register messages.
+        /// Returns timestamped payload data for <see cref="DI0Trigger"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<DI0ModeConfig> GetPayload(HarpMessage message)
+        public static Timestamped<DI0TriggerConfig> GetPayload(HarpMessage message)
         {
-            return DI0Mode.GetTimestampedPayload(message);
+            return DI0Trigger.GetTimestampedPayload(message);
         }
     }
 
@@ -1052,70 +1052,70 @@ namespace Harp.LoadCells
     /// Represents a register that configuration of the digital output pin 0.
     /// </summary>
     [Description("Configuration of the digital output pin 0.")]
-    public partial class DO0Mode
+    public partial class DO0Sync
     {
         /// <summary>
-        /// Represents the address of the <see cref="DO0Mode"/> register. This field is constant.
+        /// Represents the address of the <see cref="DO0Sync"/> register. This field is constant.
         /// </summary>
         public const int Address = 40;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="DO0Mode"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="DO0Sync"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U8;
 
         /// <summary>
-        /// Represents the length of the <see cref="DO0Mode"/> register. This field is constant.
+        /// Represents the length of the <see cref="DO0Sync"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="DO0Mode"/> register messages.
+        /// Returns the payload data for <see cref="DO0Sync"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static DO0ModeConfig GetPayload(HarpMessage message)
+        public static DO0SyncConfig GetPayload(HarpMessage message)
         {
-            return (DO0ModeConfig)message.GetPayloadByte();
+            return (DO0SyncConfig)message.GetPayloadByte();
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="DO0Mode"/> register messages.
+        /// Returns the timestamped payload data for <see cref="DO0Sync"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<DO0ModeConfig> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<DO0SyncConfig> GetTimestampedPayload(HarpMessage message)
         {
             var payload = message.GetTimestampedPayloadByte();
-            return Timestamped.Create((DO0ModeConfig)payload.Value, payload.Seconds);
+            return Timestamped.Create((DO0SyncConfig)payload.Value, payload.Seconds);
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="DO0Mode"/> register.
+        /// Returns a Harp message for the <see cref="DO0Sync"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DO0Mode"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DO0Sync"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, DO0ModeConfig value)
+        public static HarpMessage FromPayload(MessageType messageType, DO0SyncConfig value)
         {
             return HarpMessage.FromByte(Address, messageType, (byte)value);
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="DO0Mode"/>
+        /// Returns a timestamped Harp message for the <see cref="DO0Sync"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DO0Mode"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DO0Sync"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, DO0ModeConfig value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, DO0SyncConfig value)
         {
             return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
         }
@@ -1123,32 +1123,32 @@ namespace Harp.LoadCells
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// DO0Mode register.
+    /// DO0Sync register.
     /// </summary>
-    /// <seealso cref="DO0Mode"/>
-    [Description("Filters and selects timestamped messages from the DO0Mode register.")]
-    public partial class TimestampedDO0Mode
+    /// <seealso cref="DO0Sync"/>
+    [Description("Filters and selects timestamped messages from the DO0Sync register.")]
+    public partial class TimestampedDO0Sync
     {
         /// <summary>
-        /// Represents the address of the <see cref="DO0Mode"/> register. This field is constant.
+        /// Represents the address of the <see cref="DO0Sync"/> register. This field is constant.
         /// </summary>
-        public const int Address = DO0Mode.Address;
+        public const int Address = DO0Sync.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="DO0Mode"/> register messages.
+        /// Returns timestamped payload data for <see cref="DO0Sync"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<DO0ModeConfig> GetPayload(HarpMessage message)
+        public static Timestamped<DO0SyncConfig> GetPayload(HarpMessage message)
         {
-            return DO0Mode.GetTimestampedPayload(message);
+            return DO0Sync.GetTimestampedPayload(message);
         }
     }
 
     /// <summary>
-    /// Represents a register that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.
+    /// Represents a register that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
     /// </summary>
-    [Description("Pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.")]
+    [Description("Pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.")]
     public partial class DO0PulseWidth
     {
         /// <summary>
@@ -1245,25 +1245,25 @@ namespace Harp.LoadCells
     /// Represents a register that set the specified digital output lines.
     /// </summary>
     [Description("Set the specified digital output lines.")]
-    public partial class DOSet
+    public partial class DigitalOutputSet
     {
         /// <summary>
-        /// Represents the address of the <see cref="DOSet"/> register. This field is constant.
+        /// Represents the address of the <see cref="DigitalOutputSet"/> register. This field is constant.
         /// </summary>
         public const int Address = 42;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="DOSet"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="DigitalOutputSet"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U16;
 
         /// <summary>
-        /// Represents the length of the <see cref="DOSet"/> register. This field is constant.
+        /// Represents the length of the <see cref="DigitalOutputSet"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="DOSet"/> register messages.
+        /// Returns the payload data for <see cref="DigitalOutputSet"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
@@ -1273,7 +1273,7 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="DOSet"/> register messages.
+        /// Returns the timestamped payload data for <see cref="DigitalOutputSet"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
@@ -1284,12 +1284,12 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="DOSet"/> register.
+        /// Returns a Harp message for the <see cref="DigitalOutputSet"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DOSet"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DigitalOutputSet"/> register
         /// with the specified message type and payload.
         /// </returns>
         public static HarpMessage FromPayload(MessageType messageType, DigitalOutputs value)
@@ -1298,14 +1298,14 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="DOSet"/>
+        /// Returns a timestamped Harp message for the <see cref="DigitalOutputSet"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DOSet"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DigitalOutputSet"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
         public static HarpMessage FromPayload(double timestamp, MessageType messageType, DigitalOutputs value)
@@ -1316,25 +1316,25 @@ namespace Harp.LoadCells
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// DOSet register.
+    /// DigitalOutputSet register.
     /// </summary>
-    /// <seealso cref="DOSet"/>
-    [Description("Filters and selects timestamped messages from the DOSet register.")]
-    public partial class TimestampedDOSet
+    /// <seealso cref="DigitalOutputSet"/>
+    [Description("Filters and selects timestamped messages from the DigitalOutputSet register.")]
+    public partial class TimestampedDigitalOutputSet
     {
         /// <summary>
-        /// Represents the address of the <see cref="DOSet"/> register. This field is constant.
+        /// Represents the address of the <see cref="DigitalOutputSet"/> register. This field is constant.
         /// </summary>
-        public const int Address = DOSet.Address;
+        public const int Address = DigitalOutputSet.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="DOSet"/> register messages.
+        /// Returns timestamped payload data for <see cref="DigitalOutputSet"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
         public static Timestamped<DigitalOutputs> GetPayload(HarpMessage message)
         {
-            return DOSet.GetTimestampedPayload(message);
+            return DigitalOutputSet.GetTimestampedPayload(message);
         }
     }
 
@@ -1342,25 +1342,25 @@ namespace Harp.LoadCells
     /// Represents a register that clear the specified digital output lines.
     /// </summary>
     [Description("Clear the specified digital output lines.")]
-    public partial class DOClear
+    public partial class DigitalOutputClear
     {
         /// <summary>
-        /// Represents the address of the <see cref="DOClear"/> register. This field is constant.
+        /// Represents the address of the <see cref="DigitalOutputClear"/> register. This field is constant.
         /// </summary>
         public const int Address = 43;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="DOClear"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="DigitalOutputClear"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U16;
 
         /// <summary>
-        /// Represents the length of the <see cref="DOClear"/> register. This field is constant.
+        /// Represents the length of the <see cref="DigitalOutputClear"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="DOClear"/> register messages.
+        /// Returns the payload data for <see cref="DigitalOutputClear"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
@@ -1370,7 +1370,7 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="DOClear"/> register messages.
+        /// Returns the timestamped payload data for <see cref="DigitalOutputClear"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
@@ -1381,12 +1381,12 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="DOClear"/> register.
+        /// Returns a Harp message for the <see cref="DigitalOutputClear"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DOClear"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DigitalOutputClear"/> register
         /// with the specified message type and payload.
         /// </returns>
         public static HarpMessage FromPayload(MessageType messageType, DigitalOutputs value)
@@ -1395,14 +1395,14 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="DOClear"/>
+        /// Returns a timestamped Harp message for the <see cref="DigitalOutputClear"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DOClear"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DigitalOutputClear"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
         public static HarpMessage FromPayload(double timestamp, MessageType messageType, DigitalOutputs value)
@@ -1413,25 +1413,25 @@ namespace Harp.LoadCells
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// DOClear register.
+    /// DigitalOutputClear register.
     /// </summary>
-    /// <seealso cref="DOClear"/>
-    [Description("Filters and selects timestamped messages from the DOClear register.")]
-    public partial class TimestampedDOClear
+    /// <seealso cref="DigitalOutputClear"/>
+    [Description("Filters and selects timestamped messages from the DigitalOutputClear register.")]
+    public partial class TimestampedDigitalOutputClear
     {
         /// <summary>
-        /// Represents the address of the <see cref="DOClear"/> register. This field is constant.
+        /// Represents the address of the <see cref="DigitalOutputClear"/> register. This field is constant.
         /// </summary>
-        public const int Address = DOClear.Address;
+        public const int Address = DigitalOutputClear.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="DOClear"/> register messages.
+        /// Returns timestamped payload data for <see cref="DigitalOutputClear"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
         public static Timestamped<DigitalOutputs> GetPayload(HarpMessage message)
         {
-            return DOClear.GetTimestampedPayload(message);
+            return DigitalOutputClear.GetTimestampedPayload(message);
         }
     }
 
@@ -1439,25 +1439,25 @@ namespace Harp.LoadCells
     /// Represents a register that toggle the specified digital output lines.
     /// </summary>
     [Description("Toggle the specified digital output lines")]
-    public partial class DOToggle
+    public partial class DigitalOutputToggle
     {
         /// <summary>
-        /// Represents the address of the <see cref="DOToggle"/> register. This field is constant.
+        /// Represents the address of the <see cref="DigitalOutputToggle"/> register. This field is constant.
         /// </summary>
         public const int Address = 44;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="DOToggle"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="DigitalOutputToggle"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U16;
 
         /// <summary>
-        /// Represents the length of the <see cref="DOToggle"/> register. This field is constant.
+        /// Represents the length of the <see cref="DigitalOutputToggle"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="DOToggle"/> register messages.
+        /// Returns the payload data for <see cref="DigitalOutputToggle"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
@@ -1467,7 +1467,7 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="DOToggle"/> register messages.
+        /// Returns the timestamped payload data for <see cref="DigitalOutputToggle"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
@@ -1478,12 +1478,12 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="DOToggle"/> register.
+        /// Returns a Harp message for the <see cref="DigitalOutputToggle"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DOToggle"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DigitalOutputToggle"/> register
         /// with the specified message type and payload.
         /// </returns>
         public static HarpMessage FromPayload(MessageType messageType, DigitalOutputs value)
@@ -1492,14 +1492,14 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="DOToggle"/>
+        /// Returns a timestamped Harp message for the <see cref="DigitalOutputToggle"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DOToggle"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DigitalOutputToggle"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
         public static HarpMessage FromPayload(double timestamp, MessageType messageType, DigitalOutputs value)
@@ -1510,51 +1510,51 @@ namespace Harp.LoadCells
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// DOToggle register.
+    /// DigitalOutputToggle register.
     /// </summary>
-    /// <seealso cref="DOToggle"/>
-    [Description("Filters and selects timestamped messages from the DOToggle register.")]
-    public partial class TimestampedDOToggle
+    /// <seealso cref="DigitalOutputToggle"/>
+    [Description("Filters and selects timestamped messages from the DigitalOutputToggle register.")]
+    public partial class TimestampedDigitalOutputToggle
     {
         /// <summary>
-        /// Represents the address of the <see cref="DOToggle"/> register. This field is constant.
+        /// Represents the address of the <see cref="DigitalOutputToggle"/> register. This field is constant.
         /// </summary>
-        public const int Address = DOToggle.Address;
+        public const int Address = DigitalOutputToggle.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="DOToggle"/> register messages.
+        /// Returns timestamped payload data for <see cref="DigitalOutputToggle"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
         public static Timestamped<DigitalOutputs> GetPayload(HarpMessage message)
         {
-            return DOToggle.GetTimestampedPayload(message);
+            return DigitalOutputToggle.GetTimestampedPayload(message);
         }
     }
 
     /// <summary>
-    /// Represents a register that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold crossing event.
+    /// Represents a register that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
     /// </summary>
-    [Description("Write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold crossing event.")]
-    public partial class DOState
+    [Description("Write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.")]
+    public partial class DigitalOutputState
     {
         /// <summary>
-        /// Represents the address of the <see cref="DOState"/> register. This field is constant.
+        /// Represents the address of the <see cref="DigitalOutputState"/> register. This field is constant.
         /// </summary>
         public const int Address = 45;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="DOState"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="DigitalOutputState"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U16;
 
         /// <summary>
-        /// Represents the length of the <see cref="DOState"/> register. This field is constant.
+        /// Represents the length of the <see cref="DigitalOutputState"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="DOState"/> register messages.
+        /// Returns the payload data for <see cref="DigitalOutputState"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
@@ -1564,7 +1564,7 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="DOState"/> register messages.
+        /// Returns the timestamped payload data for <see cref="DigitalOutputState"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
@@ -1575,12 +1575,12 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="DOState"/> register.
+        /// Returns a Harp message for the <see cref="DigitalOutputState"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DOState"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DigitalOutputState"/> register
         /// with the specified message type and payload.
         /// </returns>
         public static HarpMessage FromPayload(MessageType messageType, DigitalOutputs value)
@@ -1589,14 +1589,14 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="DOState"/>
+        /// Returns a timestamped Harp message for the <see cref="DigitalOutputState"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DOState"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DigitalOutputState"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
         public static HarpMessage FromPayload(double timestamp, MessageType messageType, DigitalOutputs value)
@@ -1607,25 +1607,25 @@ namespace Harp.LoadCells
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// DOState register.
+    /// DigitalOutputState register.
     /// </summary>
-    /// <seealso cref="DOState"/>
-    [Description("Filters and selects timestamped messages from the DOState register.")]
-    public partial class TimestampedDOState
+    /// <seealso cref="DigitalOutputState"/>
+    [Description("Filters and selects timestamped messages from the DigitalOutputState register.")]
+    public partial class TimestampedDigitalOutputState
     {
         /// <summary>
-        /// Represents the address of the <see cref="DOState"/> register. This field is constant.
+        /// Represents the address of the <see cref="DigitalOutputState"/> register. This field is constant.
         /// </summary>
-        public const int Address = DOState.Address;
+        public const int Address = DigitalOutputState.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="DOState"/> register messages.
+        /// Returns timestamped payload data for <see cref="DigitalOutputState"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
         public static Timestamped<DigitalOutputs> GetPayload(HarpMessage message)
         {
-            return DOState.GetTimestampedPayload(message);
+            return DigitalOutputState.GetTimestampedPayload(message);
         }
     }
 
@@ -5578,17 +5578,17 @@ namespace Harp.LoadCells
     /// Represents an operator which creates standard message payloads for the
     /// LoadCells device.
     /// </summary>
-    /// <seealso cref="CreateStartAcquisitionPayload"/>
+    /// <seealso cref="CreateAcquisitionStatePayload"/>
     /// <seealso cref="CreateLoadCellDataPayload"/>
-    /// <seealso cref="CreateDI0Payload"/>
-    /// <seealso cref="CreateDO0Payload"/>
-    /// <seealso cref="CreateDI0ModePayload"/>
-    /// <seealso cref="CreateDO0ModePayload"/>
+    /// <seealso cref="CreateDI0StatePayload"/>
+    /// <seealso cref="CreateDO0StatePayload"/>
+    /// <seealso cref="CreateDI0TriggerPayload"/>
+    /// <seealso cref="CreateDO0SyncPayload"/>
     /// <seealso cref="CreateDO0PulseWidthPayload"/>
-    /// <seealso cref="CreateDOSetPayload"/>
-    /// <seealso cref="CreateDOClearPayload"/>
-    /// <seealso cref="CreateDOTogglePayload"/>
-    /// <seealso cref="CreateDOStatePayload"/>
+    /// <seealso cref="CreateDigitalOutputSetPayload"/>
+    /// <seealso cref="CreateDigitalOutputClearPayload"/>
+    /// <seealso cref="CreateDigitalOutputTogglePayload"/>
+    /// <seealso cref="CreateDigitalOutputStatePayload"/>
     /// <seealso cref="CreateOffsetLoadCell0Payload"/>
     /// <seealso cref="CreateOffsetLoadCell1Payload"/>
     /// <seealso cref="CreateOffsetLoadCell2Payload"/>
@@ -5630,17 +5630,17 @@ namespace Harp.LoadCells
     /// <seealso cref="CreateDO7BufferFallingEdgePayload"/>
     /// <seealso cref="CreateDO8BufferFallingEdgePayload"/>
     /// <seealso cref="CreateEnableEventsPayload"/>
-    [XmlInclude(typeof(CreateStartAcquisitionPayload))]
+    [XmlInclude(typeof(CreateAcquisitionStatePayload))]
     [XmlInclude(typeof(CreateLoadCellDataPayload))]
-    [XmlInclude(typeof(CreateDI0Payload))]
-    [XmlInclude(typeof(CreateDO0Payload))]
-    [XmlInclude(typeof(CreateDI0ModePayload))]
-    [XmlInclude(typeof(CreateDO0ModePayload))]
+    [XmlInclude(typeof(CreateDI0StatePayload))]
+    [XmlInclude(typeof(CreateDO0StatePayload))]
+    [XmlInclude(typeof(CreateDI0TriggerPayload))]
+    [XmlInclude(typeof(CreateDO0SyncPayload))]
     [XmlInclude(typeof(CreateDO0PulseWidthPayload))]
-    [XmlInclude(typeof(CreateDOSetPayload))]
-    [XmlInclude(typeof(CreateDOClearPayload))]
-    [XmlInclude(typeof(CreateDOTogglePayload))]
-    [XmlInclude(typeof(CreateDOStatePayload))]
+    [XmlInclude(typeof(CreateDigitalOutputSetPayload))]
+    [XmlInclude(typeof(CreateDigitalOutputClearPayload))]
+    [XmlInclude(typeof(CreateDigitalOutputTogglePayload))]
+    [XmlInclude(typeof(CreateDigitalOutputStatePayload))]
     [XmlInclude(typeof(CreateOffsetLoadCell0Payload))]
     [XmlInclude(typeof(CreateOffsetLoadCell1Payload))]
     [XmlInclude(typeof(CreateOffsetLoadCell2Payload))]
@@ -5690,7 +5690,7 @@ namespace Harp.LoadCells
         /// </summary>
         public CreateMessage()
         {
-            Payload = new CreateStartAcquisitionPayload();
+            Payload = new CreateAcquisitionStatePayload();
         }
 
         string INamedElement.Name => $"{nameof(LoadCells)}.{GetElementDisplayName(Payload)}";
@@ -5700,10 +5700,10 @@ namespace Harp.LoadCells
     /// Represents an operator that creates a sequence of message payloads
     /// that enables the data acquisition.
     /// </summary>
-    [DisplayName("StartAcquisitionPayload")]
+    [DisplayName("AcquisitionStatePayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
     [Description("Creates a sequence of message payloads that enables the data acquisition.")]
-    public partial class CreateStartAcquisitionPayload : HarpCombinator
+    public partial class CreateAcquisitionStatePayload : HarpCombinator
     {
         /// <summary>
         /// Gets or sets the value that enables the data acquisition.
@@ -5740,7 +5740,7 @@ namespace Harp.LoadCells
         /// </returns>
         public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
         {
-            return source.Select(_ => StartAcquisition.FromPayload(MessageType, Value));
+            return source.Select(_ => AcquisitionState.FromPayload(MessageType, Value));
         }
     }
 
@@ -5848,22 +5848,22 @@ namespace Harp.LoadCells
 
     /// <summary>
     /// Represents an operator that creates a sequence of message payloads
-    /// that status of the digital input pin 0. An event will be emitted when DI0Mode == Input.
+    /// that status of the digital input pin 0. An event will be emitted when DI0Trigger == Input.
     /// </summary>
-    [DisplayName("DI0Payload")]
+    [DisplayName("DI0StatePayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that status of the digital input pin 0. An event will be emitted when DI0Mode == Input.")]
-    public partial class CreateDI0Payload : HarpCombinator
+    [Description("Creates a sequence of message payloads that status of the digital input pin 0. An event will be emitted when DI0Trigger == Input.")]
+    public partial class CreateDI0StatePayload : HarpCombinator
     {
         /// <summary>
-        /// Gets or sets the value that status of the digital input pin 0. An event will be emitted when DI0Mode == Input.
+        /// Gets or sets the value that status of the digital input pin 0. An event will be emitted when DI0Trigger == Input.
         /// </summary>
-        [Description("The value that status of the digital input pin 0. An event will be emitted when DI0Mode == Input.")]
+        [Description("The value that status of the digital input pin 0. An event will be emitted when DI0Trigger == Input.")]
         public DigitalState Value { get; set; }
 
         /// <summary>
         /// Creates an observable sequence that contains a single message
-        /// that status of the digital input pin 0. An event will be emitted when DI0Mode == Input.
+        /// that status of the digital input pin 0. An event will be emitted when DI0Trigger == Input.
         /// </summary>
         /// <returns>
         /// A sequence containing a single <see cref="HarpMessage"/> object
@@ -5876,7 +5876,7 @@ namespace Harp.LoadCells
 
         /// <summary>
         /// Creates an observable sequence of message payloads
-        /// that status of the digital input pin 0. An event will be emitted when DI0Mode == Input.
+        /// that status of the digital input pin 0. An event will be emitted when DI0Trigger == Input.
         /// </summary>
         /// <typeparam name="TSource">
         /// The type of the elements in the <paramref name="source"/> sequence.
@@ -5890,28 +5890,28 @@ namespace Harp.LoadCells
         /// </returns>
         public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
         {
-            return source.Select(_ => DI0.FromPayload(MessageType, Value));
+            return source.Select(_ => DI0State.FromPayload(MessageType, Value));
         }
     }
 
     /// <summary>
     /// Represents an operator that creates a sequence of message payloads
-    /// that status of the digital output pin 0. An periodic event will be emitted when DigitalOutput0Mode == ToggleEachSecond.
+    /// that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
     /// </summary>
-    [DisplayName("DO0Payload")]
+    [DisplayName("DO0StatePayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that status of the digital output pin 0. An periodic event will be emitted when DigitalOutput0Mode == ToggleEachSecond.")]
-    public partial class CreateDO0Payload : HarpCombinator
+    [Description("Creates a sequence of message payloads that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.")]
+    public partial class CreateDO0StatePayload : HarpCombinator
     {
         /// <summary>
-        /// Gets or sets the value that status of the digital output pin 0. An periodic event will be emitted when DigitalOutput0Mode == ToggleEachSecond.
+        /// Gets or sets the value that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
         /// </summary>
-        [Description("The value that status of the digital output pin 0. An periodic event will be emitted when DigitalOutput0Mode == ToggleEachSecond.")]
+        [Description("The value that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.")]
         public DigitalState Value { get; set; }
 
         /// <summary>
         /// Creates an observable sequence that contains a single message
-        /// that status of the digital output pin 0. An periodic event will be emitted when DigitalOutput0Mode == ToggleEachSecond.
+        /// that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
         /// </summary>
         /// <returns>
         /// A sequence containing a single <see cref="HarpMessage"/> object
@@ -5924,7 +5924,7 @@ namespace Harp.LoadCells
 
         /// <summary>
         /// Creates an observable sequence of message payloads
-        /// that status of the digital output pin 0. An periodic event will be emitted when DigitalOutput0Mode == ToggleEachSecond.
+        /// that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
         /// </summary>
         /// <typeparam name="TSource">
         /// The type of the elements in the <paramref name="source"/> sequence.
@@ -5938,7 +5938,7 @@ namespace Harp.LoadCells
         /// </returns>
         public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
         {
-            return source.Select(_ => DO0.FromPayload(MessageType, Value));
+            return source.Select(_ => DO0State.FromPayload(MessageType, Value));
         }
     }
 
@@ -5946,16 +5946,16 @@ namespace Harp.LoadCells
     /// Represents an operator that creates a sequence of message payloads
     /// that configuration of the digital input pin 0.
     /// </summary>
-    [DisplayName("DI0ModePayload")]
+    [DisplayName("DI0TriggerPayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
     [Description("Creates a sequence of message payloads that configuration of the digital input pin 0.")]
-    public partial class CreateDI0ModePayload : HarpCombinator
+    public partial class CreateDI0TriggerPayload : HarpCombinator
     {
         /// <summary>
         /// Gets or sets the value that configuration of the digital input pin 0.
         /// </summary>
         [Description("The value that configuration of the digital input pin 0.")]
-        public DI0ModeConfig Value { get; set; }
+        public DI0TriggerConfig Value { get; set; }
 
         /// <summary>
         /// Creates an observable sequence that contains a single message
@@ -5986,7 +5986,7 @@ namespace Harp.LoadCells
         /// </returns>
         public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
         {
-            return source.Select(_ => DI0Mode.FromPayload(MessageType, Value));
+            return source.Select(_ => DI0Trigger.FromPayload(MessageType, Value));
         }
     }
 
@@ -5994,16 +5994,16 @@ namespace Harp.LoadCells
     /// Represents an operator that creates a sequence of message payloads
     /// that configuration of the digital output pin 0.
     /// </summary>
-    [DisplayName("DO0ModePayload")]
+    [DisplayName("DO0SyncPayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
     [Description("Creates a sequence of message payloads that configuration of the digital output pin 0.")]
-    public partial class CreateDO0ModePayload : HarpCombinator
+    public partial class CreateDO0SyncPayload : HarpCombinator
     {
         /// <summary>
         /// Gets or sets the value that configuration of the digital output pin 0.
         /// </summary>
         [Description("The value that configuration of the digital output pin 0.")]
-        public DO0ModeConfig Value { get; set; }
+        public DO0SyncConfig Value { get; set; }
 
         /// <summary>
         /// Creates an observable sequence that contains a single message
@@ -6034,30 +6034,30 @@ namespace Harp.LoadCells
         /// </returns>
         public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
         {
-            return source.Select(_ => DO0Mode.FromPayload(MessageType, Value));
+            return source.Select(_ => DO0Sync.FromPayload(MessageType, Value));
         }
     }
 
     /// <summary>
     /// Represents an operator that creates a sequence of message payloads
-    /// that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.
+    /// that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
     /// </summary>
     [DisplayName("DO0PulseWidthPayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.")]
+    [Description("Creates a sequence of message payloads that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.")]
     public partial class CreateDO0PulseWidthPayload : HarpCombinator
     {
         /// <summary>
-        /// Gets or sets the value that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.
+        /// Gets or sets the value that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
         /// </summary>
         [Range(min: 1, max: 255)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
-        [Description("The value that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.")]
+        [Description("The value that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.")]
         public byte Value { get; set; } = 1;
 
         /// <summary>
         /// Creates an observable sequence that contains a single message
-        /// that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.
+        /// that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
         /// </summary>
         /// <returns>
         /// A sequence containing a single <see cref="HarpMessage"/> object
@@ -6070,7 +6070,7 @@ namespace Harp.LoadCells
 
         /// <summary>
         /// Creates an observable sequence of message payloads
-        /// that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Mode == Pulse.
+        /// that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
         /// </summary>
         /// <typeparam name="TSource">
         /// The type of the elements in the <paramref name="source"/> sequence.
@@ -6092,10 +6092,10 @@ namespace Harp.LoadCells
     /// Represents an operator that creates a sequence of message payloads
     /// that set the specified digital output lines.
     /// </summary>
-    [DisplayName("DOSetPayload")]
+    [DisplayName("DigitalOutputSetPayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
     [Description("Creates a sequence of message payloads that set the specified digital output lines.")]
-    public partial class CreateDOSetPayload : HarpCombinator
+    public partial class CreateDigitalOutputSetPayload : HarpCombinator
     {
         /// <summary>
         /// Gets or sets the value that set the specified digital output lines.
@@ -6132,7 +6132,7 @@ namespace Harp.LoadCells
         /// </returns>
         public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
         {
-            return source.Select(_ => DOSet.FromPayload(MessageType, Value));
+            return source.Select(_ => DigitalOutputSet.FromPayload(MessageType, Value));
         }
     }
 
@@ -6140,10 +6140,10 @@ namespace Harp.LoadCells
     /// Represents an operator that creates a sequence of message payloads
     /// that clear the specified digital output lines.
     /// </summary>
-    [DisplayName("DOClearPayload")]
+    [DisplayName("DigitalOutputClearPayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
     [Description("Creates a sequence of message payloads that clear the specified digital output lines.")]
-    public partial class CreateDOClearPayload : HarpCombinator
+    public partial class CreateDigitalOutputClearPayload : HarpCombinator
     {
         /// <summary>
         /// Gets or sets the value that clear the specified digital output lines.
@@ -6180,7 +6180,7 @@ namespace Harp.LoadCells
         /// </returns>
         public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
         {
-            return source.Select(_ => DOClear.FromPayload(MessageType, Value));
+            return source.Select(_ => DigitalOutputClear.FromPayload(MessageType, Value));
         }
     }
 
@@ -6188,10 +6188,10 @@ namespace Harp.LoadCells
     /// Represents an operator that creates a sequence of message payloads
     /// that toggle the specified digital output lines.
     /// </summary>
-    [DisplayName("DOTogglePayload")]
+    [DisplayName("DigitalOutputTogglePayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
     [Description("Creates a sequence of message payloads that toggle the specified digital output lines.")]
-    public partial class CreateDOTogglePayload : HarpCombinator
+    public partial class CreateDigitalOutputTogglePayload : HarpCombinator
     {
         /// <summary>
         /// Gets or sets the value that toggle the specified digital output lines.
@@ -6228,28 +6228,28 @@ namespace Harp.LoadCells
         /// </returns>
         public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
         {
-            return source.Select(_ => DOToggle.FromPayload(MessageType, Value));
+            return source.Select(_ => DigitalOutputToggle.FromPayload(MessageType, Value));
         }
     }
 
     /// <summary>
     /// Represents an operator that creates a sequence of message payloads
-    /// that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold crossing event.
+    /// that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
     /// </summary>
-    [DisplayName("DOStatePayload")]
+    [DisplayName("DigitalOutputStatePayload")]
     [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold crossing event.")]
-    public partial class CreateDOStatePayload : HarpCombinator
+    [Description("Creates a sequence of message payloads that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.")]
+    public partial class CreateDigitalOutputStatePayload : HarpCombinator
     {
         /// <summary>
-        /// Gets or sets the value that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold crossing event.
+        /// Gets or sets the value that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
         /// </summary>
-        [Description("The value that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold crossing event.")]
+        [Description("The value that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.")]
         public DigitalOutputs Value { get; set; }
 
         /// <summary>
         /// Creates an observable sequence that contains a single message
-        /// that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold crossing event.
+        /// that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
         /// </summary>
         /// <returns>
         /// A sequence containing a single <see cref="HarpMessage"/> object
@@ -6262,7 +6262,7 @@ namespace Harp.LoadCells
 
         /// <summary>
         /// Creates an observable sequence of message payloads
-        /// that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold crossing event.
+        /// that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
         /// </summary>
         /// <typeparam name="TSource">
         /// The type of the elements in the <paramref name="source"/> sequence.
@@ -6276,7 +6276,7 @@ namespace Harp.LoadCells
         /// </returns>
         public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
         {
-            return source.Select(_ => DOState.FromPayload(MessageType, Value));
+            return source.Select(_ => DigitalOutputState.FromPayload(MessageType, Value));
         }
     }
 
@@ -8370,15 +8370,6 @@ namespace Harp.LoadCells
     }
 
     /// <summary>
-    /// The state of an abstract functionality.
-    /// </summary>
-    public enum EnableFlag : byte
-    {
-        Disabled = 0,
-        Enabled = 1
-    }
-
-    /// <summary>
     /// The state of a digital pin.
     /// </summary>
     public enum DigitalState : byte
@@ -8388,9 +8379,9 @@ namespace Harp.LoadCells
     }
 
     /// <summary>
-    /// Available configurations for DI0 pin.
+    /// Available configurations for when using DI0 as an acquisition trigger.
     /// </summary>
-    public enum DI0ModeConfig : byte
+    public enum DI0TriggerConfig : byte
     {
         Input = 0,
         StartOnRisingEdge = 1,
@@ -8398,9 +8389,9 @@ namespace Harp.LoadCells
     }
 
     /// <summary>
-    /// Available configurations for DO0 pin.
+    /// Available configurations when using DO0 pin to report firmware events.
     /// </summary>
-    public enum DO0ModeConfig : byte
+    public enum DO0SyncConfig : byte
     {
         Output = 0,
         ToggleEachSecond = 1,

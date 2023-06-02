@@ -45,39 +45,39 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the StartAcquisition register.
+        /// Asynchronously reads the contents of the AcquisitionState register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<EnableFlag> ReadStartAcquisitionAsync()
+        public async Task<EnableFlag> ReadAcquisitionStateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(StartAcquisition.Address));
-            return StartAcquisition.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(AcquisitionState.Address));
+            return AcquisitionState.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the StartAcquisition register.
+        /// Asynchronously reads the timestamped contents of the AcquisitionState register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<EnableFlag>> ReadTimestampedStartAcquisitionAsync()
+        public async Task<Timestamped<EnableFlag>> ReadTimestampedAcquisitionStateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(StartAcquisition.Address));
-            return StartAcquisition.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(AcquisitionState.Address));
+            return AcquisitionState.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the StartAcquisition register.
+        /// Asynchronously writes a value to the AcquisitionState register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteStartAcquisitionAsync(EnableFlag value)
+        public async Task WriteAcquisitionStateAsync(EnableFlag value)
         {
-            var request = StartAcquisition.FromPayload(MessageType.Write, value);
+            var request = AcquisitionState.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
@@ -108,128 +108,128 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DI0 register.
+        /// Asynchronously reads the contents of the DI0State register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<DigitalState> ReadDI0Async()
+        public async Task<DigitalState> ReadDI0StateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DI0.Address));
-            return DI0.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(DI0State.Address));
+            return DI0State.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DI0 register.
+        /// Asynchronously reads the timestamped contents of the DI0State register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<DigitalState>> ReadTimestampedDI0Async()
+        public async Task<Timestamped<DigitalState>> ReadTimestampedDI0StateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DI0.Address));
-            return DI0.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(DI0State.Address));
+            return DI0State.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO0 register.
+        /// Asynchronously reads the contents of the DO0State register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<DigitalState> ReadDO0Async()
+        public async Task<DigitalState> ReadDO0StateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DO0.Address));
-            return DO0.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(DO0State.Address));
+            return DO0State.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO0 register.
+        /// Asynchronously reads the timestamped contents of the DO0State register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<DigitalState>> ReadTimestampedDO0Async()
+        public async Task<Timestamped<DigitalState>> ReadTimestampedDO0StateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DO0.Address));
-            return DO0.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(DO0State.Address));
+            return DO0State.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DI0Mode register.
+        /// Asynchronously reads the contents of the DI0Trigger register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<DI0ModeConfig> ReadDI0ModeAsync()
+        public async Task<DI0TriggerConfig> ReadDI0TriggerAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DI0Mode.Address));
-            return DI0Mode.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(DI0Trigger.Address));
+            return DI0Trigger.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DI0Mode register.
+        /// Asynchronously reads the timestamped contents of the DI0Trigger register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<DI0ModeConfig>> ReadTimestampedDI0ModeAsync()
+        public async Task<Timestamped<DI0TriggerConfig>> ReadTimestampedDI0TriggerAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DI0Mode.Address));
-            return DI0Mode.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(DI0Trigger.Address));
+            return DI0Trigger.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DI0Mode register.
+        /// Asynchronously writes a value to the DI0Trigger register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDI0ModeAsync(DI0ModeConfig value)
+        public async Task WriteDI0TriggerAsync(DI0TriggerConfig value)
         {
-            var request = DI0Mode.FromPayload(MessageType.Write, value);
+            var request = DI0Trigger.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO0Mode register.
+        /// Asynchronously reads the contents of the DO0Sync register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<DO0ModeConfig> ReadDO0ModeAsync()
+        public async Task<DO0SyncConfig> ReadDO0SyncAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DO0Mode.Address));
-            return DO0Mode.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(DO0Sync.Address));
+            return DO0Sync.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO0Mode register.
+        /// Asynchronously reads the timestamped contents of the DO0Sync register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<DO0ModeConfig>> ReadTimestampedDO0ModeAsync()
+        public async Task<Timestamped<DO0SyncConfig>> ReadTimestampedDO0SyncAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DO0Mode.Address));
-            return DO0Mode.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(DO0Sync.Address));
+            return DO0Sync.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO0Mode register.
+        /// Asynchronously writes a value to the DO0Sync register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO0ModeAsync(DO0ModeConfig value)
+        public async Task WriteDO0SyncAsync(DO0SyncConfig value)
         {
-            var request = DO0Mode.FromPayload(MessageType.Write, value);
+            var request = DO0Sync.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
@@ -271,150 +271,150 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DOSet register.
+        /// Asynchronously reads the contents of the DigitalOutputSet register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<DigitalOutputs> ReadDOSetAsync()
+        public async Task<DigitalOutputs> ReadDigitalOutputSetAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DOSet.Address));
-            return DOSet.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DigitalOutputSet.Address));
+            return DigitalOutputSet.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DOSet register.
+        /// Asynchronously reads the timestamped contents of the DigitalOutputSet register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<DigitalOutputs>> ReadTimestampedDOSetAsync()
+        public async Task<Timestamped<DigitalOutputs>> ReadTimestampedDigitalOutputSetAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DOSet.Address));
-            return DOSet.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DigitalOutputSet.Address));
+            return DigitalOutputSet.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DOSet register.
+        /// Asynchronously writes a value to the DigitalOutputSet register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDOSetAsync(DigitalOutputs value)
+        public async Task WriteDigitalOutputSetAsync(DigitalOutputs value)
         {
-            var request = DOSet.FromPayload(MessageType.Write, value);
+            var request = DigitalOutputSet.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DOClear register.
+        /// Asynchronously reads the contents of the DigitalOutputClear register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<DigitalOutputs> ReadDOClearAsync()
+        public async Task<DigitalOutputs> ReadDigitalOutputClearAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DOClear.Address));
-            return DOClear.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DigitalOutputClear.Address));
+            return DigitalOutputClear.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DOClear register.
+        /// Asynchronously reads the timestamped contents of the DigitalOutputClear register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<DigitalOutputs>> ReadTimestampedDOClearAsync()
+        public async Task<Timestamped<DigitalOutputs>> ReadTimestampedDigitalOutputClearAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DOClear.Address));
-            return DOClear.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DigitalOutputClear.Address));
+            return DigitalOutputClear.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DOClear register.
+        /// Asynchronously writes a value to the DigitalOutputClear register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDOClearAsync(DigitalOutputs value)
+        public async Task WriteDigitalOutputClearAsync(DigitalOutputs value)
         {
-            var request = DOClear.FromPayload(MessageType.Write, value);
+            var request = DigitalOutputClear.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DOToggle register.
+        /// Asynchronously reads the contents of the DigitalOutputToggle register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<DigitalOutputs> ReadDOToggleAsync()
+        public async Task<DigitalOutputs> ReadDigitalOutputToggleAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DOToggle.Address));
-            return DOToggle.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DigitalOutputToggle.Address));
+            return DigitalOutputToggle.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DOToggle register.
+        /// Asynchronously reads the timestamped contents of the DigitalOutputToggle register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<DigitalOutputs>> ReadTimestampedDOToggleAsync()
+        public async Task<Timestamped<DigitalOutputs>> ReadTimestampedDigitalOutputToggleAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DOToggle.Address));
-            return DOToggle.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DigitalOutputToggle.Address));
+            return DigitalOutputToggle.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DOToggle register.
+        /// Asynchronously writes a value to the DigitalOutputToggle register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDOToggleAsync(DigitalOutputs value)
+        public async Task WriteDigitalOutputToggleAsync(DigitalOutputs value)
         {
-            var request = DOToggle.FromPayload(MessageType.Write, value);
+            var request = DigitalOutputToggle.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DOState register.
+        /// Asynchronously reads the contents of the DigitalOutputState register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<DigitalOutputs> ReadDOStateAsync()
+        public async Task<DigitalOutputs> ReadDigitalOutputStateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DOState.Address));
-            return DOState.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DigitalOutputState.Address));
+            return DigitalOutputState.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DOState register.
+        /// Asynchronously reads the timestamped contents of the DigitalOutputState register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<DigitalOutputs>> ReadTimestampedDOStateAsync()
+        public async Task<Timestamped<DigitalOutputs>> ReadTimestampedDigitalOutputStateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DOState.Address));
-            return DOState.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DigitalOutputState.Address));
+            return DigitalOutputState.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DOState register.
+        /// Asynchronously writes a value to the DigitalOutputState register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDOStateAsync(DigitalOutputs value)
+        public async Task WriteDigitalOutputStateAsync(DigitalOutputs value)
         {
-            var request = DOState.FromPayload(MessageType.Write, value);
+            var request = DigitalOutputState.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
