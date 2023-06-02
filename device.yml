@@ -6,7 +6,7 @@ whoAmI: 1232
 firmwareVersion: "1.0"
 hardwareTargets: "1.0"
 registers:
-  StartAcquisition:
+  AcquisitionState:
     address: 32
     access: Write
     type: U8
