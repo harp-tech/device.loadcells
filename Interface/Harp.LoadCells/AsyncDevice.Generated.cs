@@ -108,55 +108,55 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DI0State register.
+        /// Asynchronously reads the contents of the DigitalInputState register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<DigitalState> ReadDI0StateAsync()
+        public async Task<DigitalInputs> ReadDigitalInputStateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DI0State.Address));
-            return DI0State.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(DigitalInputState.Address));
+            return DigitalInputState.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DI0State register.
+        /// Asynchronously reads the timestamped contents of the DigitalInputState register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<DigitalState>> ReadTimestampedDI0StateAsync()
+        public async Task<Timestamped<DigitalInputs>> ReadTimestampedDigitalInputStateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DI0State.Address));
-            return DI0State.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(DigitalInputState.Address));
+            return DigitalInputState.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO0State register.
+        /// Asynchronously reads the contents of the SyncOutputState register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<DigitalState> ReadDO0StateAsync()
+        public async Task<SyncOutputs> ReadSyncOutputStateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DO0State.Address));
-            return DO0State.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(SyncOutputState.Address));
+            return SyncOutputState.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO0State register.
+        /// Asynchronously reads the timestamped contents of the SyncOutputState register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<DigitalState>> ReadTimestampedDO0StateAsync()
+        public async Task<Timestamped<SyncOutputs>> ReadTimestampedSyncOutputStateAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(DO0State.Address));
-            return DO0State.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadByte(SyncOutputState.Address));
+            return SyncOutputState.GetTimestampedPayload(reply);
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<DI0TriggerConfig> ReadDI0TriggerAsync()
+        public async Task<TriggerConfig> ReadDI0TriggerAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DI0Trigger.Address));
             return DI0Trigger.GetPayload(reply);
@@ -179,7 +179,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<DI0TriggerConfig>> ReadTimestampedDI0TriggerAsync()
+        public async Task<Timestamped<TriggerConfig>> ReadTimestampedDI0TriggerAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DI0Trigger.Address));
             return DI0Trigger.GetTimestampedPayload(reply);
@@ -190,7 +190,7 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDI0TriggerAsync(DI0TriggerConfig value)
+        public async Task WriteDI0TriggerAsync(TriggerConfig value)
         {
             var request = DI0Trigger.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
@@ -203,7 +203,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<DO0SyncConfig> ReadDO0SyncAsync()
+        public async Task<SyncConfig> ReadDO0SyncAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO0Sync.Address));
             return DO0Sync.GetPayload(reply);
@@ -216,7 +216,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<DO0SyncConfig>> ReadTimestampedDO0SyncAsync()
+        public async Task<Timestamped<SyncConfig>> ReadTimestampedDO0SyncAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO0Sync.Address));
             return DO0Sync.GetTimestampedPayload(reply);
@@ -227,7 +227,7 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO0SyncAsync(DO0SyncConfig value)
+        public async Task WriteDO0SyncAsync(SyncConfig value)
         {
             var request = DO0Sync.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
@@ -721,7 +721,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ThresholdOnLoadCell> ReadDO1TargetLoadCellAsync()
+        public async Task<LoadCellChannel> ReadDO1TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO1TargetLoadCell.Address));
             return DO1TargetLoadCell.GetPayload(reply);
@@ -734,7 +734,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ThresholdOnLoadCell>> ReadTimestampedDO1TargetLoadCellAsync()
+        public async Task<Timestamped<LoadCellChannel>> ReadTimestampedDO1TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO1TargetLoadCell.Address));
             return DO1TargetLoadCell.GetTimestampedPayload(reply);
@@ -745,7 +745,7 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO1TargetLoadCellAsync(ThresholdOnLoadCell value)
+        public async Task WriteDO1TargetLoadCellAsync(LoadCellChannel value)
         {
             var request = DO1TargetLoadCell.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
@@ -758,7 +758,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ThresholdOnLoadCell> ReadDO2TargetLoadCellAsync()
+        public async Task<LoadCellChannel> ReadDO2TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO2TargetLoadCell.Address));
             return DO2TargetLoadCell.GetPayload(reply);
@@ -771,7 +771,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ThresholdOnLoadCell>> ReadTimestampedDO2TargetLoadCellAsync()
+        public async Task<Timestamped<LoadCellChannel>> ReadTimestampedDO2TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO2TargetLoadCell.Address));
             return DO2TargetLoadCell.GetTimestampedPayload(reply);
@@ -782,7 +782,7 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO2TargetLoadCellAsync(ThresholdOnLoadCell value)
+        public async Task WriteDO2TargetLoadCellAsync(LoadCellChannel value)
         {
             var request = DO2TargetLoadCell.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
@@ -795,7 +795,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ThresholdOnLoadCell> ReadDO3TargetLoadCellAsync()
+        public async Task<LoadCellChannel> ReadDO3TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO3TargetLoadCell.Address));
             return DO3TargetLoadCell.GetPayload(reply);
@@ -808,7 +808,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ThresholdOnLoadCell>> ReadTimestampedDO3TargetLoadCellAsync()
+        public async Task<Timestamped<LoadCellChannel>> ReadTimestampedDO3TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO3TargetLoadCell.Address));
             return DO3TargetLoadCell.GetTimestampedPayload(reply);
@@ -819,7 +819,7 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO3TargetLoadCellAsync(ThresholdOnLoadCell value)
+        public async Task WriteDO3TargetLoadCellAsync(LoadCellChannel value)
         {
             var request = DO3TargetLoadCell.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
@@ -832,7 +832,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ThresholdOnLoadCell> ReadDO4TargetLoadCellAsync()
+        public async Task<LoadCellChannel> ReadDO4TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO4TargetLoadCell.Address));
             return DO4TargetLoadCell.GetPayload(reply);
@@ -845,7 +845,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ThresholdOnLoadCell>> ReadTimestampedDO4TargetLoadCellAsync()
+        public async Task<Timestamped<LoadCellChannel>> ReadTimestampedDO4TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO4TargetLoadCell.Address));
             return DO4TargetLoadCell.GetTimestampedPayload(reply);
@@ -856,7 +856,7 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO4TargetLoadCellAsync(ThresholdOnLoadCell value)
+        public async Task WriteDO4TargetLoadCellAsync(LoadCellChannel value)
         {
             var request = DO4TargetLoadCell.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
@@ -869,7 +869,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ThresholdOnLoadCell> ReadDO5TargetLoadCellAsync()
+        public async Task<LoadCellChannel> ReadDO5TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO5TargetLoadCell.Address));
             return DO5TargetLoadCell.GetPayload(reply);
@@ -882,7 +882,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ThresholdOnLoadCell>> ReadTimestampedDO5TargetLoadCellAsync()
+        public async Task<Timestamped<LoadCellChannel>> ReadTimestampedDO5TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO5TargetLoadCell.Address));
             return DO5TargetLoadCell.GetTimestampedPayload(reply);
@@ -893,7 +893,7 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO5TargetLoadCellAsync(ThresholdOnLoadCell value)
+        public async Task WriteDO5TargetLoadCellAsync(LoadCellChannel value)
         {
             var request = DO5TargetLoadCell.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
@@ -906,7 +906,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ThresholdOnLoadCell> ReadDO6TargetLoadCellAsync()
+        public async Task<LoadCellChannel> ReadDO6TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO6TargetLoadCell.Address));
             return DO6TargetLoadCell.GetPayload(reply);
@@ -919,7 +919,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ThresholdOnLoadCell>> ReadTimestampedDO6TargetLoadCellAsync()
+        public async Task<Timestamped<LoadCellChannel>> ReadTimestampedDO6TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO6TargetLoadCell.Address));
             return DO6TargetLoadCell.GetTimestampedPayload(reply);
@@ -930,7 +930,7 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO6TargetLoadCellAsync(ThresholdOnLoadCell value)
+        public async Task WriteDO6TargetLoadCellAsync(LoadCellChannel value)
         {
             var request = DO6TargetLoadCell.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
@@ -943,7 +943,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ThresholdOnLoadCell> ReadDO7TargetLoadCellAsync()
+        public async Task<LoadCellChannel> ReadDO7TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO7TargetLoadCell.Address));
             return DO7TargetLoadCell.GetPayload(reply);
@@ -956,7 +956,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ThresholdOnLoadCell>> ReadTimestampedDO7TargetLoadCellAsync()
+        public async Task<Timestamped<LoadCellChannel>> ReadTimestampedDO7TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO7TargetLoadCell.Address));
             return DO7TargetLoadCell.GetTimestampedPayload(reply);
@@ -967,7 +967,7 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO7TargetLoadCellAsync(ThresholdOnLoadCell value)
+        public async Task WriteDO7TargetLoadCellAsync(LoadCellChannel value)
         {
             var request = DO7TargetLoadCell.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
@@ -980,7 +980,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ThresholdOnLoadCell> ReadDO8TargetLoadCellAsync()
+        public async Task<LoadCellChannel> ReadDO8TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO8TargetLoadCell.Address));
             return DO8TargetLoadCell.GetPayload(reply);
@@ -993,7 +993,7 @@ namespace Harp.LoadCells
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ThresholdOnLoadCell>> ReadTimestampedDO8TargetLoadCellAsync()
+        public async Task<Timestamped<LoadCellChannel>> ReadTimestampedDO8TargetLoadCellAsync()
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(DO8TargetLoadCell.Address));
             return DO8TargetLoadCell.GetTimestampedPayload(reply);
@@ -1004,7 +1004,7 @@ namespace Harp.LoadCells
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO8TargetLoadCellAsync(ThresholdOnLoadCell value)
+        public async Task WriteDO8TargetLoadCellAsync(LoadCellChannel value)
         {
             var request = DO8TargetLoadCell.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
@@ -1307,594 +1307,594 @@ namespace Harp.LoadCells
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO1BufferRisingEdge register.
+        /// Asynchronously reads the contents of the DO1TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO1BufferRisingEdgeAsync()
+        public async Task<ushort> ReadDO1TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO1BufferRisingEdge.Address));
-            return DO1BufferRisingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO1TimeAboveThreshold.Address));
+            return DO1TimeAboveThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO1BufferRisingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO1TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO1BufferRisingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO1TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO1BufferRisingEdge.Address));
-            return DO1BufferRisingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO1TimeAboveThreshold.Address));
+            return DO1TimeAboveThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO1BufferRisingEdge register.
+        /// Asynchronously writes a value to the DO1TimeAboveThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO1BufferRisingEdgeAsync(ushort value)
+        public async Task WriteDO1TimeAboveThresholdAsync(ushort value)
         {
-            var request = DO1BufferRisingEdge.FromPayload(MessageType.Write, value);
+            var request = DO1TimeAboveThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO2BufferRisingEdge register.
+        /// Asynchronously reads the contents of the DO2TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO2BufferRisingEdgeAsync()
+        public async Task<ushort> ReadDO2TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO2BufferRisingEdge.Address));
-            return DO2BufferRisingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO2TimeAboveThreshold.Address));
+            return DO2TimeAboveThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO2BufferRisingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO2TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO2BufferRisingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO2TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO2BufferRisingEdge.Address));
-            return DO2BufferRisingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO2TimeAboveThreshold.Address));
+            return DO2TimeAboveThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO2BufferRisingEdge register.
+        /// Asynchronously writes a value to the DO2TimeAboveThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO2BufferRisingEdgeAsync(ushort value)
+        public async Task WriteDO2TimeAboveThresholdAsync(ushort value)
         {
-            var request = DO2BufferRisingEdge.FromPayload(MessageType.Write, value);
+            var request = DO2TimeAboveThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO3BufferRisingEdge register.
+        /// Asynchronously reads the contents of the DO3TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO3BufferRisingEdgeAsync()
+        public async Task<ushort> ReadDO3TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO3BufferRisingEdge.Address));
-            return DO3BufferRisingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO3TimeAboveThreshold.Address));
+            return DO3TimeAboveThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO3BufferRisingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO3TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO3BufferRisingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO3TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO3BufferRisingEdge.Address));
-            return DO3BufferRisingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO3TimeAboveThreshold.Address));
+            return DO3TimeAboveThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO3BufferRisingEdge register.
+        /// Asynchronously writes a value to the DO3TimeAboveThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO3BufferRisingEdgeAsync(ushort value)
+        public async Task WriteDO3TimeAboveThresholdAsync(ushort value)
         {
-            var request = DO3BufferRisingEdge.FromPayload(MessageType.Write, value);
+            var request = DO3TimeAboveThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO4BufferRisingEdge register.
+        /// Asynchronously reads the contents of the DO4TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO4BufferRisingEdgeAsync()
+        public async Task<ushort> ReadDO4TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO4BufferRisingEdge.Address));
-            return DO4BufferRisingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO4TimeAboveThreshold.Address));
+            return DO4TimeAboveThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO4BufferRisingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO4TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO4BufferRisingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO4TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO4BufferRisingEdge.Address));
-            return DO4BufferRisingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO4TimeAboveThreshold.Address));
+            return DO4TimeAboveThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO4BufferRisingEdge register.
+        /// Asynchronously writes a value to the DO4TimeAboveThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO4BufferRisingEdgeAsync(ushort value)
+        public async Task WriteDO4TimeAboveThresholdAsync(ushort value)
         {
-            var request = DO4BufferRisingEdge.FromPayload(MessageType.Write, value);
+            var request = DO4TimeAboveThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO5BufferRisingEdge register.
+        /// Asynchronously reads the contents of the DO5TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO5BufferRisingEdgeAsync()
+        public async Task<ushort> ReadDO5TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO5BufferRisingEdge.Address));
-            return DO5BufferRisingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO5TimeAboveThreshold.Address));
+            return DO5TimeAboveThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO5BufferRisingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO5TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO5BufferRisingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO5TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO5BufferRisingEdge.Address));
-            return DO5BufferRisingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO5TimeAboveThreshold.Address));
+            return DO5TimeAboveThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO5BufferRisingEdge register.
+        /// Asynchronously writes a value to the DO5TimeAboveThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO5BufferRisingEdgeAsync(ushort value)
+        public async Task WriteDO5TimeAboveThresholdAsync(ushort value)
         {
-            var request = DO5BufferRisingEdge.FromPayload(MessageType.Write, value);
+            var request = DO5TimeAboveThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO6BufferRisingEdge register.
+        /// Asynchronously reads the contents of the DO6TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO6BufferRisingEdgeAsync()
+        public async Task<ushort> ReadDO6TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO6BufferRisingEdge.Address));
-            return DO6BufferRisingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO6TimeAboveThreshold.Address));
+            return DO6TimeAboveThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO6BufferRisingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO6TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO6BufferRisingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO6TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO6BufferRisingEdge.Address));
-            return DO6BufferRisingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO6TimeAboveThreshold.Address));
+            return DO6TimeAboveThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO6BufferRisingEdge register.
+        /// Asynchronously writes a value to the DO6TimeAboveThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO6BufferRisingEdgeAsync(ushort value)
+        public async Task WriteDO6TimeAboveThresholdAsync(ushort value)
         {
-            var request = DO6BufferRisingEdge.FromPayload(MessageType.Write, value);
+            var request = DO6TimeAboveThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO7BufferRisingEdge register.
+        /// Asynchronously reads the contents of the DO7TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO7BufferRisingEdgeAsync()
+        public async Task<ushort> ReadDO7TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO7BufferRisingEdge.Address));
-            return DO7BufferRisingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO7TimeAboveThreshold.Address));
+            return DO7TimeAboveThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO7BufferRisingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO7TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO7BufferRisingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO7TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO7BufferRisingEdge.Address));
-            return DO7BufferRisingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO7TimeAboveThreshold.Address));
+            return DO7TimeAboveThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO7BufferRisingEdge register.
+        /// Asynchronously writes a value to the DO7TimeAboveThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO7BufferRisingEdgeAsync(ushort value)
+        public async Task WriteDO7TimeAboveThresholdAsync(ushort value)
         {
-            var request = DO7BufferRisingEdge.FromPayload(MessageType.Write, value);
+            var request = DO7TimeAboveThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO8BufferRisingEdge register.
+        /// Asynchronously reads the contents of the DO8TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO8BufferRisingEdgeAsync()
+        public async Task<ushort> ReadDO8TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO8BufferRisingEdge.Address));
-            return DO8BufferRisingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO8TimeAboveThreshold.Address));
+            return DO8TimeAboveThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO8BufferRisingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO8TimeAboveThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO8BufferRisingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO8TimeAboveThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO8BufferRisingEdge.Address));
-            return DO8BufferRisingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO8TimeAboveThreshold.Address));
+            return DO8TimeAboveThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO8BufferRisingEdge register.
+        /// Asynchronously writes a value to the DO8TimeAboveThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO8BufferRisingEdgeAsync(ushort value)
+        public async Task WriteDO8TimeAboveThresholdAsync(ushort value)
         {
-            var request = DO8BufferRisingEdge.FromPayload(MessageType.Write, value);
+            var request = DO8TimeAboveThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO1BufferFallingEdge register.
+        /// Asynchronously reads the contents of the DO1TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO1BufferFallingEdgeAsync()
+        public async Task<ushort> ReadDO1TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO1BufferFallingEdge.Address));
-            return DO1BufferFallingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO1TimeBelowThreshold.Address));
+            return DO1TimeBelowThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO1BufferFallingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO1TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO1BufferFallingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO1TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO1BufferFallingEdge.Address));
-            return DO1BufferFallingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO1TimeBelowThreshold.Address));
+            return DO1TimeBelowThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO1BufferFallingEdge register.
+        /// Asynchronously writes a value to the DO1TimeBelowThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO1BufferFallingEdgeAsync(ushort value)
+        public async Task WriteDO1TimeBelowThresholdAsync(ushort value)
         {
-            var request = DO1BufferFallingEdge.FromPayload(MessageType.Write, value);
+            var request = DO1TimeBelowThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO2BufferFallingEdge register.
+        /// Asynchronously reads the contents of the DO2TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO2BufferFallingEdgeAsync()
+        public async Task<ushort> ReadDO2TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO2BufferFallingEdge.Address));
-            return DO2BufferFallingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO2TimeBelowThreshold.Address));
+            return DO2TimeBelowThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO2BufferFallingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO2TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO2BufferFallingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO2TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO2BufferFallingEdge.Address));
-            return DO2BufferFallingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO2TimeBelowThreshold.Address));
+            return DO2TimeBelowThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO2BufferFallingEdge register.
+        /// Asynchronously writes a value to the DO2TimeBelowThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO2BufferFallingEdgeAsync(ushort value)
+        public async Task WriteDO2TimeBelowThresholdAsync(ushort value)
         {
-            var request = DO2BufferFallingEdge.FromPayload(MessageType.Write, value);
+            var request = DO2TimeBelowThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO3BufferFallingEdge register.
+        /// Asynchronously reads the contents of the DO3TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO3BufferFallingEdgeAsync()
+        public async Task<ushort> ReadDO3TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO3BufferFallingEdge.Address));
-            return DO3BufferFallingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO3TimeBelowThreshold.Address));
+            return DO3TimeBelowThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO3BufferFallingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO3TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO3BufferFallingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO3TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO3BufferFallingEdge.Address));
-            return DO3BufferFallingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO3TimeBelowThreshold.Address));
+            return DO3TimeBelowThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO3BufferFallingEdge register.
+        /// Asynchronously writes a value to the DO3TimeBelowThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO3BufferFallingEdgeAsync(ushort value)
+        public async Task WriteDO3TimeBelowThresholdAsync(ushort value)
         {
-            var request = DO3BufferFallingEdge.FromPayload(MessageType.Write, value);
+            var request = DO3TimeBelowThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO4BufferFallingEdge register.
+        /// Asynchronously reads the contents of the DO4TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO4BufferFallingEdgeAsync()
+        public async Task<ushort> ReadDO4TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO4BufferFallingEdge.Address));
-            return DO4BufferFallingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO4TimeBelowThreshold.Address));
+            return DO4TimeBelowThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO4BufferFallingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO4TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO4BufferFallingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO4TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO4BufferFallingEdge.Address));
-            return DO4BufferFallingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO4TimeBelowThreshold.Address));
+            return DO4TimeBelowThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO4BufferFallingEdge register.
+        /// Asynchronously writes a value to the DO4TimeBelowThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO4BufferFallingEdgeAsync(ushort value)
+        public async Task WriteDO4TimeBelowThresholdAsync(ushort value)
         {
-            var request = DO4BufferFallingEdge.FromPayload(MessageType.Write, value);
+            var request = DO4TimeBelowThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO5BufferFallingEdge register.
+        /// Asynchronously reads the contents of the DO5TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO5BufferFallingEdgeAsync()
+        public async Task<ushort> ReadDO5TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO5BufferFallingEdge.Address));
-            return DO5BufferFallingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO5TimeBelowThreshold.Address));
+            return DO5TimeBelowThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO5BufferFallingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO5TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO5BufferFallingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO5TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO5BufferFallingEdge.Address));
-            return DO5BufferFallingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO5TimeBelowThreshold.Address));
+            return DO5TimeBelowThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO5BufferFallingEdge register.
+        /// Asynchronously writes a value to the DO5TimeBelowThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO5BufferFallingEdgeAsync(ushort value)
+        public async Task WriteDO5TimeBelowThresholdAsync(ushort value)
         {
-            var request = DO5BufferFallingEdge.FromPayload(MessageType.Write, value);
+            var request = DO5TimeBelowThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO6BufferFallingEdge register.
+        /// Asynchronously reads the contents of the DO6TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO6BufferFallingEdgeAsync()
+        public async Task<ushort> ReadDO6TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO6BufferFallingEdge.Address));
-            return DO6BufferFallingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO6TimeBelowThreshold.Address));
+            return DO6TimeBelowThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO6BufferFallingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO6TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO6BufferFallingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO6TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO6BufferFallingEdge.Address));
-            return DO6BufferFallingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO6TimeBelowThreshold.Address));
+            return DO6TimeBelowThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO6BufferFallingEdge register.
+        /// Asynchronously writes a value to the DO6TimeBelowThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO6BufferFallingEdgeAsync(ushort value)
+        public async Task WriteDO6TimeBelowThresholdAsync(ushort value)
         {
-            var request = DO6BufferFallingEdge.FromPayload(MessageType.Write, value);
+            var request = DO6TimeBelowThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO7BufferFallingEdge register.
+        /// Asynchronously reads the contents of the DO7TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO7BufferFallingEdgeAsync()
+        public async Task<ushort> ReadDO7TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO7BufferFallingEdge.Address));
-            return DO7BufferFallingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO7TimeBelowThreshold.Address));
+            return DO7TimeBelowThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO7BufferFallingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO7TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO7BufferFallingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO7TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO7BufferFallingEdge.Address));
-            return DO7BufferFallingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO7TimeBelowThreshold.Address));
+            return DO7TimeBelowThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO7BufferFallingEdge register.
+        /// Asynchronously writes a value to the DO7TimeBelowThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO7BufferFallingEdgeAsync(ushort value)
+        public async Task WriteDO7TimeBelowThresholdAsync(ushort value)
         {
-            var request = DO7BufferFallingEdge.FromPayload(MessageType.Write, value);
+            var request = DO7TimeBelowThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the DO8BufferFallingEdge register.
+        /// Asynchronously reads the contents of the DO8TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<ushort> ReadDO8BufferFallingEdgeAsync()
+        public async Task<ushort> ReadDO8TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO8BufferFallingEdge.Address));
-            return DO8BufferFallingEdge.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO8TimeBelowThreshold.Address));
+            return DO8TimeBelowThreshold.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the DO8BufferFallingEdge register.
+        /// Asynchronously reads the timestamped contents of the DO8TimeBelowThreshold register.
         /// </summary>
         /// <returns>
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedDO8BufferFallingEdgeAsync()
+        public async Task<Timestamped<ushort>> ReadTimestampedDO8TimeBelowThresholdAsync()
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO8BufferFallingEdge.Address));
-            return DO8BufferFallingEdge.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(DO8TimeBelowThreshold.Address));
+            return DO8TimeBelowThreshold.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the DO8BufferFallingEdge register.
+        /// Asynchronously writes a value to the DO8TimeBelowThreshold register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteDO8BufferFallingEdgeAsync(ushort value)
+        public async Task WriteDO8TimeBelowThresholdAsync(ushort value)
         {
-            var request = DO8BufferFallingEdge.FromPayload(MessageType.Write, value);
+            var request = DO8TimeBelowThreshold.FromPayload(MessageType.Write, value);
             await CommandAsync(request);
         }
 
