@@ -36,51 +36,51 @@ registers:
       Channel7:
         offset: 7
   DigitalInputState:
-      address: 34
-      access: Event
-      type: U8
-      maskType: DigitalInputs
-      description: Status of the digital input pin 0. An event will be emitted when DI0Trigger == None.
+    address: 34
+    access: Event
+    type: U8
+    maskType: DigitalInputs
+    description: Status of the digital input pin 0. An event will be emitted when DI0Trigger == None.
   SyncOutputState:
-      address: 35
-      access: Event
-      type: U8
-      maskType: SyncOutputs
-      description: Status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
+    address: 35
+    access: Event
+    type: U8
+    maskType: SyncOutputs
+    description: Status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
   BufferThresholdState:
-      address: 36
-      access: Read
-      visibility: private
-      type: U8
-      description: State of the buffer thresholds.
+    address: 36
+    access: Read
+    visibility: private
+    type: U8
+    description: State of the buffer thresholds.
   Reserved0: &ReservedReg
-      address: 37
-      access: Read
-      visibility: private
-      type: U8
-      description: Reserved
+    address: 37
+    access: Read
+    visibility: private
+    type: U8
+    description: Reserved
   Reserved1:
-      <<: *ReservedReg
-      address: 38
+    <<: *ReservedReg
+    address: 38
   DI0Trigger:
-      address: 39
-      access: Write
-      type: U8
-      maskType: TriggerConfig
-      description: Configuration of the digital input pin 0.
+    address: 39
+    access: Write
+    type: U8
+    maskType: TriggerConfig
+    description: Configuration of the digital input pin 0.
   DO0Sync:
-      address: 40
-      access: Write
-      type: U8
-      maskType: SyncConfig
-      description: Configuration of the digital output pin 0.
+    address: 40
+    access: Write
+    type: U8
+    maskType: SyncConfig
+    description: Configuration of the digital output pin 0.
   DO0PulseWidth:
-      address: 41
-      access: Write
-      type: U8
-      minValue: 1
-      maxValue: 255
-      description: Pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
+    address: 41
+    access: Write
+    type: U8
+    minValue: 1
+    maxValue: 255
+    description: Pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
   DigitalOutputSet: &output
     address: 42
     type: U16
@@ -101,192 +101,192 @@ registers:
     access: [Write, Event]
     description: Write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
   Reserved2:
-      <<: *ReservedReg
-      address: 46
+    <<: *ReservedReg
+    address: 46
   Reserved3:
-      <<: *ReservedReg
-      address: 47
+    <<: *ReservedReg
+    address: 47
   OffsetLoadCell0: &offsetloadcell
-      address: 48
-      access: Write
-      type: S16
-      minValue: -255
-      maxValue: 255
-      defaultValue: 0
-      description: Offset value for Load Cell channel 0.
+    address: 48
+    access: Write
+    type: S16
+    minValue: -255
+    maxValue: 255
+    defaultValue: 0
+    description: Offset value for Load Cell channel 0.
   OffsetLoadCell1:
-      <<: *offsetloadcell
-      address: 49
-      description: Offset value for Load Cell channel 1.
+    <<: *offsetloadcell
+    address: 49
+    description: Offset value for Load Cell channel 1.
   OffsetLoadCell2:
-      <<: *offsetloadcell
-      address: 50
-      description: Offset value for Load Cell channel 2.
+    <<: *offsetloadcell
+    address: 50
+    description: Offset value for Load Cell channel 2.
   OffsetLoadCell3:
-      <<: *offsetloadcell
-      address: 51
-      description: Offset value for Load Cell channel 3.
+    <<: *offsetloadcell
+    address: 51
+    description: Offset value for Load Cell channel 3.
   OffsetLoadCell4:
-      <<: *offsetloadcell
-      address: 52
-      description: Offset value for Load Cell channel 4.
+    <<: *offsetloadcell
+    address: 52
+    description: Offset value for Load Cell channel 4.
   OffsetLoadCell5:
-      <<: *offsetloadcell
-      address: 53
-      description: Offset value for Load Cell channel 5.
+    <<: *offsetloadcell
+    address: 53
+    description: Offset value for Load Cell channel 5.
   OffsetLoadCell6:
-      <<: *offsetloadcell
-      address: 54
-      description: Offset value for Load Cell channel 6.
+    <<: *offsetloadcell
+    address: 54
+    description: Offset value for Load Cell channel 6.
   OffsetLoadCell7:
-      <<: *offsetloadcell
-      address: 55
-      description: Offset value for Load Cell channel 7.
+    <<: *offsetloadcell
+    address: 55
+    description: Offset value for Load Cell channel 7.
   Reserved4:
-      <<: *ReservedReg
-      address: 56
+    <<: *ReservedReg
+    address: 56
   Reserved5:
-      <<: *ReservedReg
-      address: 57
+    <<: *ReservedReg
+    address: 57
   DO1TargetLoadCell: &targetloadcell
-      address: 58
-      access: Write
-      type: U8
-      maskType: LoadCellChannel
-      description: Target Load Cell that will be used to trigger a threshold event on DO1 pin.
+    address: 58
+    access: Write
+    type: U8
+    maskType: LoadCellChannel
+    description: Target Load Cell that will be used to trigger a threshold event on DO1 pin.
   DO2TargetLoadCell:
-      <<: *targetloadcell
-      address: 59
-      description: Target Load Cell that will be used to trigger a threshold event on DO2 pin.
+    <<: *targetloadcell
+    address: 59
+    description: Target Load Cell that will be used to trigger a threshold event on DO2 pin.
   DO3TargetLoadCell:
-      <<: *targetloadcell
-      address: 60
-      description: Target Load Cell that will be used to trigger a threshold event on DO3 pin.
+    <<: *targetloadcell
+    address: 60
+    description: Target Load Cell that will be used to trigger a threshold event on DO3 pin.
   DO4TargetLoadCell:
-      <<: *targetloadcell
-      address: 61
-      description: Target Load Cell that will be used to trigger a threshold event on DO4 pin.
+    <<: *targetloadcell
+    address: 61
+    description: Target Load Cell that will be used to trigger a threshold event on DO4 pin.
   DO5TargetLoadCell:
-      <<: *targetloadcell
-      address: 62
-      description: Target Load Cell that will be used to trigger a threshold event on DO5 pin.
+    <<: *targetloadcell
+    address: 62
+    description: Target Load Cell that will be used to trigger a threshold event on DO5 pin.
   DO6TargetLoadCell:
-      <<: *targetloadcell
-      address: 63
-      description: Target Load Cell that will be used to trigger a threshold event on DO6 pin.
+    <<: *targetloadcell
+    address: 63
+    description: Target Load Cell that will be used to trigger a threshold event on DO6 pin.
   DO7TargetLoadCell:
-      <<: *targetloadcell
-      address: 64
-      description: Target Load Cell that will be used to trigger a threshold event on DO7 pin.
+    <<: *targetloadcell
+    address: 64
+    description: Target Load Cell that will be used to trigger a threshold event on DO7 pin.
   DO8TargetLoadCell:
-      <<: *targetloadcell
-      address: 65
-      description: Target Load Cell that will be used to trigger a threshold event on DO8 pin.
+    <<: *targetloadcell
+    address: 65
+    description: Target Load Cell that will be used to trigger a threshold event on DO8 pin.
   DO1Threshold: &thresholdvalue
-      address: 66
-      access: Write
-      type: S16
-      description: Value used to threshold a Load Cell read, and trigger DO1 pin.
+    address: 66
+    access: Write
+    type: S16
+    description: Value used to threshold a Load Cell read, and trigger DO1 pin.
   DO2Threshold:
-      <<: *thresholdvalue
-      address: 67
-      description: Value used to threshold a Load Cell read, and trigger DO2 pin.
+    <<: *thresholdvalue
+    address: 67
+    description: Value used to threshold a Load Cell read, and trigger DO2 pin.
   DO3Threshold:
-      <<: *thresholdvalue
-      address: 68
-      description: Value used to threshold a Load Cell read, and trigger DO3 pin.
+    <<: *thresholdvalue
+    address: 68
+    description: Value used to threshold a Load Cell read, and trigger DO3 pin.
   DO4Threshold:
-      <<: *thresholdvalue
-      address: 69
-      description: Value used to threshold a Load Cell read, and trigger DO4 pin.
+    <<: *thresholdvalue
+    address: 69
+    description: Value used to threshold a Load Cell read, and trigger DO4 pin.
   DO5Threshold:
-      <<: *thresholdvalue
-      address: 70
-      description: Value used to threshold a Load Cell read, and trigger DO5 pin.
+    <<: *thresholdvalue
+    address: 70
+    description: Value used to threshold a Load Cell read, and trigger DO5 pin.
   DO6Threshold:
-      <<: *thresholdvalue
-      address: 71
-      description: Value used to threshold a Load Cell read, and trigger DO6 pin.
+    <<: *thresholdvalue
+    address: 71
+    description: Value used to threshold a Load Cell read, and trigger DO6 pin.
   DO7Threshold:
-      <<: *thresholdvalue
-      address: 72
-      description: Value used to threshold a Load Cell read, and trigger DO7 pin.
+    <<: *thresholdvalue
+    address: 72
+    description: Value used to threshold a Load Cell read, and trigger DO7 pin.
   DO8Threshold:
-      <<: *thresholdvalue
-      address: 73
-      description: Value used to threshold a Load Cell read, and trigger DO8 pin.
+    <<: *thresholdvalue
+    address: 73
+    description: Value used to threshold a Load Cell read, and trigger DO8 pin.
   DO1TimeAboveThreshold: &bufferedthreshold
-      address: 74
-      access: Write
-      type: U16
-      defaultValue: 0
-      description: Time (ms) above threshold value that is required to trigger a DO1 pin event.
+    address: 74
+    access: Write
+    type: U16
+    defaultValue: 0
+    description: Time (ms) above threshold value that is required to trigger a DO1 pin event.
   DO2TimeAboveThreshold:
-      <<: *bufferedthreshold
-      address: 75
-      description: Time (ms) above threshold value that is required to trigger a DO2 pin event.
+    <<: *bufferedthreshold
+    address: 75
+    description: Time (ms) above threshold value that is required to trigger a DO2 pin event.
   DO3TimeAboveThreshold:
-      <<: *bufferedthreshold
-      address: 76
-      description: Time (ms) above threshold value that is required to trigger a DO3 pin event.
+    <<: *bufferedthreshold
+    address: 76
+    description: Time (ms) above threshold value that is required to trigger a DO3 pin event.
   DO4TimeAboveThreshold:
-      <<: *bufferedthreshold
-      address: 77
-      description: Time (ms) above threshold value that is required to trigger a DO4 pin event.
+    <<: *bufferedthreshold
+    address: 77
+    description: Time (ms) above threshold value that is required to trigger a DO4 pin event.
   DO5TimeAboveThreshold:
-      <<: *bufferedthreshold
-      address: 78
-      description: Time (ms) above threshold value that is required to trigger a DO5 pin event.
+    <<: *bufferedthreshold
+    address: 78
+    description: Time (ms) above threshold value that is required to trigger a DO5 pin event.
   DO6TimeAboveThreshold:
-      <<: *bufferedthreshold
-      address: 79
-      description: Time (ms) above threshold value that is required to trigger a DO6 pin event.
+    <<: *bufferedthreshold
+    address: 79
+    description: Time (ms) above threshold value that is required to trigger a DO6 pin event.
   DO7TimeAboveThreshold:
-      <<: *bufferedthreshold
-      address: 80
-      description: Time (ms) above threshold value that is required to trigger a DO7 pin event.
+    <<: *bufferedthreshold
+    address: 80
+    description: Time (ms) above threshold value that is required to trigger a DO7 pin event.
   DO8TimeAboveThreshold:
-      <<: *bufferedthreshold
-      address: 81
-      description: Time (ms) above threshold value that is required to trigger a DO8 pin event.
+    <<: *bufferedthreshold
+    address: 81
+    description: Time (ms) above threshold value that is required to trigger a DO8 pin event.
   DO1TimeBelowThreshold:
-      <<: *bufferedthreshold
-      address: 82
-      description: Time (ms) below threshold value that is required to trigger a DO1 pin event.
+    <<: *bufferedthreshold
+    address: 82
+    description: Time (ms) below threshold value that is required to trigger a DO1 pin event.
   DO2TimeBelowThreshold:
-      <<: *bufferedthreshold
-      address: 83
-      description: Time (ms) below threshold value that is required to trigger a DO2 pin event.
+    <<: *bufferedthreshold
+    address: 83
+    description: Time (ms) below threshold value that is required to trigger a DO2 pin event.
   DO3TimeBelowThreshold:
-      <<: *bufferedthreshold
-      address: 84
-      description: Time (ms) below threshold value that is required to trigger a DO3 pin event.
+    <<: *bufferedthreshold
+    address: 84
+    description: Time (ms) below threshold value that is required to trigger a DO3 pin event.
   DO4TimeBelowThreshold:
-      <<: *bufferedthreshold
-      address: 85
-      description: Time (ms) below threshold value that is required to trigger a DO4 pin event.
+    <<: *bufferedthreshold
+    address: 85
+    description: Time (ms) below threshold value that is required to trigger a DO4 pin event.
   DO5TimeBelowThreshold:
-      <<: *bufferedthreshold
-      address: 86
-      description: Time (ms) below threshold value that is required to trigger a DO5 pin event.
+    <<: *bufferedthreshold
+    address: 86
+    description: Time (ms) below threshold value that is required to trigger a DO5 pin event.
   DO6TimeBelowThreshold:
-      <<: *bufferedthreshold
-      address: 87
-      description: Time (ms) below threshold value that is required to trigger a DO6 pin event.
+    <<: *bufferedthreshold
+    address: 87
+    description: Time (ms) below threshold value that is required to trigger a DO6 pin event.
   DO7TimeBelowThreshold:
-      <<: *bufferedthreshold
-      address: 88
-      description: Time (ms) below threshold value that is required to trigger a DO7 pin event.
+    <<: *bufferedthreshold
+    address: 88
+    description: Time (ms) below threshold value that is required to trigger a DO7 pin event.
   DO8TimeBelowThreshold:
-      <<: *bufferedthreshold
-      address: 89
-      description: Time (ms) below threshold value that is required to trigger a DO8 pin event.
+    <<: *bufferedthreshold
+    address: 89
+    description: Time (ms) below threshold value that is required to trigger a DO8 pin event.
   EnableEvents:
-      address: 90
-      access: Write
-      type: U8
-      maskType: LoadCellEvents
-      description: Specifies the active events in the device.
+    address: 90
+    access: Write
+    type: U8
+    maskType: LoadCellEvents
+    description: Specifies the active events in the device.
 bitMasks:
   DigitalInputs:
     description: Available digital input lines.
