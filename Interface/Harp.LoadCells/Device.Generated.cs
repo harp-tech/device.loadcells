@@ -222,12 +222,12 @@ namespace Harp.LoadCells
     [XmlInclude(typeof(DO8TimeBelowThreshold))]
     [XmlInclude(typeof(EnableEvents))]
     [Description("Filters register-specific messages reported by the LoadCells device.")]
-    public class FilterMessage : FilterMessageBuilder, INamedElement
+    public class FilterRegister : FilterRegisterBuilder, INamedElement
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FilterMessage"/> class.
+        /// Initializes a new instance of the <see cref="FilterRegister"/> class.
         /// </summary>
-        public FilterMessage()
+        public FilterRegister()
         {
             Register = new AcquisitionState();
         }
@@ -5682,6 +5682,58 @@ namespace Harp.LoadCells
     [XmlInclude(typeof(CreateDO7TimeBelowThresholdPayload))]
     [XmlInclude(typeof(CreateDO8TimeBelowThresholdPayload))]
     [XmlInclude(typeof(CreateEnableEventsPayload))]
+    [XmlInclude(typeof(CreateTimestampedAcquisitionStatePayload))]
+    [XmlInclude(typeof(CreateTimestampedLoadCellDataPayload))]
+    [XmlInclude(typeof(CreateTimestampedDigitalInputStatePayload))]
+    [XmlInclude(typeof(CreateTimestampedSyncOutputStatePayload))]
+    [XmlInclude(typeof(CreateTimestampedDI0TriggerPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO0SyncPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO0PulseWidthPayload))]
+    [XmlInclude(typeof(CreateTimestampedDigitalOutputSetPayload))]
+    [XmlInclude(typeof(CreateTimestampedDigitalOutputClearPayload))]
+    [XmlInclude(typeof(CreateTimestampedDigitalOutputTogglePayload))]
+    [XmlInclude(typeof(CreateTimestampedDigitalOutputStatePayload))]
+    [XmlInclude(typeof(CreateTimestampedOffsetLoadCell0Payload))]
+    [XmlInclude(typeof(CreateTimestampedOffsetLoadCell1Payload))]
+    [XmlInclude(typeof(CreateTimestampedOffsetLoadCell2Payload))]
+    [XmlInclude(typeof(CreateTimestampedOffsetLoadCell3Payload))]
+    [XmlInclude(typeof(CreateTimestampedOffsetLoadCell4Payload))]
+    [XmlInclude(typeof(CreateTimestampedOffsetLoadCell5Payload))]
+    [XmlInclude(typeof(CreateTimestampedOffsetLoadCell6Payload))]
+    [XmlInclude(typeof(CreateTimestampedOffsetLoadCell7Payload))]
+    [XmlInclude(typeof(CreateTimestampedDO1TargetLoadCellPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO2TargetLoadCellPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO3TargetLoadCellPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO4TargetLoadCellPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO5TargetLoadCellPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO6TargetLoadCellPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO7TargetLoadCellPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO8TargetLoadCellPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO1ThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO2ThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO3ThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO4ThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO5ThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO6ThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO7ThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO8ThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO1TimeAboveThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO2TimeAboveThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO3TimeAboveThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO4TimeAboveThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO5TimeAboveThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO6TimeAboveThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO7TimeAboveThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO8TimeAboveThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO1TimeBelowThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO2TimeBelowThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO3TimeBelowThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO4TimeBelowThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO5TimeBelowThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO6TimeBelowThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO7TimeBelowThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedDO8TimeBelowThresholdPayload))]
+    [XmlInclude(typeof(CreateTimestampedEnableEventsPayload))]
     [Description("Creates standard message payloads for the LoadCells device.")]
     public partial class CreateMessage : CreateMessageBuilder, INamedElement
     {
@@ -5697,61 +5749,66 @@ namespace Harp.LoadCells
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a message payload
     /// that enables the data acquisition.
     /// </summary>
     [DisplayName("AcquisitionStatePayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that enables the data acquisition.")]
-    public partial class CreateAcquisitionStatePayload : HarpCombinator
+    [Description("Creates a message payload that enables the data acquisition.")]
+    public partial class CreateAcquisitionStatePayload
     {
         /// <summary>
         /// Gets or sets the value that enables the data acquisition.
         /// </summary>
         [Description("The value that enables the data acquisition.")]
-        public EnableFlag Value { get; set; }
+        public EnableFlag AcquisitionState { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that enables the data acquisition.
+        /// Creates a message payload for the AcquisitionState register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public EnableFlag GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return AcquisitionState;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that enables the data acquisition.
+        /// Creates a message that enables the data acquisition.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the AcquisitionState register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => AcquisitionState.FromPayload(MessageType, Value));
+            return Harp.LoadCells.AcquisitionState.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that enables the data acquisition.
+    /// </summary>
+    [DisplayName("TimestampedAcquisitionStatePayload")]
+    [Description("Creates a timestamped message payload that enables the data acquisition.")]
+    public partial class CreateTimestampedAcquisitionStatePayload : CreateAcquisitionStatePayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that enables the data acquisition.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the AcquisitionState register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.AcquisitionState.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that value of single ADC read from all load cell channels.
     /// </summary>
     [DisplayName("LoadCellDataPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that value of single ADC read from all load cell channels.")]
-    public partial class CreateLoadCellDataPayload : HarpCombinator
+    [Description("Creates a message payload that value of single ADC read from all load cell channels.")]
+    public partial class CreateLoadCellDataPayload
     {
         /// <summary>
         /// Gets or sets a value to write on payload member Channel0.
@@ -5802,250 +5859,277 @@ namespace Harp.LoadCells
         public short Channel7 { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that value of single ADC read from all load cell channels.
+        /// Creates a message payload for the LoadCellData register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public LoadCellDataPayload GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            LoadCellDataPayload value;
+            value.Channel0 = Channel0;
+            value.Channel1 = Channel1;
+            value.Channel2 = Channel2;
+            value.Channel3 = Channel3;
+            value.Channel4 = Channel4;
+            value.Channel5 = Channel5;
+            value.Channel6 = Channel6;
+            value.Channel7 = Channel7;
+            return value;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that value of single ADC read from all load cell channels.
+        /// Creates a message that value of single ADC read from all load cell channels.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the LoadCellData register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ =>
-            {
-                LoadCellDataPayload value;
-                value.Channel0 = Channel0;
-                value.Channel1 = Channel1;
-                value.Channel2 = Channel2;
-                value.Channel3 = Channel3;
-                value.Channel4 = Channel4;
-                value.Channel5 = Channel5;
-                value.Channel6 = Channel6;
-                value.Channel7 = Channel7;
-                return LoadCellData.FromPayload(MessageType, value);
-            });
+            return Harp.LoadCells.LoadCellData.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that value of single ADC read from all load cell channels.
+    /// </summary>
+    [DisplayName("TimestampedLoadCellDataPayload")]
+    [Description("Creates a timestamped message payload that value of single ADC read from all load cell channels.")]
+    public partial class CreateTimestampedLoadCellDataPayload : CreateLoadCellDataPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that value of single ADC read from all load cell channels.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the LoadCellData register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.LoadCellData.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that status of the digital input pin 0. An event will be emitted when DI0Trigger == None.
     /// </summary>
     [DisplayName("DigitalInputStatePayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that status of the digital input pin 0. An event will be emitted when DI0Trigger == None.")]
-    public partial class CreateDigitalInputStatePayload : HarpCombinator
+    [Description("Creates a message payload that status of the digital input pin 0. An event will be emitted when DI0Trigger == None.")]
+    public partial class CreateDigitalInputStatePayload
     {
         /// <summary>
         /// Gets or sets the value that status of the digital input pin 0. An event will be emitted when DI0Trigger == None.
         /// </summary>
         [Description("The value that status of the digital input pin 0. An event will be emitted when DI0Trigger == None.")]
-        public DigitalInputs Value { get; set; }
+        public DigitalInputs DigitalInputState { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that status of the digital input pin 0. An event will be emitted when DI0Trigger == None.
+        /// Creates a message payload for the DigitalInputState register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public DigitalInputs GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DigitalInputState;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that status of the digital input pin 0. An event will be emitted when DI0Trigger == None.
+        /// Creates a message that status of the digital input pin 0. An event will be emitted when DI0Trigger == None.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DigitalInputState register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DigitalInputState.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DigitalInputState.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that status of the digital input pin 0. An event will be emitted when DI0Trigger == None.
+    /// </summary>
+    [DisplayName("TimestampedDigitalInputStatePayload")]
+    [Description("Creates a timestamped message payload that status of the digital input pin 0. An event will be emitted when DI0Trigger == None.")]
+    public partial class CreateTimestampedDigitalInputStatePayload : CreateDigitalInputStatePayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that status of the digital input pin 0. An event will be emitted when DI0Trigger == None.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DigitalInputState register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DigitalInputState.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
     /// </summary>
     [DisplayName("SyncOutputStatePayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.")]
-    public partial class CreateSyncOutputStatePayload : HarpCombinator
+    [Description("Creates a message payload that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.")]
+    public partial class CreateSyncOutputStatePayload
     {
         /// <summary>
         /// Gets or sets the value that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
         /// </summary>
         [Description("The value that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.")]
-        public SyncOutputs Value { get; set; }
+        public SyncOutputs SyncOutputState { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
+        /// Creates a message payload for the SyncOutputState register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public SyncOutputs GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return SyncOutputState;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
+        /// Creates a message that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the SyncOutputState register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => SyncOutputState.FromPayload(MessageType, Value));
+            return Harp.LoadCells.SyncOutputState.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
+    /// </summary>
+    [DisplayName("TimestampedSyncOutputStatePayload")]
+    [Description("Creates a timestamped message payload that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.")]
+    public partial class CreateTimestampedSyncOutputStatePayload : CreateSyncOutputStatePayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the SyncOutputState register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.SyncOutputState.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that configuration of the digital input pin 0.
     /// </summary>
     [DisplayName("DI0TriggerPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that configuration of the digital input pin 0.")]
-    public partial class CreateDI0TriggerPayload : HarpCombinator
+    [Description("Creates a message payload that configuration of the digital input pin 0.")]
+    public partial class CreateDI0TriggerPayload
     {
         /// <summary>
         /// Gets or sets the value that configuration of the digital input pin 0.
         /// </summary>
         [Description("The value that configuration of the digital input pin 0.")]
-        public TriggerConfig Value { get; set; }
+        public TriggerConfig DI0Trigger { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that configuration of the digital input pin 0.
+        /// Creates a message payload for the DI0Trigger register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public TriggerConfig GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DI0Trigger;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that configuration of the digital input pin 0.
+        /// Creates a message that configuration of the digital input pin 0.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DI0Trigger register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DI0Trigger.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DI0Trigger.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that configuration of the digital input pin 0.
+    /// </summary>
+    [DisplayName("TimestampedDI0TriggerPayload")]
+    [Description("Creates a timestamped message payload that configuration of the digital input pin 0.")]
+    public partial class CreateTimestampedDI0TriggerPayload : CreateDI0TriggerPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that configuration of the digital input pin 0.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DI0Trigger register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DI0Trigger.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that configuration of the digital output pin 0.
     /// </summary>
     [DisplayName("DO0SyncPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that configuration of the digital output pin 0.")]
-    public partial class CreateDO0SyncPayload : HarpCombinator
+    [Description("Creates a message payload that configuration of the digital output pin 0.")]
+    public partial class CreateDO0SyncPayload
     {
         /// <summary>
         /// Gets or sets the value that configuration of the digital output pin 0.
         /// </summary>
         [Description("The value that configuration of the digital output pin 0.")]
-        public SyncConfig Value { get; set; }
+        public SyncConfig DO0Sync { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that configuration of the digital output pin 0.
+        /// Creates a message payload for the DO0Sync register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public SyncConfig GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO0Sync;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that configuration of the digital output pin 0.
+        /// Creates a message that configuration of the digital output pin 0.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO0Sync register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO0Sync.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO0Sync.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that configuration of the digital output pin 0.
+    /// </summary>
+    [DisplayName("TimestampedDO0SyncPayload")]
+    [Description("Creates a timestamped message payload that configuration of the digital output pin 0.")]
+    public partial class CreateTimestampedDO0SyncPayload : CreateDO0SyncPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that configuration of the digital output pin 0.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO0Sync register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO0Sync.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
     /// </summary>
     [DisplayName("DO0PulseWidthPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.")]
-    public partial class CreateDO0PulseWidthPayload : HarpCombinator
+    [Description("Creates a message payload that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.")]
+    public partial class CreateDO0PulseWidthPayload
     {
         /// <summary>
         /// Gets or sets the value that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
@@ -6053,241 +6137,271 @@ namespace Harp.LoadCells
         [Range(min: 1, max: 255)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
         [Description("The value that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.")]
-        public byte Value { get; set; } = 1;
+        public byte DO0PulseWidth { get; set; } = 1;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
+        /// Creates a message payload for the DO0PulseWidth register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public byte GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO0PulseWidth;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
+        /// Creates a message that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO0PulseWidth register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO0PulseWidth.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO0PulseWidth.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
+    /// </summary>
+    [DisplayName("TimestampedDO0PulseWidthPayload")]
+    [Description("Creates a timestamped message payload that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.")]
+    public partial class CreateTimestampedDO0PulseWidthPayload : CreateDO0PulseWidthPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that pulse duration (ms) for the digital output pin 0. The pulse will only be emitted when DO0Sync == Pulse.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO0PulseWidth register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO0PulseWidth.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that set the specified digital output lines.
     /// </summary>
     [DisplayName("DigitalOutputSetPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that set the specified digital output lines.")]
-    public partial class CreateDigitalOutputSetPayload : HarpCombinator
+    [Description("Creates a message payload that set the specified digital output lines.")]
+    public partial class CreateDigitalOutputSetPayload
     {
         /// <summary>
         /// Gets or sets the value that set the specified digital output lines.
         /// </summary>
         [Description("The value that set the specified digital output lines.")]
-        public DigitalOutputs Value { get; set; }
+        public DigitalOutputs DigitalOutputSet { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that set the specified digital output lines.
+        /// Creates a message payload for the DigitalOutputSet register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public DigitalOutputs GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DigitalOutputSet;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that set the specified digital output lines.
+        /// Creates a message that set the specified digital output lines.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DigitalOutputSet register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DigitalOutputSet.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DigitalOutputSet.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that set the specified digital output lines.
+    /// </summary>
+    [DisplayName("TimestampedDigitalOutputSetPayload")]
+    [Description("Creates a timestamped message payload that set the specified digital output lines.")]
+    public partial class CreateTimestampedDigitalOutputSetPayload : CreateDigitalOutputSetPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that set the specified digital output lines.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DigitalOutputSet register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DigitalOutputSet.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that clear the specified digital output lines.
     /// </summary>
     [DisplayName("DigitalOutputClearPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that clear the specified digital output lines.")]
-    public partial class CreateDigitalOutputClearPayload : HarpCombinator
+    [Description("Creates a message payload that clear the specified digital output lines.")]
+    public partial class CreateDigitalOutputClearPayload
     {
         /// <summary>
         /// Gets or sets the value that clear the specified digital output lines.
         /// </summary>
         [Description("The value that clear the specified digital output lines.")]
-        public DigitalOutputs Value { get; set; }
+        public DigitalOutputs DigitalOutputClear { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that clear the specified digital output lines.
+        /// Creates a message payload for the DigitalOutputClear register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public DigitalOutputs GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DigitalOutputClear;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that clear the specified digital output lines.
+        /// Creates a message that clear the specified digital output lines.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DigitalOutputClear register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DigitalOutputClear.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DigitalOutputClear.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that clear the specified digital output lines.
+    /// </summary>
+    [DisplayName("TimestampedDigitalOutputClearPayload")]
+    [Description("Creates a timestamped message payload that clear the specified digital output lines.")]
+    public partial class CreateTimestampedDigitalOutputClearPayload : CreateDigitalOutputClearPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that clear the specified digital output lines.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DigitalOutputClear register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DigitalOutputClear.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that toggle the specified digital output lines.
     /// </summary>
     [DisplayName("DigitalOutputTogglePayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that toggle the specified digital output lines.")]
-    public partial class CreateDigitalOutputTogglePayload : HarpCombinator
+    [Description("Creates a message payload that toggle the specified digital output lines.")]
+    public partial class CreateDigitalOutputTogglePayload
     {
         /// <summary>
         /// Gets or sets the value that toggle the specified digital output lines.
         /// </summary>
         [Description("The value that toggle the specified digital output lines.")]
-        public DigitalOutputs Value { get; set; }
+        public DigitalOutputs DigitalOutputToggle { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that toggle the specified digital output lines.
+        /// Creates a message payload for the DigitalOutputToggle register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public DigitalOutputs GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DigitalOutputToggle;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that toggle the specified digital output lines.
+        /// Creates a message that toggle the specified digital output lines.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DigitalOutputToggle register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DigitalOutputToggle.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DigitalOutputToggle.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that toggle the specified digital output lines.
+    /// </summary>
+    [DisplayName("TimestampedDigitalOutputTogglePayload")]
+    [Description("Creates a timestamped message payload that toggle the specified digital output lines.")]
+    public partial class CreateTimestampedDigitalOutputTogglePayload : CreateDigitalOutputTogglePayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that toggle the specified digital output lines.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DigitalOutputToggle register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DigitalOutputToggle.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
     /// </summary>
     [DisplayName("DigitalOutputStatePayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.")]
-    public partial class CreateDigitalOutputStatePayload : HarpCombinator
+    [Description("Creates a message payload that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.")]
+    public partial class CreateDigitalOutputStatePayload
     {
         /// <summary>
         /// Gets or sets the value that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
         /// </summary>
         [Description("The value that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.")]
-        public DigitalOutputs Value { get; set; }
+        public DigitalOutputs DigitalOutputState { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
+        /// Creates a message payload for the DigitalOutputState register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public DigitalOutputs GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DigitalOutputState;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
+        /// Creates a message that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DigitalOutputState register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DigitalOutputState.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DigitalOutputState.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
+    /// </summary>
+    [DisplayName("TimestampedDigitalOutputStatePayload")]
+    [Description("Creates a timestamped message payload that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.")]
+    public partial class CreateTimestampedDigitalOutputStatePayload : CreateDigitalOutputStatePayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DigitalOutputState register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DigitalOutputState.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that offset value for Load Cell channel 0.
     /// </summary>
     [DisplayName("OffsetLoadCell0Payload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that offset value for Load Cell channel 0.")]
-    public partial class CreateOffsetLoadCell0Payload : HarpCombinator
+    [Description("Creates a message payload that offset value for Load Cell channel 0.")]
+    public partial class CreateOffsetLoadCell0Payload
     {
         /// <summary>
         /// Gets or sets the value that offset value for Load Cell channel 0.
@@ -6295,49 +6409,55 @@ namespace Harp.LoadCells
         [Range(min: -255, max: 255)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
         [Description("The value that offset value for Load Cell channel 0.")]
-        public short Value { get; set; } = 0;
+        public short OffsetLoadCell0 { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that offset value for Load Cell channel 0.
+        /// Creates a message payload for the OffsetLoadCell0 register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return OffsetLoadCell0;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that offset value for Load Cell channel 0.
+        /// Creates a message that offset value for Load Cell channel 0.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the OffsetLoadCell0 register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => OffsetLoadCell0.FromPayload(MessageType, Value));
+            return Harp.LoadCells.OffsetLoadCell0.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that offset value for Load Cell channel 0.
+    /// </summary>
+    [DisplayName("TimestampedOffsetLoadCell0Payload")]
+    [Description("Creates a timestamped message payload that offset value for Load Cell channel 0.")]
+    public partial class CreateTimestampedOffsetLoadCell0Payload : CreateOffsetLoadCell0Payload
+    {
+        /// <summary>
+        /// Creates a timestamped message that offset value for Load Cell channel 0.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the OffsetLoadCell0 register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.OffsetLoadCell0.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that offset value for Load Cell channel 1.
     /// </summary>
     [DisplayName("OffsetLoadCell1Payload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that offset value for Load Cell channel 1.")]
-    public partial class CreateOffsetLoadCell1Payload : HarpCombinator
+    [Description("Creates a message payload that offset value for Load Cell channel 1.")]
+    public partial class CreateOffsetLoadCell1Payload
     {
         /// <summary>
         /// Gets or sets the value that offset value for Load Cell channel 1.
@@ -6345,49 +6465,55 @@ namespace Harp.LoadCells
         [Range(min: -255, max: 255)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
         [Description("The value that offset value for Load Cell channel 1.")]
-        public short Value { get; set; } = 0;
+        public short OffsetLoadCell1 { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that offset value for Load Cell channel 1.
+        /// Creates a message payload for the OffsetLoadCell1 register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return OffsetLoadCell1;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that offset value for Load Cell channel 1.
+        /// Creates a message that offset value for Load Cell channel 1.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the OffsetLoadCell1 register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => OffsetLoadCell1.FromPayload(MessageType, Value));
+            return Harp.LoadCells.OffsetLoadCell1.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that offset value for Load Cell channel 1.
+    /// </summary>
+    [DisplayName("TimestampedOffsetLoadCell1Payload")]
+    [Description("Creates a timestamped message payload that offset value for Load Cell channel 1.")]
+    public partial class CreateTimestampedOffsetLoadCell1Payload : CreateOffsetLoadCell1Payload
+    {
+        /// <summary>
+        /// Creates a timestamped message that offset value for Load Cell channel 1.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the OffsetLoadCell1 register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.OffsetLoadCell1.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that offset value for Load Cell channel 2.
     /// </summary>
     [DisplayName("OffsetLoadCell2Payload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that offset value for Load Cell channel 2.")]
-    public partial class CreateOffsetLoadCell2Payload : HarpCombinator
+    [Description("Creates a message payload that offset value for Load Cell channel 2.")]
+    public partial class CreateOffsetLoadCell2Payload
     {
         /// <summary>
         /// Gets or sets the value that offset value for Load Cell channel 2.
@@ -6395,49 +6521,55 @@ namespace Harp.LoadCells
         [Range(min: -255, max: 255)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
         [Description("The value that offset value for Load Cell channel 2.")]
-        public short Value { get; set; } = 0;
+        public short OffsetLoadCell2 { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that offset value for Load Cell channel 2.
+        /// Creates a message payload for the OffsetLoadCell2 register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return OffsetLoadCell2;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that offset value for Load Cell channel 2.
+        /// Creates a message that offset value for Load Cell channel 2.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the OffsetLoadCell2 register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => OffsetLoadCell2.FromPayload(MessageType, Value));
+            return Harp.LoadCells.OffsetLoadCell2.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that offset value for Load Cell channel 2.
+    /// </summary>
+    [DisplayName("TimestampedOffsetLoadCell2Payload")]
+    [Description("Creates a timestamped message payload that offset value for Load Cell channel 2.")]
+    public partial class CreateTimestampedOffsetLoadCell2Payload : CreateOffsetLoadCell2Payload
+    {
+        /// <summary>
+        /// Creates a timestamped message that offset value for Load Cell channel 2.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the OffsetLoadCell2 register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.OffsetLoadCell2.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that offset value for Load Cell channel 3.
     /// </summary>
     [DisplayName("OffsetLoadCell3Payload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that offset value for Load Cell channel 3.")]
-    public partial class CreateOffsetLoadCell3Payload : HarpCombinator
+    [Description("Creates a message payload that offset value for Load Cell channel 3.")]
+    public partial class CreateOffsetLoadCell3Payload
     {
         /// <summary>
         /// Gets or sets the value that offset value for Load Cell channel 3.
@@ -6445,49 +6577,55 @@ namespace Harp.LoadCells
         [Range(min: -255, max: 255)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
         [Description("The value that offset value for Load Cell channel 3.")]
-        public short Value { get; set; } = 0;
+        public short OffsetLoadCell3 { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that offset value for Load Cell channel 3.
+        /// Creates a message payload for the OffsetLoadCell3 register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return OffsetLoadCell3;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that offset value for Load Cell channel 3.
+        /// Creates a message that offset value for Load Cell channel 3.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the OffsetLoadCell3 register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => OffsetLoadCell3.FromPayload(MessageType, Value));
+            return Harp.LoadCells.OffsetLoadCell3.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that offset value for Load Cell channel 3.
+    /// </summary>
+    [DisplayName("TimestampedOffsetLoadCell3Payload")]
+    [Description("Creates a timestamped message payload that offset value for Load Cell channel 3.")]
+    public partial class CreateTimestampedOffsetLoadCell3Payload : CreateOffsetLoadCell3Payload
+    {
+        /// <summary>
+        /// Creates a timestamped message that offset value for Load Cell channel 3.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the OffsetLoadCell3 register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.OffsetLoadCell3.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that offset value for Load Cell channel 4.
     /// </summary>
     [DisplayName("OffsetLoadCell4Payload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that offset value for Load Cell channel 4.")]
-    public partial class CreateOffsetLoadCell4Payload : HarpCombinator
+    [Description("Creates a message payload that offset value for Load Cell channel 4.")]
+    public partial class CreateOffsetLoadCell4Payload
     {
         /// <summary>
         /// Gets or sets the value that offset value for Load Cell channel 4.
@@ -6495,49 +6633,55 @@ namespace Harp.LoadCells
         [Range(min: -255, max: 255)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
         [Description("The value that offset value for Load Cell channel 4.")]
-        public short Value { get; set; } = 0;
+        public short OffsetLoadCell4 { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that offset value for Load Cell channel 4.
+        /// Creates a message payload for the OffsetLoadCell4 register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return OffsetLoadCell4;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that offset value for Load Cell channel 4.
+        /// Creates a message that offset value for Load Cell channel 4.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the OffsetLoadCell4 register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => OffsetLoadCell4.FromPayload(MessageType, Value));
+            return Harp.LoadCells.OffsetLoadCell4.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that offset value for Load Cell channel 4.
+    /// </summary>
+    [DisplayName("TimestampedOffsetLoadCell4Payload")]
+    [Description("Creates a timestamped message payload that offset value for Load Cell channel 4.")]
+    public partial class CreateTimestampedOffsetLoadCell4Payload : CreateOffsetLoadCell4Payload
+    {
+        /// <summary>
+        /// Creates a timestamped message that offset value for Load Cell channel 4.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the OffsetLoadCell4 register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.OffsetLoadCell4.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that offset value for Load Cell channel 5.
     /// </summary>
     [DisplayName("OffsetLoadCell5Payload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that offset value for Load Cell channel 5.")]
-    public partial class CreateOffsetLoadCell5Payload : HarpCombinator
+    [Description("Creates a message payload that offset value for Load Cell channel 5.")]
+    public partial class CreateOffsetLoadCell5Payload
     {
         /// <summary>
         /// Gets or sets the value that offset value for Load Cell channel 5.
@@ -6545,49 +6689,55 @@ namespace Harp.LoadCells
         [Range(min: -255, max: 255)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
         [Description("The value that offset value for Load Cell channel 5.")]
-        public short Value { get; set; } = 0;
+        public short OffsetLoadCell5 { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that offset value for Load Cell channel 5.
+        /// Creates a message payload for the OffsetLoadCell5 register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return OffsetLoadCell5;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that offset value for Load Cell channel 5.
+        /// Creates a message that offset value for Load Cell channel 5.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the OffsetLoadCell5 register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => OffsetLoadCell5.FromPayload(MessageType, Value));
+            return Harp.LoadCells.OffsetLoadCell5.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that offset value for Load Cell channel 5.
+    /// </summary>
+    [DisplayName("TimestampedOffsetLoadCell5Payload")]
+    [Description("Creates a timestamped message payload that offset value for Load Cell channel 5.")]
+    public partial class CreateTimestampedOffsetLoadCell5Payload : CreateOffsetLoadCell5Payload
+    {
+        /// <summary>
+        /// Creates a timestamped message that offset value for Load Cell channel 5.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the OffsetLoadCell5 register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.OffsetLoadCell5.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that offset value for Load Cell channel 6.
     /// </summary>
     [DisplayName("OffsetLoadCell6Payload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that offset value for Load Cell channel 6.")]
-    public partial class CreateOffsetLoadCell6Payload : HarpCombinator
+    [Description("Creates a message payload that offset value for Load Cell channel 6.")]
+    public partial class CreateOffsetLoadCell6Payload
     {
         /// <summary>
         /// Gets or sets the value that offset value for Load Cell channel 6.
@@ -6595,49 +6745,55 @@ namespace Harp.LoadCells
         [Range(min: -255, max: 255)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
         [Description("The value that offset value for Load Cell channel 6.")]
-        public short Value { get; set; } = 0;
+        public short OffsetLoadCell6 { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that offset value for Load Cell channel 6.
+        /// Creates a message payload for the OffsetLoadCell6 register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return OffsetLoadCell6;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that offset value for Load Cell channel 6.
+        /// Creates a message that offset value for Load Cell channel 6.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the OffsetLoadCell6 register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => OffsetLoadCell6.FromPayload(MessageType, Value));
+            return Harp.LoadCells.OffsetLoadCell6.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that offset value for Load Cell channel 6.
+    /// </summary>
+    [DisplayName("TimestampedOffsetLoadCell6Payload")]
+    [Description("Creates a timestamped message payload that offset value for Load Cell channel 6.")]
+    public partial class CreateTimestampedOffsetLoadCell6Payload : CreateOffsetLoadCell6Payload
+    {
+        /// <summary>
+        /// Creates a timestamped message that offset value for Load Cell channel 6.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the OffsetLoadCell6 register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.OffsetLoadCell6.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that offset value for Load Cell channel 7.
     /// </summary>
     [DisplayName("OffsetLoadCell7Payload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that offset value for Load Cell channel 7.")]
-    public partial class CreateOffsetLoadCell7Payload : HarpCombinator
+    [Description("Creates a message payload that offset value for Load Cell channel 7.")]
+    public partial class CreateOffsetLoadCell7Payload
     {
         /// <summary>
         /// Gets or sets the value that offset value for Load Cell channel 7.
@@ -6645,1622 +6801,1827 @@ namespace Harp.LoadCells
         [Range(min: -255, max: 255)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
         [Description("The value that offset value for Load Cell channel 7.")]
-        public short Value { get; set; } = 0;
+        public short OffsetLoadCell7 { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that offset value for Load Cell channel 7.
+        /// Creates a message payload for the OffsetLoadCell7 register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return OffsetLoadCell7;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that offset value for Load Cell channel 7.
+        /// Creates a message that offset value for Load Cell channel 7.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the OffsetLoadCell7 register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => OffsetLoadCell7.FromPayload(MessageType, Value));
+            return Harp.LoadCells.OffsetLoadCell7.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that offset value for Load Cell channel 7.
+    /// </summary>
+    [DisplayName("TimestampedOffsetLoadCell7Payload")]
+    [Description("Creates a timestamped message payload that offset value for Load Cell channel 7.")]
+    public partial class CreateTimestampedOffsetLoadCell7Payload : CreateOffsetLoadCell7Payload
+    {
+        /// <summary>
+        /// Creates a timestamped message that offset value for Load Cell channel 7.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the OffsetLoadCell7 register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.OffsetLoadCell7.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that target Load Cell that will be used to trigger a threshold event on DO1 pin.
     /// </summary>
     [DisplayName("DO1TargetLoadCellPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that target Load Cell that will be used to trigger a threshold event on DO1 pin.")]
-    public partial class CreateDO1TargetLoadCellPayload : HarpCombinator
+    [Description("Creates a message payload that target Load Cell that will be used to trigger a threshold event on DO1 pin.")]
+    public partial class CreateDO1TargetLoadCellPayload
     {
         /// <summary>
         /// Gets or sets the value that target Load Cell that will be used to trigger a threshold event on DO1 pin.
         /// </summary>
         [Description("The value that target Load Cell that will be used to trigger a threshold event on DO1 pin.")]
-        public LoadCellChannel Value { get; set; }
+        public LoadCellChannel DO1TargetLoadCell { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that target Load Cell that will be used to trigger a threshold event on DO1 pin.
+        /// Creates a message payload for the DO1TargetLoadCell register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public LoadCellChannel GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO1TargetLoadCell;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that target Load Cell that will be used to trigger a threshold event on DO1 pin.
+        /// Creates a message that target Load Cell that will be used to trigger a threshold event on DO1 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO1TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO1TargetLoadCell.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO1TargetLoadCell.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that target Load Cell that will be used to trigger a threshold event on DO1 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO1TargetLoadCellPayload")]
+    [Description("Creates a timestamped message payload that target Load Cell that will be used to trigger a threshold event on DO1 pin.")]
+    public partial class CreateTimestampedDO1TargetLoadCellPayload : CreateDO1TargetLoadCellPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that target Load Cell that will be used to trigger a threshold event on DO1 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO1TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO1TargetLoadCell.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that target Load Cell that will be used to trigger a threshold event on DO2 pin.
     /// </summary>
     [DisplayName("DO2TargetLoadCellPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that target Load Cell that will be used to trigger a threshold event on DO2 pin.")]
-    public partial class CreateDO2TargetLoadCellPayload : HarpCombinator
+    [Description("Creates a message payload that target Load Cell that will be used to trigger a threshold event on DO2 pin.")]
+    public partial class CreateDO2TargetLoadCellPayload
     {
         /// <summary>
         /// Gets or sets the value that target Load Cell that will be used to trigger a threshold event on DO2 pin.
         /// </summary>
         [Description("The value that target Load Cell that will be used to trigger a threshold event on DO2 pin.")]
-        public LoadCellChannel Value { get; set; }
+        public LoadCellChannel DO2TargetLoadCell { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that target Load Cell that will be used to trigger a threshold event on DO2 pin.
+        /// Creates a message payload for the DO2TargetLoadCell register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public LoadCellChannel GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO2TargetLoadCell;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that target Load Cell that will be used to trigger a threshold event on DO2 pin.
+        /// Creates a message that target Load Cell that will be used to trigger a threshold event on DO2 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO2TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO2TargetLoadCell.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO2TargetLoadCell.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that target Load Cell that will be used to trigger a threshold event on DO2 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO2TargetLoadCellPayload")]
+    [Description("Creates a timestamped message payload that target Load Cell that will be used to trigger a threshold event on DO2 pin.")]
+    public partial class CreateTimestampedDO2TargetLoadCellPayload : CreateDO2TargetLoadCellPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that target Load Cell that will be used to trigger a threshold event on DO2 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO2TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO2TargetLoadCell.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that target Load Cell that will be used to trigger a threshold event on DO3 pin.
     /// </summary>
     [DisplayName("DO3TargetLoadCellPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that target Load Cell that will be used to trigger a threshold event on DO3 pin.")]
-    public partial class CreateDO3TargetLoadCellPayload : HarpCombinator
+    [Description("Creates a message payload that target Load Cell that will be used to trigger a threshold event on DO3 pin.")]
+    public partial class CreateDO3TargetLoadCellPayload
     {
         /// <summary>
         /// Gets or sets the value that target Load Cell that will be used to trigger a threshold event on DO3 pin.
         /// </summary>
         [Description("The value that target Load Cell that will be used to trigger a threshold event on DO3 pin.")]
-        public LoadCellChannel Value { get; set; }
+        public LoadCellChannel DO3TargetLoadCell { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that target Load Cell that will be used to trigger a threshold event on DO3 pin.
+        /// Creates a message payload for the DO3TargetLoadCell register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public LoadCellChannel GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO3TargetLoadCell;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that target Load Cell that will be used to trigger a threshold event on DO3 pin.
+        /// Creates a message that target Load Cell that will be used to trigger a threshold event on DO3 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO3TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO3TargetLoadCell.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO3TargetLoadCell.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that target Load Cell that will be used to trigger a threshold event on DO3 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO3TargetLoadCellPayload")]
+    [Description("Creates a timestamped message payload that target Load Cell that will be used to trigger a threshold event on DO3 pin.")]
+    public partial class CreateTimestampedDO3TargetLoadCellPayload : CreateDO3TargetLoadCellPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that target Load Cell that will be used to trigger a threshold event on DO3 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO3TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO3TargetLoadCell.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that target Load Cell that will be used to trigger a threshold event on DO4 pin.
     /// </summary>
     [DisplayName("DO4TargetLoadCellPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that target Load Cell that will be used to trigger a threshold event on DO4 pin.")]
-    public partial class CreateDO4TargetLoadCellPayload : HarpCombinator
+    [Description("Creates a message payload that target Load Cell that will be used to trigger a threshold event on DO4 pin.")]
+    public partial class CreateDO4TargetLoadCellPayload
     {
         /// <summary>
         /// Gets or sets the value that target Load Cell that will be used to trigger a threshold event on DO4 pin.
         /// </summary>
         [Description("The value that target Load Cell that will be used to trigger a threshold event on DO4 pin.")]
-        public LoadCellChannel Value { get; set; }
+        public LoadCellChannel DO4TargetLoadCell { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that target Load Cell that will be used to trigger a threshold event on DO4 pin.
+        /// Creates a message payload for the DO4TargetLoadCell register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public LoadCellChannel GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO4TargetLoadCell;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that target Load Cell that will be used to trigger a threshold event on DO4 pin.
+        /// Creates a message that target Load Cell that will be used to trigger a threshold event on DO4 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO4TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO4TargetLoadCell.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO4TargetLoadCell.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that target Load Cell that will be used to trigger a threshold event on DO4 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO4TargetLoadCellPayload")]
+    [Description("Creates a timestamped message payload that target Load Cell that will be used to trigger a threshold event on DO4 pin.")]
+    public partial class CreateTimestampedDO4TargetLoadCellPayload : CreateDO4TargetLoadCellPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that target Load Cell that will be used to trigger a threshold event on DO4 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO4TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO4TargetLoadCell.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that target Load Cell that will be used to trigger a threshold event on DO5 pin.
     /// </summary>
     [DisplayName("DO5TargetLoadCellPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that target Load Cell that will be used to trigger a threshold event on DO5 pin.")]
-    public partial class CreateDO5TargetLoadCellPayload : HarpCombinator
+    [Description("Creates a message payload that target Load Cell that will be used to trigger a threshold event on DO5 pin.")]
+    public partial class CreateDO5TargetLoadCellPayload
     {
         /// <summary>
         /// Gets or sets the value that target Load Cell that will be used to trigger a threshold event on DO5 pin.
         /// </summary>
         [Description("The value that target Load Cell that will be used to trigger a threshold event on DO5 pin.")]
-        public LoadCellChannel Value { get; set; }
+        public LoadCellChannel DO5TargetLoadCell { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that target Load Cell that will be used to trigger a threshold event on DO5 pin.
+        /// Creates a message payload for the DO5TargetLoadCell register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public LoadCellChannel GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO5TargetLoadCell;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that target Load Cell that will be used to trigger a threshold event on DO5 pin.
+        /// Creates a message that target Load Cell that will be used to trigger a threshold event on DO5 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO5TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO5TargetLoadCell.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO5TargetLoadCell.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that target Load Cell that will be used to trigger a threshold event on DO5 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO5TargetLoadCellPayload")]
+    [Description("Creates a timestamped message payload that target Load Cell that will be used to trigger a threshold event on DO5 pin.")]
+    public partial class CreateTimestampedDO5TargetLoadCellPayload : CreateDO5TargetLoadCellPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that target Load Cell that will be used to trigger a threshold event on DO5 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO5TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO5TargetLoadCell.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that target Load Cell that will be used to trigger a threshold event on DO6 pin.
     /// </summary>
     [DisplayName("DO6TargetLoadCellPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that target Load Cell that will be used to trigger a threshold event on DO6 pin.")]
-    public partial class CreateDO6TargetLoadCellPayload : HarpCombinator
+    [Description("Creates a message payload that target Load Cell that will be used to trigger a threshold event on DO6 pin.")]
+    public partial class CreateDO6TargetLoadCellPayload
     {
         /// <summary>
         /// Gets or sets the value that target Load Cell that will be used to trigger a threshold event on DO6 pin.
         /// </summary>
         [Description("The value that target Load Cell that will be used to trigger a threshold event on DO6 pin.")]
-        public LoadCellChannel Value { get; set; }
+        public LoadCellChannel DO6TargetLoadCell { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that target Load Cell that will be used to trigger a threshold event on DO6 pin.
+        /// Creates a message payload for the DO6TargetLoadCell register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public LoadCellChannel GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO6TargetLoadCell;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that target Load Cell that will be used to trigger a threshold event on DO6 pin.
+        /// Creates a message that target Load Cell that will be used to trigger a threshold event on DO6 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO6TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO6TargetLoadCell.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO6TargetLoadCell.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that target Load Cell that will be used to trigger a threshold event on DO6 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO6TargetLoadCellPayload")]
+    [Description("Creates a timestamped message payload that target Load Cell that will be used to trigger a threshold event on DO6 pin.")]
+    public partial class CreateTimestampedDO6TargetLoadCellPayload : CreateDO6TargetLoadCellPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that target Load Cell that will be used to trigger a threshold event on DO6 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO6TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO6TargetLoadCell.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that target Load Cell that will be used to trigger a threshold event on DO7 pin.
     /// </summary>
     [DisplayName("DO7TargetLoadCellPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that target Load Cell that will be used to trigger a threshold event on DO7 pin.")]
-    public partial class CreateDO7TargetLoadCellPayload : HarpCombinator
+    [Description("Creates a message payload that target Load Cell that will be used to trigger a threshold event on DO7 pin.")]
+    public partial class CreateDO7TargetLoadCellPayload
     {
         /// <summary>
         /// Gets or sets the value that target Load Cell that will be used to trigger a threshold event on DO7 pin.
         /// </summary>
         [Description("The value that target Load Cell that will be used to trigger a threshold event on DO7 pin.")]
-        public LoadCellChannel Value { get; set; }
+        public LoadCellChannel DO7TargetLoadCell { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that target Load Cell that will be used to trigger a threshold event on DO7 pin.
+        /// Creates a message payload for the DO7TargetLoadCell register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public LoadCellChannel GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO7TargetLoadCell;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that target Load Cell that will be used to trigger a threshold event on DO7 pin.
+        /// Creates a message that target Load Cell that will be used to trigger a threshold event on DO7 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO7TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO7TargetLoadCell.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO7TargetLoadCell.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that target Load Cell that will be used to trigger a threshold event on DO7 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO7TargetLoadCellPayload")]
+    [Description("Creates a timestamped message payload that target Load Cell that will be used to trigger a threshold event on DO7 pin.")]
+    public partial class CreateTimestampedDO7TargetLoadCellPayload : CreateDO7TargetLoadCellPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that target Load Cell that will be used to trigger a threshold event on DO7 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO7TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO7TargetLoadCell.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that target Load Cell that will be used to trigger a threshold event on DO8 pin.
     /// </summary>
     [DisplayName("DO8TargetLoadCellPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that target Load Cell that will be used to trigger a threshold event on DO8 pin.")]
-    public partial class CreateDO8TargetLoadCellPayload : HarpCombinator
+    [Description("Creates a message payload that target Load Cell that will be used to trigger a threshold event on DO8 pin.")]
+    public partial class CreateDO8TargetLoadCellPayload
     {
         /// <summary>
         /// Gets or sets the value that target Load Cell that will be used to trigger a threshold event on DO8 pin.
         /// </summary>
         [Description("The value that target Load Cell that will be used to trigger a threshold event on DO8 pin.")]
-        public LoadCellChannel Value { get; set; }
+        public LoadCellChannel DO8TargetLoadCell { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that target Load Cell that will be used to trigger a threshold event on DO8 pin.
+        /// Creates a message payload for the DO8TargetLoadCell register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public LoadCellChannel GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO8TargetLoadCell;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that target Load Cell that will be used to trigger a threshold event on DO8 pin.
+        /// Creates a message that target Load Cell that will be used to trigger a threshold event on DO8 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO8TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO8TargetLoadCell.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO8TargetLoadCell.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that target Load Cell that will be used to trigger a threshold event on DO8 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO8TargetLoadCellPayload")]
+    [Description("Creates a timestamped message payload that target Load Cell that will be used to trigger a threshold event on DO8 pin.")]
+    public partial class CreateTimestampedDO8TargetLoadCellPayload : CreateDO8TargetLoadCellPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that target Load Cell that will be used to trigger a threshold event on DO8 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO8TargetLoadCell register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO8TargetLoadCell.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that value used to threshold a Load Cell read, and trigger DO1 pin.
     /// </summary>
     [DisplayName("DO1ThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that value used to threshold a Load Cell read, and trigger DO1 pin.")]
-    public partial class CreateDO1ThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that value used to threshold a Load Cell read, and trigger DO1 pin.")]
+    public partial class CreateDO1ThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that value used to threshold a Load Cell read, and trigger DO1 pin.
         /// </summary>
         [Description("The value that value used to threshold a Load Cell read, and trigger DO1 pin.")]
-        public short Value { get; set; }
+        public short DO1Threshold { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that value used to threshold a Load Cell read, and trigger DO1 pin.
+        /// Creates a message payload for the DO1Threshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO1Threshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that value used to threshold a Load Cell read, and trigger DO1 pin.
+        /// Creates a message that value used to threshold a Load Cell read, and trigger DO1 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO1Threshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO1Threshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO1Threshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that value used to threshold a Load Cell read, and trigger DO1 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO1ThresholdPayload")]
+    [Description("Creates a timestamped message payload that value used to threshold a Load Cell read, and trigger DO1 pin.")]
+    public partial class CreateTimestampedDO1ThresholdPayload : CreateDO1ThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that value used to threshold a Load Cell read, and trigger DO1 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO1Threshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO1Threshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that value used to threshold a Load Cell read, and trigger DO2 pin.
     /// </summary>
     [DisplayName("DO2ThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that value used to threshold a Load Cell read, and trigger DO2 pin.")]
-    public partial class CreateDO2ThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that value used to threshold a Load Cell read, and trigger DO2 pin.")]
+    public partial class CreateDO2ThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that value used to threshold a Load Cell read, and trigger DO2 pin.
         /// </summary>
         [Description("The value that value used to threshold a Load Cell read, and trigger DO2 pin.")]
-        public short Value { get; set; }
+        public short DO2Threshold { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that value used to threshold a Load Cell read, and trigger DO2 pin.
+        /// Creates a message payload for the DO2Threshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO2Threshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that value used to threshold a Load Cell read, and trigger DO2 pin.
+        /// Creates a message that value used to threshold a Load Cell read, and trigger DO2 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO2Threshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO2Threshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO2Threshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that value used to threshold a Load Cell read, and trigger DO2 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO2ThresholdPayload")]
+    [Description("Creates a timestamped message payload that value used to threshold a Load Cell read, and trigger DO2 pin.")]
+    public partial class CreateTimestampedDO2ThresholdPayload : CreateDO2ThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that value used to threshold a Load Cell read, and trigger DO2 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO2Threshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO2Threshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that value used to threshold a Load Cell read, and trigger DO3 pin.
     /// </summary>
     [DisplayName("DO3ThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that value used to threshold a Load Cell read, and trigger DO3 pin.")]
-    public partial class CreateDO3ThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that value used to threshold a Load Cell read, and trigger DO3 pin.")]
+    public partial class CreateDO3ThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that value used to threshold a Load Cell read, and trigger DO3 pin.
         /// </summary>
         [Description("The value that value used to threshold a Load Cell read, and trigger DO3 pin.")]
-        public short Value { get; set; }
+        public short DO3Threshold { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that value used to threshold a Load Cell read, and trigger DO3 pin.
+        /// Creates a message payload for the DO3Threshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO3Threshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that value used to threshold a Load Cell read, and trigger DO3 pin.
+        /// Creates a message that value used to threshold a Load Cell read, and trigger DO3 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO3Threshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO3Threshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO3Threshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that value used to threshold a Load Cell read, and trigger DO3 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO3ThresholdPayload")]
+    [Description("Creates a timestamped message payload that value used to threshold a Load Cell read, and trigger DO3 pin.")]
+    public partial class CreateTimestampedDO3ThresholdPayload : CreateDO3ThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that value used to threshold a Load Cell read, and trigger DO3 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO3Threshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO3Threshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that value used to threshold a Load Cell read, and trigger DO4 pin.
     /// </summary>
     [DisplayName("DO4ThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that value used to threshold a Load Cell read, and trigger DO4 pin.")]
-    public partial class CreateDO4ThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that value used to threshold a Load Cell read, and trigger DO4 pin.")]
+    public partial class CreateDO4ThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that value used to threshold a Load Cell read, and trigger DO4 pin.
         /// </summary>
         [Description("The value that value used to threshold a Load Cell read, and trigger DO4 pin.")]
-        public short Value { get; set; }
+        public short DO4Threshold { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that value used to threshold a Load Cell read, and trigger DO4 pin.
+        /// Creates a message payload for the DO4Threshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO4Threshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that value used to threshold a Load Cell read, and trigger DO4 pin.
+        /// Creates a message that value used to threshold a Load Cell read, and trigger DO4 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO4Threshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO4Threshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO4Threshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that value used to threshold a Load Cell read, and trigger DO4 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO4ThresholdPayload")]
+    [Description("Creates a timestamped message payload that value used to threshold a Load Cell read, and trigger DO4 pin.")]
+    public partial class CreateTimestampedDO4ThresholdPayload : CreateDO4ThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that value used to threshold a Load Cell read, and trigger DO4 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO4Threshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO4Threshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that value used to threshold a Load Cell read, and trigger DO5 pin.
     /// </summary>
     [DisplayName("DO5ThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that value used to threshold a Load Cell read, and trigger DO5 pin.")]
-    public partial class CreateDO5ThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that value used to threshold a Load Cell read, and trigger DO5 pin.")]
+    public partial class CreateDO5ThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that value used to threshold a Load Cell read, and trigger DO5 pin.
         /// </summary>
         [Description("The value that value used to threshold a Load Cell read, and trigger DO5 pin.")]
-        public short Value { get; set; }
+        public short DO5Threshold { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that value used to threshold a Load Cell read, and trigger DO5 pin.
+        /// Creates a message payload for the DO5Threshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO5Threshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that value used to threshold a Load Cell read, and trigger DO5 pin.
+        /// Creates a message that value used to threshold a Load Cell read, and trigger DO5 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO5Threshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO5Threshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO5Threshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that value used to threshold a Load Cell read, and trigger DO5 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO5ThresholdPayload")]
+    [Description("Creates a timestamped message payload that value used to threshold a Load Cell read, and trigger DO5 pin.")]
+    public partial class CreateTimestampedDO5ThresholdPayload : CreateDO5ThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that value used to threshold a Load Cell read, and trigger DO5 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO5Threshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO5Threshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that value used to threshold a Load Cell read, and trigger DO6 pin.
     /// </summary>
     [DisplayName("DO6ThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that value used to threshold a Load Cell read, and trigger DO6 pin.")]
-    public partial class CreateDO6ThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that value used to threshold a Load Cell read, and trigger DO6 pin.")]
+    public partial class CreateDO6ThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that value used to threshold a Load Cell read, and trigger DO6 pin.
         /// </summary>
         [Description("The value that value used to threshold a Load Cell read, and trigger DO6 pin.")]
-        public short Value { get; set; }
+        public short DO6Threshold { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that value used to threshold a Load Cell read, and trigger DO6 pin.
+        /// Creates a message payload for the DO6Threshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO6Threshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that value used to threshold a Load Cell read, and trigger DO6 pin.
+        /// Creates a message that value used to threshold a Load Cell read, and trigger DO6 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO6Threshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO6Threshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO6Threshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that value used to threshold a Load Cell read, and trigger DO6 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO6ThresholdPayload")]
+    [Description("Creates a timestamped message payload that value used to threshold a Load Cell read, and trigger DO6 pin.")]
+    public partial class CreateTimestampedDO6ThresholdPayload : CreateDO6ThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that value used to threshold a Load Cell read, and trigger DO6 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO6Threshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO6Threshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that value used to threshold a Load Cell read, and trigger DO7 pin.
     /// </summary>
     [DisplayName("DO7ThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that value used to threshold a Load Cell read, and trigger DO7 pin.")]
-    public partial class CreateDO7ThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that value used to threshold a Load Cell read, and trigger DO7 pin.")]
+    public partial class CreateDO7ThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that value used to threshold a Load Cell read, and trigger DO7 pin.
         /// </summary>
         [Description("The value that value used to threshold a Load Cell read, and trigger DO7 pin.")]
-        public short Value { get; set; }
+        public short DO7Threshold { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that value used to threshold a Load Cell read, and trigger DO7 pin.
+        /// Creates a message payload for the DO7Threshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO7Threshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that value used to threshold a Load Cell read, and trigger DO7 pin.
+        /// Creates a message that value used to threshold a Load Cell read, and trigger DO7 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO7Threshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO7Threshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO7Threshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that value used to threshold a Load Cell read, and trigger DO7 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO7ThresholdPayload")]
+    [Description("Creates a timestamped message payload that value used to threshold a Load Cell read, and trigger DO7 pin.")]
+    public partial class CreateTimestampedDO7ThresholdPayload : CreateDO7ThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that value used to threshold a Load Cell read, and trigger DO7 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO7Threshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO7Threshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that value used to threshold a Load Cell read, and trigger DO8 pin.
     /// </summary>
     [DisplayName("DO8ThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that value used to threshold a Load Cell read, and trigger DO8 pin.")]
-    public partial class CreateDO8ThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that value used to threshold a Load Cell read, and trigger DO8 pin.")]
+    public partial class CreateDO8ThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that value used to threshold a Load Cell read, and trigger DO8 pin.
         /// </summary>
         [Description("The value that value used to threshold a Load Cell read, and trigger DO8 pin.")]
-        public short Value { get; set; }
+        public short DO8Threshold { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that value used to threshold a Load Cell read, and trigger DO8 pin.
+        /// Creates a message payload for the DO8Threshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public short GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO8Threshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that value used to threshold a Load Cell read, and trigger DO8 pin.
+        /// Creates a message that value used to threshold a Load Cell read, and trigger DO8 pin.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO8Threshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO8Threshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO8Threshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that value used to threshold a Load Cell read, and trigger DO8 pin.
+    /// </summary>
+    [DisplayName("TimestampedDO8ThresholdPayload")]
+    [Description("Creates a timestamped message payload that value used to threshold a Load Cell read, and trigger DO8 pin.")]
+    public partial class CreateTimestampedDO8ThresholdPayload : CreateDO8ThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that value used to threshold a Load Cell read, and trigger DO8 pin.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO8Threshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO8Threshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) above threshold value that is required to trigger a DO1 pin event.
     /// </summary>
     [DisplayName("DO1TimeAboveThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) above threshold value that is required to trigger a DO1 pin event.")]
-    public partial class CreateDO1TimeAboveThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) above threshold value that is required to trigger a DO1 pin event.")]
+    public partial class CreateDO1TimeAboveThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) above threshold value that is required to trigger a DO1 pin event.
         /// </summary>
         [Description("The value that time (ms) above threshold value that is required to trigger a DO1 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO1TimeAboveThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) above threshold value that is required to trigger a DO1 pin event.
+        /// Creates a message payload for the DO1TimeAboveThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO1TimeAboveThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) above threshold value that is required to trigger a DO1 pin event.
+        /// Creates a message that time (ms) above threshold value that is required to trigger a DO1 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO1TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO1TimeAboveThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO1TimeAboveThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) above threshold value that is required to trigger a DO1 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO1TimeAboveThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) above threshold value that is required to trigger a DO1 pin event.")]
+    public partial class CreateTimestampedDO1TimeAboveThresholdPayload : CreateDO1TimeAboveThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) above threshold value that is required to trigger a DO1 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO1TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO1TimeAboveThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) above threshold value that is required to trigger a DO2 pin event.
     /// </summary>
     [DisplayName("DO2TimeAboveThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) above threshold value that is required to trigger a DO2 pin event.")]
-    public partial class CreateDO2TimeAboveThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) above threshold value that is required to trigger a DO2 pin event.")]
+    public partial class CreateDO2TimeAboveThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) above threshold value that is required to trigger a DO2 pin event.
         /// </summary>
         [Description("The value that time (ms) above threshold value that is required to trigger a DO2 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO2TimeAboveThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) above threshold value that is required to trigger a DO2 pin event.
+        /// Creates a message payload for the DO2TimeAboveThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO2TimeAboveThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) above threshold value that is required to trigger a DO2 pin event.
+        /// Creates a message that time (ms) above threshold value that is required to trigger a DO2 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO2TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO2TimeAboveThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO2TimeAboveThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) above threshold value that is required to trigger a DO2 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO2TimeAboveThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) above threshold value that is required to trigger a DO2 pin event.")]
+    public partial class CreateTimestampedDO2TimeAboveThresholdPayload : CreateDO2TimeAboveThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) above threshold value that is required to trigger a DO2 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO2TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO2TimeAboveThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) above threshold value that is required to trigger a DO3 pin event.
     /// </summary>
     [DisplayName("DO3TimeAboveThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) above threshold value that is required to trigger a DO3 pin event.")]
-    public partial class CreateDO3TimeAboveThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) above threshold value that is required to trigger a DO3 pin event.")]
+    public partial class CreateDO3TimeAboveThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) above threshold value that is required to trigger a DO3 pin event.
         /// </summary>
         [Description("The value that time (ms) above threshold value that is required to trigger a DO3 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO3TimeAboveThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) above threshold value that is required to trigger a DO3 pin event.
+        /// Creates a message payload for the DO3TimeAboveThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO3TimeAboveThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) above threshold value that is required to trigger a DO3 pin event.
+        /// Creates a message that time (ms) above threshold value that is required to trigger a DO3 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO3TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO3TimeAboveThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO3TimeAboveThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) above threshold value that is required to trigger a DO3 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO3TimeAboveThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) above threshold value that is required to trigger a DO3 pin event.")]
+    public partial class CreateTimestampedDO3TimeAboveThresholdPayload : CreateDO3TimeAboveThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) above threshold value that is required to trigger a DO3 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO3TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO3TimeAboveThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) above threshold value that is required to trigger a DO4 pin event.
     /// </summary>
     [DisplayName("DO4TimeAboveThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) above threshold value that is required to trigger a DO4 pin event.")]
-    public partial class CreateDO4TimeAboveThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) above threshold value that is required to trigger a DO4 pin event.")]
+    public partial class CreateDO4TimeAboveThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) above threshold value that is required to trigger a DO4 pin event.
         /// </summary>
         [Description("The value that time (ms) above threshold value that is required to trigger a DO4 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO4TimeAboveThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) above threshold value that is required to trigger a DO4 pin event.
+        /// Creates a message payload for the DO4TimeAboveThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO4TimeAboveThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) above threshold value that is required to trigger a DO4 pin event.
+        /// Creates a message that time (ms) above threshold value that is required to trigger a DO4 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO4TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO4TimeAboveThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO4TimeAboveThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) above threshold value that is required to trigger a DO4 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO4TimeAboveThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) above threshold value that is required to trigger a DO4 pin event.")]
+    public partial class CreateTimestampedDO4TimeAboveThresholdPayload : CreateDO4TimeAboveThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) above threshold value that is required to trigger a DO4 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO4TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO4TimeAboveThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) above threshold value that is required to trigger a DO5 pin event.
     /// </summary>
     [DisplayName("DO5TimeAboveThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) above threshold value that is required to trigger a DO5 pin event.")]
-    public partial class CreateDO5TimeAboveThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) above threshold value that is required to trigger a DO5 pin event.")]
+    public partial class CreateDO5TimeAboveThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) above threshold value that is required to trigger a DO5 pin event.
         /// </summary>
         [Description("The value that time (ms) above threshold value that is required to trigger a DO5 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO5TimeAboveThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) above threshold value that is required to trigger a DO5 pin event.
+        /// Creates a message payload for the DO5TimeAboveThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO5TimeAboveThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) above threshold value that is required to trigger a DO5 pin event.
+        /// Creates a message that time (ms) above threshold value that is required to trigger a DO5 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO5TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO5TimeAboveThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO5TimeAboveThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) above threshold value that is required to trigger a DO5 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO5TimeAboveThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) above threshold value that is required to trigger a DO5 pin event.")]
+    public partial class CreateTimestampedDO5TimeAboveThresholdPayload : CreateDO5TimeAboveThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) above threshold value that is required to trigger a DO5 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO5TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO5TimeAboveThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) above threshold value that is required to trigger a DO6 pin event.
     /// </summary>
     [DisplayName("DO6TimeAboveThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) above threshold value that is required to trigger a DO6 pin event.")]
-    public partial class CreateDO6TimeAboveThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) above threshold value that is required to trigger a DO6 pin event.")]
+    public partial class CreateDO6TimeAboveThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) above threshold value that is required to trigger a DO6 pin event.
         /// </summary>
         [Description("The value that time (ms) above threshold value that is required to trigger a DO6 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO6TimeAboveThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) above threshold value that is required to trigger a DO6 pin event.
+        /// Creates a message payload for the DO6TimeAboveThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO6TimeAboveThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) above threshold value that is required to trigger a DO6 pin event.
+        /// Creates a message that time (ms) above threshold value that is required to trigger a DO6 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO6TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO6TimeAboveThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO6TimeAboveThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) above threshold value that is required to trigger a DO6 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO6TimeAboveThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) above threshold value that is required to trigger a DO6 pin event.")]
+    public partial class CreateTimestampedDO6TimeAboveThresholdPayload : CreateDO6TimeAboveThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) above threshold value that is required to trigger a DO6 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO6TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO6TimeAboveThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) above threshold value that is required to trigger a DO7 pin event.
     /// </summary>
     [DisplayName("DO7TimeAboveThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) above threshold value that is required to trigger a DO7 pin event.")]
-    public partial class CreateDO7TimeAboveThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) above threshold value that is required to trigger a DO7 pin event.")]
+    public partial class CreateDO7TimeAboveThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) above threshold value that is required to trigger a DO7 pin event.
         /// </summary>
         [Description("The value that time (ms) above threshold value that is required to trigger a DO7 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO7TimeAboveThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) above threshold value that is required to trigger a DO7 pin event.
+        /// Creates a message payload for the DO7TimeAboveThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO7TimeAboveThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) above threshold value that is required to trigger a DO7 pin event.
+        /// Creates a message that time (ms) above threshold value that is required to trigger a DO7 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO7TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO7TimeAboveThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO7TimeAboveThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) above threshold value that is required to trigger a DO7 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO7TimeAboveThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) above threshold value that is required to trigger a DO7 pin event.")]
+    public partial class CreateTimestampedDO7TimeAboveThresholdPayload : CreateDO7TimeAboveThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) above threshold value that is required to trigger a DO7 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO7TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO7TimeAboveThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) above threshold value that is required to trigger a DO8 pin event.
     /// </summary>
     [DisplayName("DO8TimeAboveThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) above threshold value that is required to trigger a DO8 pin event.")]
-    public partial class CreateDO8TimeAboveThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) above threshold value that is required to trigger a DO8 pin event.")]
+    public partial class CreateDO8TimeAboveThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) above threshold value that is required to trigger a DO8 pin event.
         /// </summary>
         [Description("The value that time (ms) above threshold value that is required to trigger a DO8 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO8TimeAboveThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) above threshold value that is required to trigger a DO8 pin event.
+        /// Creates a message payload for the DO8TimeAboveThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO8TimeAboveThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) above threshold value that is required to trigger a DO8 pin event.
+        /// Creates a message that time (ms) above threshold value that is required to trigger a DO8 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO8TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO8TimeAboveThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO8TimeAboveThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) above threshold value that is required to trigger a DO8 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO8TimeAboveThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) above threshold value that is required to trigger a DO8 pin event.")]
+    public partial class CreateTimestampedDO8TimeAboveThresholdPayload : CreateDO8TimeAboveThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) above threshold value that is required to trigger a DO8 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO8TimeAboveThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO8TimeAboveThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) below threshold value that is required to trigger a DO1 pin event.
     /// </summary>
     [DisplayName("DO1TimeBelowThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) below threshold value that is required to trigger a DO1 pin event.")]
-    public partial class CreateDO1TimeBelowThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) below threshold value that is required to trigger a DO1 pin event.")]
+    public partial class CreateDO1TimeBelowThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) below threshold value that is required to trigger a DO1 pin event.
         /// </summary>
         [Description("The value that time (ms) below threshold value that is required to trigger a DO1 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO1TimeBelowThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) below threshold value that is required to trigger a DO1 pin event.
+        /// Creates a message payload for the DO1TimeBelowThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO1TimeBelowThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) below threshold value that is required to trigger a DO1 pin event.
+        /// Creates a message that time (ms) below threshold value that is required to trigger a DO1 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO1TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO1TimeBelowThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO1TimeBelowThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) below threshold value that is required to trigger a DO1 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO1TimeBelowThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) below threshold value that is required to trigger a DO1 pin event.")]
+    public partial class CreateTimestampedDO1TimeBelowThresholdPayload : CreateDO1TimeBelowThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) below threshold value that is required to trigger a DO1 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO1TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO1TimeBelowThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) below threshold value that is required to trigger a DO2 pin event.
     /// </summary>
     [DisplayName("DO2TimeBelowThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) below threshold value that is required to trigger a DO2 pin event.")]
-    public partial class CreateDO2TimeBelowThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) below threshold value that is required to trigger a DO2 pin event.")]
+    public partial class CreateDO2TimeBelowThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) below threshold value that is required to trigger a DO2 pin event.
         /// </summary>
         [Description("The value that time (ms) below threshold value that is required to trigger a DO2 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO2TimeBelowThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) below threshold value that is required to trigger a DO2 pin event.
+        /// Creates a message payload for the DO2TimeBelowThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO2TimeBelowThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) below threshold value that is required to trigger a DO2 pin event.
+        /// Creates a message that time (ms) below threshold value that is required to trigger a DO2 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO2TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO2TimeBelowThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO2TimeBelowThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) below threshold value that is required to trigger a DO2 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO2TimeBelowThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) below threshold value that is required to trigger a DO2 pin event.")]
+    public partial class CreateTimestampedDO2TimeBelowThresholdPayload : CreateDO2TimeBelowThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) below threshold value that is required to trigger a DO2 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO2TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO2TimeBelowThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) below threshold value that is required to trigger a DO3 pin event.
     /// </summary>
     [DisplayName("DO3TimeBelowThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) below threshold value that is required to trigger a DO3 pin event.")]
-    public partial class CreateDO3TimeBelowThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) below threshold value that is required to trigger a DO3 pin event.")]
+    public partial class CreateDO3TimeBelowThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) below threshold value that is required to trigger a DO3 pin event.
         /// </summary>
         [Description("The value that time (ms) below threshold value that is required to trigger a DO3 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO3TimeBelowThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) below threshold value that is required to trigger a DO3 pin event.
+        /// Creates a message payload for the DO3TimeBelowThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO3TimeBelowThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) below threshold value that is required to trigger a DO3 pin event.
+        /// Creates a message that time (ms) below threshold value that is required to trigger a DO3 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO3TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO3TimeBelowThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO3TimeBelowThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) below threshold value that is required to trigger a DO3 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO3TimeBelowThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) below threshold value that is required to trigger a DO3 pin event.")]
+    public partial class CreateTimestampedDO3TimeBelowThresholdPayload : CreateDO3TimeBelowThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) below threshold value that is required to trigger a DO3 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO3TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO3TimeBelowThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) below threshold value that is required to trigger a DO4 pin event.
     /// </summary>
     [DisplayName("DO4TimeBelowThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) below threshold value that is required to trigger a DO4 pin event.")]
-    public partial class CreateDO4TimeBelowThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) below threshold value that is required to trigger a DO4 pin event.")]
+    public partial class CreateDO4TimeBelowThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) below threshold value that is required to trigger a DO4 pin event.
         /// </summary>
         [Description("The value that time (ms) below threshold value that is required to trigger a DO4 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO4TimeBelowThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) below threshold value that is required to trigger a DO4 pin event.
+        /// Creates a message payload for the DO4TimeBelowThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO4TimeBelowThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) below threshold value that is required to trigger a DO4 pin event.
+        /// Creates a message that time (ms) below threshold value that is required to trigger a DO4 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO4TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO4TimeBelowThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO4TimeBelowThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) below threshold value that is required to trigger a DO4 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO4TimeBelowThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) below threshold value that is required to trigger a DO4 pin event.")]
+    public partial class CreateTimestampedDO4TimeBelowThresholdPayload : CreateDO4TimeBelowThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) below threshold value that is required to trigger a DO4 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO4TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO4TimeBelowThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) below threshold value that is required to trigger a DO5 pin event.
     /// </summary>
     [DisplayName("DO5TimeBelowThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) below threshold value that is required to trigger a DO5 pin event.")]
-    public partial class CreateDO5TimeBelowThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) below threshold value that is required to trigger a DO5 pin event.")]
+    public partial class CreateDO5TimeBelowThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) below threshold value that is required to trigger a DO5 pin event.
         /// </summary>
         [Description("The value that time (ms) below threshold value that is required to trigger a DO5 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO5TimeBelowThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) below threshold value that is required to trigger a DO5 pin event.
+        /// Creates a message payload for the DO5TimeBelowThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO5TimeBelowThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) below threshold value that is required to trigger a DO5 pin event.
+        /// Creates a message that time (ms) below threshold value that is required to trigger a DO5 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO5TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO5TimeBelowThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO5TimeBelowThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) below threshold value that is required to trigger a DO5 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO5TimeBelowThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) below threshold value that is required to trigger a DO5 pin event.")]
+    public partial class CreateTimestampedDO5TimeBelowThresholdPayload : CreateDO5TimeBelowThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) below threshold value that is required to trigger a DO5 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO5TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO5TimeBelowThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) below threshold value that is required to trigger a DO6 pin event.
     /// </summary>
     [DisplayName("DO6TimeBelowThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) below threshold value that is required to trigger a DO6 pin event.")]
-    public partial class CreateDO6TimeBelowThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) below threshold value that is required to trigger a DO6 pin event.")]
+    public partial class CreateDO6TimeBelowThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) below threshold value that is required to trigger a DO6 pin event.
         /// </summary>
         [Description("The value that time (ms) below threshold value that is required to trigger a DO6 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO6TimeBelowThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) below threshold value that is required to trigger a DO6 pin event.
+        /// Creates a message payload for the DO6TimeBelowThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO6TimeBelowThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) below threshold value that is required to trigger a DO6 pin event.
+        /// Creates a message that time (ms) below threshold value that is required to trigger a DO6 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO6TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO6TimeBelowThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO6TimeBelowThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) below threshold value that is required to trigger a DO6 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO6TimeBelowThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) below threshold value that is required to trigger a DO6 pin event.")]
+    public partial class CreateTimestampedDO6TimeBelowThresholdPayload : CreateDO6TimeBelowThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) below threshold value that is required to trigger a DO6 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO6TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO6TimeBelowThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) below threshold value that is required to trigger a DO7 pin event.
     /// </summary>
     [DisplayName("DO7TimeBelowThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) below threshold value that is required to trigger a DO7 pin event.")]
-    public partial class CreateDO7TimeBelowThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) below threshold value that is required to trigger a DO7 pin event.")]
+    public partial class CreateDO7TimeBelowThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) below threshold value that is required to trigger a DO7 pin event.
         /// </summary>
         [Description("The value that time (ms) below threshold value that is required to trigger a DO7 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO7TimeBelowThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) below threshold value that is required to trigger a DO7 pin event.
+        /// Creates a message payload for the DO7TimeBelowThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO7TimeBelowThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) below threshold value that is required to trigger a DO7 pin event.
+        /// Creates a message that time (ms) below threshold value that is required to trigger a DO7 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO7TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO7TimeBelowThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO7TimeBelowThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) below threshold value that is required to trigger a DO7 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO7TimeBelowThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) below threshold value that is required to trigger a DO7 pin event.")]
+    public partial class CreateTimestampedDO7TimeBelowThresholdPayload : CreateDO7TimeBelowThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) below threshold value that is required to trigger a DO7 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO7TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO7TimeBelowThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that time (ms) below threshold value that is required to trigger a DO8 pin event.
     /// </summary>
     [DisplayName("DO8TimeBelowThresholdPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that time (ms) below threshold value that is required to trigger a DO8 pin event.")]
-    public partial class CreateDO8TimeBelowThresholdPayload : HarpCombinator
+    [Description("Creates a message payload that time (ms) below threshold value that is required to trigger a DO8 pin event.")]
+    public partial class CreateDO8TimeBelowThresholdPayload
     {
         /// <summary>
         /// Gets or sets the value that time (ms) below threshold value that is required to trigger a DO8 pin event.
         /// </summary>
         [Description("The value that time (ms) below threshold value that is required to trigger a DO8 pin event.")]
-        public ushort Value { get; set; } = 0;
+        public ushort DO8TimeBelowThreshold { get; set; } = 0;
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that time (ms) below threshold value that is required to trigger a DO8 pin event.
+        /// Creates a message payload for the DO8TimeBelowThreshold register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public ushort GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return DO8TimeBelowThreshold;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that time (ms) below threshold value that is required to trigger a DO8 pin event.
+        /// Creates a message that time (ms) below threshold value that is required to trigger a DO8 pin event.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the DO8TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => DO8TimeBelowThreshold.FromPayload(MessageType, Value));
+            return Harp.LoadCells.DO8TimeBelowThreshold.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
-    /// Represents an operator that creates a sequence of message payloads
+    /// Represents an operator that creates a timestamped message payload
+    /// that time (ms) below threshold value that is required to trigger a DO8 pin event.
+    /// </summary>
+    [DisplayName("TimestampedDO8TimeBelowThresholdPayload")]
+    [Description("Creates a timestamped message payload that time (ms) below threshold value that is required to trigger a DO8 pin event.")]
+    public partial class CreateTimestampedDO8TimeBelowThresholdPayload : CreateDO8TimeBelowThresholdPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that time (ms) below threshold value that is required to trigger a DO8 pin event.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the DO8TimeBelowThreshold register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.DO8TimeBelowThreshold.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
     /// that specifies the active events in the device.
     /// </summary>
     [DisplayName("EnableEventsPayload")]
-    [WorkflowElementCategory(ElementCategory.Transform)]
-    [Description("Creates a sequence of message payloads that specifies the active events in the device.")]
-    public partial class CreateEnableEventsPayload : HarpCombinator
+    [Description("Creates a message payload that specifies the active events in the device.")]
+    public partial class CreateEnableEventsPayload
     {
         /// <summary>
         /// Gets or sets the value that specifies the active events in the device.
         /// </summary>
         [Description("The value that specifies the active events in the device.")]
-        public LoadCellEvents Value { get; set; }
+        public LoadCellEvents EnableEvents { get; set; }
 
         /// <summary>
-        /// Creates an observable sequence that contains a single message
-        /// that specifies the active events in the device.
+        /// Creates a message payload for the EnableEvents register.
         /// </summary>
-        /// <returns>
-        /// A sequence containing a single <see cref="HarpMessage"/> object
-        /// representing the created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process()
+        /// <returns>The created message payload value.</returns>
+        public LoadCellEvents GetPayload()
         {
-            return Process(Observable.Return(System.Reactive.Unit.Default));
+            return EnableEvents;
         }
 
         /// <summary>
-        /// Creates an observable sequence of message payloads
-        /// that specifies the active events in the device.
+        /// Creates a message that specifies the active events in the device.
         /// </summary>
-        /// <typeparam name="TSource">
-        /// The type of the elements in the <paramref name="source"/> sequence.
-        /// </typeparam>
-        /// <param name="source">
-        /// The sequence containing the notifications used for emitting message payloads.
-        /// </param>
-        /// <returns>
-        /// A sequence of <see cref="HarpMessage"/> objects representing each
-        /// created message payload.
-        /// </returns>
-        public IObservable<HarpMessage> Process<TSource>(IObservable<TSource> source)
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the EnableEvents register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
         {
-            return source.Select(_ => EnableEvents.FromPayload(MessageType, Value));
+            return Harp.LoadCells.EnableEvents.FromPayload(messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a timestamped message payload
+    /// that specifies the active events in the device.
+    /// </summary>
+    [DisplayName("TimestampedEnableEventsPayload")]
+    [Description("Creates a timestamped message payload that specifies the active events in the device.")]
+    public partial class CreateTimestampedEnableEventsPayload : CreateEnableEventsPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that specifies the active events in the device.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the EnableEvents register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return Harp.LoadCells.EnableEvents.FromPayload(timestamp, messageType, GetPayload());
         }
     }
 
@@ -8347,6 +8708,7 @@ namespace Harp.LoadCells
     [Flags]
     public enum DigitalInputs : byte
     {
+        None = 0x0,
         DI0 = 0x1
     }
 
@@ -8356,6 +8718,7 @@ namespace Harp.LoadCells
     [Flags]
     public enum SyncOutputs : byte
     {
+        None = 0x0,
         DO0 = 0x1
     }
 
@@ -8365,6 +8728,7 @@ namespace Harp.LoadCells
     [Flags]
     public enum DigitalOutputs : byte
     {
+        None = 0x0,
         DO1 = 0x1,
         DO2 = 0x2,
         DO3 = 0x4,
@@ -8381,6 +8745,7 @@ namespace Harp.LoadCells
     [Flags]
     public enum LoadCellEvents : byte
     {
+        None = 0x0,
         LoadCellData = 0x1,
         DigitalInput = 0x2,
         SyncOutput = 0x4,
