@@ -86,7 +86,6 @@
   <avrgcccpp.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
-      <Value>libATxmega128A4U-1.4.a</Value>
     </ListValues>
   </avrgcccpp.linker.libraries.Libraries>
   <avrgcccpp.linker.libraries.LibrarySearchPaths>
@@ -133,12 +132,12 @@
   <avrgcccpp.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
-      <Value>libATxmega128A4U-1.4.a</Value>
+      <Value>libATxmega128A4U-1.13.a</Value>
     </ListValues>
   </avrgcccpp.linker.libraries.Libraries>
   <avrgcccpp.linker.libraries.LibrarySearchPaths>
     <ListValues>
-      <Value>C:\Users\Filipe Carvalho\Documents\BitBucket\Device.LoadCells\Firmware\LoadCells</Value>
+      <Value>..</Value>
     </ListValues>
   </avrgcccpp.linker.libraries.LibrarySearchPaths>
   <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
