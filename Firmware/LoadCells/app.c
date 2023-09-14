@@ -27,7 +27,7 @@ void hwbp_app_initialize(void)
     uint8_t hwH = 1;
     uint8_t hwL = 1;
     uint8_t fwH = 1;
-    uint8_t fwL = 0;
+    uint8_t fwL = 1;
     uint8_t ass = 0;
     
    	/* Start core */
@@ -40,9 +40,9 @@ void hwbp_app_initialize(void)
         APP_NBYTES_OF_REG_BANK,
         APP_REGS_ADD_MAX - APP_REGS_ADD_MIN + 1,
         default_device_name,
-        true,	// The device is _not_ able to repeat the harp timestamp clock
-        true,	// The device is _not_ able to generate the harp timestamp clock
-        3		// Default timestamp offset
+        false,	// The device is _not_ able to repeat the harp timestamp clock
+        false,	// The device is _not_ able to generate the harp timestamp clock
+        0		// Default timestamp offset
     );
 }
 
