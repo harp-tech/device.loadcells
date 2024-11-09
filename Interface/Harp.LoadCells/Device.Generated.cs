@@ -41,6 +41,9 @@ namespace Harp.LoadCells
             { 33, typeof(LoadCellData) },
             { 34, typeof(DigitalInputState) },
             { 35, typeof(SyncOutputState) },
+            { 36, typeof(BufferThresholdState) },
+            { 37, typeof(Reserved0) },
+            { 38, typeof(Reserved1) },
             { 39, typeof(DI0Trigger) },
             { 40, typeof(DO0Sync) },
             { 41, typeof(DO0PulseWidth) },
@@ -48,6 +51,8 @@ namespace Harp.LoadCells
             { 43, typeof(DigitalOutputClear) },
             { 44, typeof(DigitalOutputToggle) },
             { 45, typeof(DigitalOutputState) },
+            { 46, typeof(Reserved2) },
+            { 47, typeof(Reserved3) },
             { 48, typeof(OffsetLoadCell0) },
             { 49, typeof(OffsetLoadCell1) },
             { 50, typeof(OffsetLoadCell2) },
@@ -56,6 +61,8 @@ namespace Harp.LoadCells
             { 53, typeof(OffsetLoadCell5) },
             { 54, typeof(OffsetLoadCell6) },
             { 55, typeof(OffsetLoadCell7) },
+            { 56, typeof(Reserved4) },
+            { 57, typeof(Reserved5) },
             { 58, typeof(DO1TargetLoadCell) },
             { 59, typeof(DO2TargetLoadCell) },
             { 60, typeof(DO3TargetLoadCell) },
@@ -90,6 +97,41 @@ namespace Harp.LoadCells
             { 89, typeof(DO8TimeBelowThreshold) },
             { 90, typeof(EnableEvents) }
         };
+
+        /// <summary>
+        /// Gets the contents of the metadata file describing the <see cref="LoadCells"/>
+        /// device registers.
+        /// </summary>
+        public static readonly string Metadata = GetDeviceMetadata();
+
+        static string GetDeviceMetadata()
+        {
+            var deviceType = typeof(Device);
+            using var metadataStream = deviceType.Assembly.GetManifestResourceStream($"{deviceType.Namespace}.device.yml");
+            using var streamReader = new System.IO.StreamReader(metadataStream);
+            return streamReader.ReadToEnd();
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that returns the contents of the metadata file
+    /// describing the <see cref="LoadCells"/> device registers.
+    /// </summary>
+    [Description("Returns the contents of the metadata file describing the LoadCells device registers.")]
+    public partial class GetMetadata : Source<string>
+    {
+        /// <summary>
+        /// Returns an observable sequence with the contents of the metadata file
+        /// describing the <see cref="LoadCells"/> device registers.
+        /// </summary>
+        /// <returns>
+        /// A sequence with a single <see cref="string"/> object representing the
+        /// contents of the metadata file.
+        /// </returns>
+        public override IObservable<string> Generate()
+        {
+            return Observable.Return(Device.Metadata);
+        }
     }
 
     /// <summary>
@@ -952,6 +994,72 @@ namespace Harp.LoadCells
     }
 
     /// <summary>
+    /// Represents a register that state of the buffer thresholds.
+    /// </summary>
+    [Description("State of the buffer thresholds.")]
+    internal partial class BufferThresholdState
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="BufferThresholdState"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 36;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="BufferThresholdState"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="BufferThresholdState"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved0
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved0"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 37;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved0"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved0"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved1
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved1"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 38;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved1"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved1"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
     /// Represents a register that configuration of the digital input pin 0.
     /// </summary>
     [Description("Configuration of the digital input pin 0.")]
@@ -1627,6 +1735,50 @@ namespace Harp.LoadCells
         {
             return DigitalOutputState.GetTimestampedPayload(message);
         }
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved2
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved2"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 46;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved2"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved2"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved3
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved3"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 47;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved3"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved3"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
     }
 
     /// <summary>
@@ -2395,6 +2547,50 @@ namespace Harp.LoadCells
         {
             return OffsetLoadCell7.GetTimestampedPayload(message);
         }
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved4
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved4"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 56;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved4"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved4"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+    }
+
+    /// <summary>
+    /// Represents a register that reserved.
+    /// </summary>
+    [Description("Reserved")]
+    internal partial class Reserved5
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="Reserved5"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 57;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="Reserved5"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="Reserved5"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
     }
 
     /// <summary>
@@ -8700,6 +8896,28 @@ namespace Harp.LoadCells
         /// 
         /// </summary>
         public short Channel7;
+
+        /// <summary>
+        /// Returns a <see cref="string"/> that represents the payload of
+        /// the LoadCellData register.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="string"/> that represents the payload of the
+        /// LoadCellData register.
+        /// </returns>
+        public override string ToString()
+        {
+            return "LoadCellDataPayload { " +
+                "Channel0 = " + Channel0 + ", " +
+                "Channel1 = " + Channel1 + ", " +
+                "Channel2 = " + Channel2 + ", " +
+                "Channel3 = " + Channel3 + ", " +
+                "Channel4 = " + Channel4 + ", " +
+                "Channel5 = " + Channel5 + ", " +
+                "Channel6 = " + Channel6 + ", " +
+                "Channel7 = " + Channel7 + " " +
+            "}";
+        }
     }
 
     /// <summary>
