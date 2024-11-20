@@ -1,6 +1,6 @@
 %YAML 1.1
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/harp-tech/reflex-generator/main/schema/device.json
+# yaml-language-server: $schema=https://harp-tech.org/draft-02/schema/device.json
 device: LoadCells
 whoAmI: 1232
 firmwareVersion: "1.1"
