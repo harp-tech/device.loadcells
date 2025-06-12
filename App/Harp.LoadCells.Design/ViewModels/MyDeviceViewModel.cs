@@ -1757,7 +1757,7 @@ public class LoadCellsViewModel : ViewModelBase
     };
 */
 
-    private readonly Random _random = new();
+    //private readonly Random _random = new();
     // Add show/hide properties for each channel 
 
     private bool _show0 = true, _show1 = true, _show2 = true, _show3 = true, _show4 = true, _show5 = true, _show6 = true, _show7 = true;

@@ -3,16 +3,16 @@
              x:Class="Harp.LoadCells.Design.App"
              RequestedThemeVariant="Default"
              Name="Harp.LoadCells">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
-    <Application.Styles>
-        <FluentTheme />
-        <StyleInclude Source="avares://Harp.LoadCells.Design/Styles/DefaultStyles.axaml" />
-        <StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Fluent/Fluent.xaml" />
-    </Application.Styles>
+  <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+  <Application.Styles>
+    <FluentTheme />
+    <StyleInclude Source="avares://Harp.LoadCells.Design/Styles/DefaultStyles.axaml" />
+    <StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Fluent/Fluent.xaml" />
+  </Application.Styles>
 
-    <NativeMenu.Menu>
-      <NativeMenu>
-        <NativeMenuItem Header="About Harp.LoadCells" Click="NativeMenuItem_OnClick" />
-      </NativeMenu>
-    </NativeMenu.Menu>
+  <NativeMenu.Menu>
+    <NativeMenu>
+      <NativeMenuItem Header="About Harp.LoadCells" Click="NativeMenuItem_OnClick" />
+    </NativeMenu>
+  </NativeMenu.Menu>
 </Application>

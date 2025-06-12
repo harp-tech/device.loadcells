@@ -10,7 +10,7 @@
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              xmlns:vm="clr-namespace:Harp.LoadCells.Design.ViewModels"
              xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="950"
+             mc:Ignorable="d" d:DesignWidth="1500" d:DesignHeight="950"
              x:Class="Harp.LoadCells.Design.Views.LoadCellsView"
              x:DataType="vm:LoadCellsViewModel">
 
@@ -143,11 +143,10 @@
           <TabControl Margin="10,0,0,10">
             <TabItem Header="Configuration">
               <ScrollViewer>
-          <Grid Margin="10,0,0,10" ColumnDefinitions="Auto,Auto,Auto,Auto" RowDefinitions="*,*,*,*">
+          <Grid Margin="10,10,0,10" ColumnDefinitions="Auto,Auto,Auto,Auto" RowDefinitions="*,*,*,*">
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Events" FontSize="16" FontWeight="SemiBold" />
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="Other" FontSize="16" FontWeight="SemiBold" />
-            <TextBlock Grid.Row="0" Grid.Column="2" Text="Digital Inputs" FontSize="16" FontWeight="SemiBold" />
-            <TextBlock Grid.Row="0" Grid.Column="3" Text="Digital Outputs" FontSize="16" FontWeight="SemiBold" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="Others" FontSize="16" FontWeight="SemiBold" />
+            <!--<TextBlock Grid.Row="0" Grid.Column="2" Text="Digital Inputs" FontSize="16" FontWeight="SemiBold" />-->
 
             <!-- Events Column -->
             <StackPanel Grid.Row="1" Grid.Column="0" Spacing="5" Margin="0,10,20,0">
@@ -180,10 +179,11 @@
     </StackPanel>
             </StackPanel>
 
-            <!-- Other Column -->
-            <StackPanel Grid.Row="1" Grid.Column="1" Spacing="20" Margin="0,10,0,0">
-    <!-- Register: AcquisitionState (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
+
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,0,0,0">
+              
+                               <!-- Register: AcquisitionState (Write) -->
+    <StackPanel Orientation="Vertical" Spacing="5" Margin="0,10,0,20">
         <StackPanel Orientation="Horizontal" Spacing="5">
             <Label FontWeight="Bold" FontSize="14" Padding="0">AcquisitionState</Label>
             <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
@@ -200,216 +200,9 @@
                 IsEnabled="True"
                 HorizontalAlignment="Left" />
     </StackPanel>
-    <!-- Register: DI0Trigger (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DI0Trigger</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Configuration of the digital input pin 0.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <ComboBox SelectedItem="{Binding DI0Trigger, Mode=TwoWay}" 
-                  IsEnabled="True"
-                  Width="200" 
-                  Margin="0,5,0,0"
-                  HorizontalAlignment="Left">
-            <x:Static Member="local:TriggerConfig.None" />
-            <x:Static Member="local:TriggerConfig.RisingEdge" />
-            <x:Static Member="local:TriggerConfig.FallingEdge" />
-        </ComboBox>
-    </StackPanel>
-    <!-- Register: DigitalInputState (Read-Only, Event) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DigitalInputState</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Status of the digital input pin 0. An event will be emitted when DI0Trigger == None.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <controls:VisualStatus Status="{Binding IsDI0Enabled_DigitalInputState}"
-                                  Width="15" Height="15" />
-            <TextBlock Text="DI0" VerticalAlignment="Center"/>
-        </StackPanel>
-    </StackPanel>
-    <!-- Register: DigitalOutputClear (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DigitalOutputClear</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Clear the specified digital output lines.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <CheckBox IsChecked="{Binding IsDO1Enabled_DigitalOutputClear}" 
-                  IsEnabled="True">
-            DO1
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO2Enabled_DigitalOutputClear}" 
-                  IsEnabled="True">
-            DO2
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO3Enabled_DigitalOutputClear}" 
-                  IsEnabled="True">
-            DO3
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO4Enabled_DigitalOutputClear}" 
-                  IsEnabled="True">
-            DO4
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO5Enabled_DigitalOutputClear}" 
-                  IsEnabled="True">
-            DO5
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO6Enabled_DigitalOutputClear}" 
-                  IsEnabled="True">
-            DO6
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO7Enabled_DigitalOutputClear}" 
-                  IsEnabled="True">
-            DO7
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO8Enabled_DigitalOutputClear}" 
-                  IsEnabled="True">
-            DO8
-        </CheckBox>
-    </StackPanel>
-    <!-- Register: DigitalOutputSet (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DigitalOutputSet</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Set the specified digital output lines.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <CheckBox IsChecked="{Binding IsDO1Enabled_DigitalOutputSet}" 
-                  IsEnabled="True">
-            DO1
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO2Enabled_DigitalOutputSet}" 
-                  IsEnabled="True">
-            DO2
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO3Enabled_DigitalOutputSet}" 
-                  IsEnabled="True">
-            DO3
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO4Enabled_DigitalOutputSet}" 
-                  IsEnabled="True">
-            DO4
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO5Enabled_DigitalOutputSet}" 
-                  IsEnabled="True">
-            DO5
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO6Enabled_DigitalOutputSet}" 
-                  IsEnabled="True">
-            DO6
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO7Enabled_DigitalOutputSet}" 
-                  IsEnabled="True">
-            DO7
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO8Enabled_DigitalOutputSet}" 
-                  IsEnabled="True">
-            DO8
-        </CheckBox>
-    </StackPanel>
-    <!-- Register: DigitalOutputState (Write, Event) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DigitalOutputState</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <CheckBox IsChecked="{Binding IsDO1Enabled_DigitalOutputState}" 
-                  IsEnabled="True">
-            DO1
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO2Enabled_DigitalOutputState}" 
-                  IsEnabled="True">
-            DO2
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO3Enabled_DigitalOutputState}" 
-                  IsEnabled="True">
-            DO3
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO4Enabled_DigitalOutputState}" 
-                  IsEnabled="True">
-            DO4
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO5Enabled_DigitalOutputState}" 
-                  IsEnabled="True">
-            DO5
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO6Enabled_DigitalOutputState}" 
-                  IsEnabled="True">
-            DO6
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO7Enabled_DigitalOutputState}" 
-                  IsEnabled="True">
-            DO7
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO8Enabled_DigitalOutputState}" 
-                  IsEnabled="True">
-            DO8
-        </CheckBox>
-    </StackPanel>
-    <!-- Register: DigitalOutputToggle (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DigitalOutputToggle</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Toggle the specified digital output lines</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <CheckBox IsChecked="{Binding IsDO1Enabled_DigitalOutputToggle}" 
-                  IsEnabled="True">
-            DO1
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO2Enabled_DigitalOutputToggle}" 
-                  IsEnabled="True">
-            DO2
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO3Enabled_DigitalOutputToggle}" 
-                  IsEnabled="True">
-            DO3
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO4Enabled_DigitalOutputToggle}" 
-                  IsEnabled="True">
-            DO4
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO5Enabled_DigitalOutputToggle}" 
-                  IsEnabled="True">
-            DO5
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO6Enabled_DigitalOutputToggle}" 
-                  IsEnabled="True">
-            DO6
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO7Enabled_DigitalOutputToggle}" 
-                  IsEnabled="True">
-            DO7
-        </CheckBox>
-        <CheckBox IsChecked="{Binding IsDO8Enabled_DigitalOutputToggle}" 
-                  IsEnabled="True">
-            DO8
-        </CheckBox>
-    </StackPanel>
-    <!-- Register: DO0PulseWidth (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
+      
+                  <!-- Register: DO0PulseWidth (Write) -->
+    <StackPanel Orientation="Vertical" Spacing="5" Margin="0,0,0,20">
         <StackPanel Orientation="Horizontal" Spacing="5">
             <Label FontWeight="Bold" FontSize="14" Padding="0">DO0PulseWidth</Label>
             <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
@@ -428,7 +221,7 @@
                      Margin="0,5,0,0" />
     </StackPanel>
     <!-- Register: DO0Sync (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
+    <StackPanel Orientation="Vertical" Spacing="5" Margin="0,0,0,20">
         <StackPanel Orientation="Horizontal" Spacing="5">
             <Label FontWeight="Bold" FontSize="14" Padding="0">DO0Sync</Label>
             <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
@@ -447,964 +240,11 @@
             <x:Static Member="local:SyncConfig.Pulse" />
         </ComboBox>
     </StackPanel>
-    <!-- Register: DO1TargetLoadCell (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO1TargetLoadCell</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Target Load Cell that will be used to trigger a threshold event on DO1 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <ComboBox SelectedItem="{Binding DO1TargetLoadCell, Mode=TwoWay}" 
-                  IsEnabled="True"
-                  Width="200" 
-                  Margin="0,5,0,0"
-                  HorizontalAlignment="Left">
-            <x:Static Member="local:LoadCellChannel.Channel0" />
-            <x:Static Member="local:LoadCellChannel.Channel1" />
-            <x:Static Member="local:LoadCellChannel.Channel2" />
-            <x:Static Member="local:LoadCellChannel.Channel3" />
-            <x:Static Member="local:LoadCellChannel.Channel4" />
-            <x:Static Member="local:LoadCellChannel.Channel5" />
-            <x:Static Member="local:LoadCellChannel.Channel6" />
-            <x:Static Member="local:LoadCellChannel.Channel7" />
-            <x:Static Member="local:LoadCellChannel.None" />
-        </ComboBox>
-    </StackPanel>
-    <!-- Register: DO1Threshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO1Threshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Value used to threshold a Load Cell read, and trigger DO1 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO1Threshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO1TimeAboveThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO1TimeAboveThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) above threshold value that is required to trigger a DO1 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO1TimeAboveThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO1TimeBelowThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO1TimeBelowThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) below threshold value that is required to trigger a DO1 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO1TimeBelowThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO2TargetLoadCell (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO2TargetLoadCell</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Target Load Cell that will be used to trigger a threshold event on DO2 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <ComboBox SelectedItem="{Binding DO2TargetLoadCell, Mode=TwoWay}" 
-                  IsEnabled="True"
-                  Width="200" 
-                  Margin="0,5,0,0"
-                  HorizontalAlignment="Left">
-            <x:Static Member="local:LoadCellChannel.Channel0" />
-            <x:Static Member="local:LoadCellChannel.Channel1" />
-            <x:Static Member="local:LoadCellChannel.Channel2" />
-            <x:Static Member="local:LoadCellChannel.Channel3" />
-            <x:Static Member="local:LoadCellChannel.Channel4" />
-            <x:Static Member="local:LoadCellChannel.Channel5" />
-            <x:Static Member="local:LoadCellChannel.Channel6" />
-            <x:Static Member="local:LoadCellChannel.Channel7" />
-            <x:Static Member="local:LoadCellChannel.None" />
-        </ComboBox>
-    </StackPanel>
-    <!-- Register: DO2Threshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO2Threshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Value used to threshold a Load Cell read, and trigger DO2 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO2Threshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO2TimeAboveThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO2TimeAboveThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) above threshold value that is required to trigger a DO2 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO2TimeAboveThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO2TimeBelowThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO2TimeBelowThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) below threshold value that is required to trigger a DO2 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO2TimeBelowThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO3TargetLoadCell (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO3TargetLoadCell</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Target Load Cell that will be used to trigger a threshold event on DO3 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <ComboBox SelectedItem="{Binding DO3TargetLoadCell, Mode=TwoWay}" 
-                  IsEnabled="True"
-                  Width="200" 
-                  Margin="0,5,0,0"
-                  HorizontalAlignment="Left">
-            <x:Static Member="local:LoadCellChannel.Channel0" />
-            <x:Static Member="local:LoadCellChannel.Channel1" />
-            <x:Static Member="local:LoadCellChannel.Channel2" />
-            <x:Static Member="local:LoadCellChannel.Channel3" />
-            <x:Static Member="local:LoadCellChannel.Channel4" />
-            <x:Static Member="local:LoadCellChannel.Channel5" />
-            <x:Static Member="local:LoadCellChannel.Channel6" />
-            <x:Static Member="local:LoadCellChannel.Channel7" />
-            <x:Static Member="local:LoadCellChannel.None" />
-        </ComboBox>
-    </StackPanel>
-    <!-- Register: DO3Threshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO3Threshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Value used to threshold a Load Cell read, and trigger DO3 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO3Threshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO3TimeAboveThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO3TimeAboveThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) above threshold value that is required to trigger a DO3 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO3TimeAboveThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO3TimeBelowThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO3TimeBelowThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) below threshold value that is required to trigger a DO3 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO3TimeBelowThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO4TargetLoadCell (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO4TargetLoadCell</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Target Load Cell that will be used to trigger a threshold event on DO4 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <ComboBox SelectedItem="{Binding DO4TargetLoadCell, Mode=TwoWay}" 
-                  IsEnabled="True"
-                  Width="200" 
-                  Margin="0,5,0,0"
-                  HorizontalAlignment="Left">
-            <x:Static Member="local:LoadCellChannel.Channel0" />
-            <x:Static Member="local:LoadCellChannel.Channel1" />
-            <x:Static Member="local:LoadCellChannel.Channel2" />
-            <x:Static Member="local:LoadCellChannel.Channel3" />
-            <x:Static Member="local:LoadCellChannel.Channel4" />
-            <x:Static Member="local:LoadCellChannel.Channel5" />
-            <x:Static Member="local:LoadCellChannel.Channel6" />
-            <x:Static Member="local:LoadCellChannel.Channel7" />
-            <x:Static Member="local:LoadCellChannel.None" />
-        </ComboBox>
-    </StackPanel>
-    <!-- Register: DO4Threshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO4Threshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Value used to threshold a Load Cell read, and trigger DO4 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO4Threshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO4TimeAboveThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO4TimeAboveThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) above threshold value that is required to trigger a DO4 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO4TimeAboveThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO4TimeBelowThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO4TimeBelowThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) below threshold value that is required to trigger a DO4 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO4TimeBelowThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO5TargetLoadCell (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO5TargetLoadCell</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Target Load Cell that will be used to trigger a threshold event on DO5 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <ComboBox SelectedItem="{Binding DO5TargetLoadCell, Mode=TwoWay}" 
-                  IsEnabled="True"
-                  Width="200" 
-                  Margin="0,5,0,0"
-                  HorizontalAlignment="Left">
-            <x:Static Member="local:LoadCellChannel.Channel0" />
-            <x:Static Member="local:LoadCellChannel.Channel1" />
-            <x:Static Member="local:LoadCellChannel.Channel2" />
-            <x:Static Member="local:LoadCellChannel.Channel3" />
-            <x:Static Member="local:LoadCellChannel.Channel4" />
-            <x:Static Member="local:LoadCellChannel.Channel5" />
-            <x:Static Member="local:LoadCellChannel.Channel6" />
-            <x:Static Member="local:LoadCellChannel.Channel7" />
-            <x:Static Member="local:LoadCellChannel.None" />
-        </ComboBox>
-    </StackPanel>
-    <!-- Register: DO5Threshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO5Threshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Value used to threshold a Load Cell read, and trigger DO5 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO5Threshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO5TimeAboveThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO5TimeAboveThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) above threshold value that is required to trigger a DO5 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO5TimeAboveThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO5TimeBelowThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO5TimeBelowThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) below threshold value that is required to trigger a DO5 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO5TimeBelowThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO6TargetLoadCell (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO6TargetLoadCell</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Target Load Cell that will be used to trigger a threshold event on DO6 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <ComboBox SelectedItem="{Binding DO6TargetLoadCell, Mode=TwoWay}" 
-                  IsEnabled="True"
-                  Width="200" 
-                  Margin="0,5,0,0"
-                  HorizontalAlignment="Left">
-            <x:Static Member="local:LoadCellChannel.Channel0" />
-            <x:Static Member="local:LoadCellChannel.Channel1" />
-            <x:Static Member="local:LoadCellChannel.Channel2" />
-            <x:Static Member="local:LoadCellChannel.Channel3" />
-            <x:Static Member="local:LoadCellChannel.Channel4" />
-            <x:Static Member="local:LoadCellChannel.Channel5" />
-            <x:Static Member="local:LoadCellChannel.Channel6" />
-            <x:Static Member="local:LoadCellChannel.Channel7" />
-            <x:Static Member="local:LoadCellChannel.None" />
-        </ComboBox>
-    </StackPanel>
-    <!-- Register: DO6Threshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO6Threshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Value used to threshold a Load Cell read, and trigger DO6 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO6Threshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO6TimeAboveThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO6TimeAboveThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) above threshold value that is required to trigger a DO6 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO6TimeAboveThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO6TimeBelowThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO6TimeBelowThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) below threshold value that is required to trigger a DO6 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO6TimeBelowThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO7TargetLoadCell (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO7TargetLoadCell</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Target Load Cell that will be used to trigger a threshold event on DO7 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <ComboBox SelectedItem="{Binding DO7TargetLoadCell, Mode=TwoWay}" 
-                  IsEnabled="True"
-                  Width="200" 
-                  Margin="0,5,0,0"
-                  HorizontalAlignment="Left">
-            <x:Static Member="local:LoadCellChannel.Channel0" />
-            <x:Static Member="local:LoadCellChannel.Channel1" />
-            <x:Static Member="local:LoadCellChannel.Channel2" />
-            <x:Static Member="local:LoadCellChannel.Channel3" />
-            <x:Static Member="local:LoadCellChannel.Channel4" />
-            <x:Static Member="local:LoadCellChannel.Channel5" />
-            <x:Static Member="local:LoadCellChannel.Channel6" />
-            <x:Static Member="local:LoadCellChannel.Channel7" />
-            <x:Static Member="local:LoadCellChannel.None" />
-        </ComboBox>
-    </StackPanel>
-    <!-- Register: DO7Threshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO7Threshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Value used to threshold a Load Cell read, and trigger DO7 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO7Threshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO7TimeAboveThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO7TimeAboveThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) above threshold value that is required to trigger a DO7 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO7TimeAboveThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO7TimeBelowThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO7TimeBelowThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) below threshold value that is required to trigger a DO7 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO7TimeBelowThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO8TargetLoadCell (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO8TargetLoadCell</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Target Load Cell that will be used to trigger a threshold event on DO8 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <ComboBox SelectedItem="{Binding DO8TargetLoadCell, Mode=TwoWay}" 
-                  IsEnabled="True"
-                  Width="200" 
-                  Margin="0,5,0,0"
-                  HorizontalAlignment="Left">
-            <x:Static Member="local:LoadCellChannel.Channel0" />
-            <x:Static Member="local:LoadCellChannel.Channel1" />
-            <x:Static Member="local:LoadCellChannel.Channel2" />
-            <x:Static Member="local:LoadCellChannel.Channel3" />
-            <x:Static Member="local:LoadCellChannel.Channel4" />
-            <x:Static Member="local:LoadCellChannel.Channel5" />
-            <x:Static Member="local:LoadCellChannel.Channel6" />
-            <x:Static Member="local:LoadCellChannel.Channel7" />
-            <x:Static Member="local:LoadCellChannel.None" />
-        </ComboBox>
-    </StackPanel>
-    <!-- Register: DO8Threshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO8Threshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Value used to threshold a Load Cell read, and trigger DO8 pin.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO8Threshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO8TimeAboveThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO8TimeAboveThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) above threshold value that is required to trigger a DO8 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO8TimeAboveThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: DO8TimeBelowThreshold (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">DO8TimeBelowThreshold</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Time (ms) below threshold value that is required to trigger a DO8 pin event.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding DO8TimeBelowThreshold}" 
-                     Minimum="0" 
-                     Maximum="100"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: LoadCellData (Read-Only, Event) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">LoadCellData</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Value of single ADC read from all load cell channels.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-          <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
-                <TextBlock Grid.Row="0" Grid.Column="0" 
-                         Text="Channel0:" 
-                         VerticalAlignment="Center"
-                         Margin="0,5,10,5" />
-                <TextBlock Grid.Row="0" Grid.Column="1" 
-                         Text="{Binding LoadCellData,
-                                Converter={StaticResource PayloadFieldConverter},
-                                ConverterParameter='Channel0'}"
-                         VerticalAlignment="Center"
-                         Margin="0,5,0,5"
-                         FontSize="14" />
-                <TextBlock Grid.Row="1" Grid.Column="0" 
-                         Text="Channel1:" 
-                         VerticalAlignment="Center"
-                         Margin="0,5,10,5" />
-                <TextBlock Grid.Row="1" Grid.Column="1" 
-                         Text="{Binding LoadCellData,
-                                Converter={StaticResource PayloadFieldConverter},
-                                ConverterParameter='Channel1'}"
-                         VerticalAlignment="Center"
-                         Margin="0,5,0,5"
-                         FontSize="14" />
-                <TextBlock Grid.Row="2" Grid.Column="0" 
-                         Text="Channel2:" 
-                         VerticalAlignment="Center"
-                         Margin="0,5,10,5" />
-                <TextBlock Grid.Row="2" Grid.Column="1" 
-                         Text="{Binding LoadCellData,
-                                Converter={StaticResource PayloadFieldConverter},
-                                ConverterParameter='Channel2'}"
-                         VerticalAlignment="Center"
-                         Margin="0,5,0,5"
-                         FontSize="14" />
-                <TextBlock Grid.Row="3" Grid.Column="0" 
-                         Text="Channel3:" 
-                         VerticalAlignment="Center"
-                         Margin="0,5,10,5" />
-                <TextBlock Grid.Row="3" Grid.Column="1" 
-                         Text="{Binding LoadCellData,
-                                Converter={StaticResource PayloadFieldConverter},
-                                ConverterParameter='Channel3'}"
-                         VerticalAlignment="Center"
-                         Margin="0,5,0,5"
-                         FontSize="14" />
-                <TextBlock Grid.Row="4" Grid.Column="0" 
-                         Text="Channel4:" 
-                         VerticalAlignment="Center"
-                         Margin="0,5,10,5" />
-                <TextBlock Grid.Row="4" Grid.Column="1" 
-                         Text="{Binding LoadCellData,
-                                Converter={StaticResource PayloadFieldConverter},
-                                ConverterParameter='Channel4'}"
-                         VerticalAlignment="Center"
-                         Margin="0,5,0,5"
-                         FontSize="14" />
-                <TextBlock Grid.Row="5" Grid.Column="0" 
-                         Text="Channel5:" 
-                         VerticalAlignment="Center"
-                         Margin="0,5,10,5" />
-                <TextBlock Grid.Row="5" Grid.Column="1" 
-                         Text="{Binding LoadCellData,
-                                Converter={StaticResource PayloadFieldConverter},
-                                ConverterParameter='Channel5'}"
-                         VerticalAlignment="Center"
-                         Margin="0,5,0,5"
-                         FontSize="14" />
-                <TextBlock Grid.Row="6" Grid.Column="0" 
-                         Text="Channel6:" 
-                         VerticalAlignment="Center"
-                         Margin="0,5,10,5" />
-                <TextBlock Grid.Row="6" Grid.Column="1" 
-                         Text="{Binding LoadCellData,
-                                Converter={StaticResource PayloadFieldConverter},
-                                ConverterParameter='Channel6'}"
-                         VerticalAlignment="Center"
-                         Margin="0,5,0,5"
-                         FontSize="14" />
-                <TextBlock Grid.Row="7" Grid.Column="0" 
-                         Text="Channel7:" 
-                         VerticalAlignment="Center"
-                         Margin="0,5,10,5" />
-                <TextBlock Grid.Row="7" Grid.Column="1" 
-                         Text="{Binding LoadCellData,
-                                Converter={StaticResource PayloadFieldConverter},
-                                ConverterParameter='Channel7'}"
-                         VerticalAlignment="Center"
-                         Margin="0,5,0,5"
-                         FontSize="14" />
-          </Grid>
-    </StackPanel>
-    <!-- Register: OffsetLoadCell0 (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">OffsetLoadCell0</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Offset value for Load Cell channel 0.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding OffsetLoadCell0}" 
-                     Minimum="-255" 
-                     Maximum="255"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: OffsetLoadCell1 (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">OffsetLoadCell1</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Offset value for Load Cell channel 1.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding OffsetLoadCell1}" 
-                     Minimum="-255" 
-                     Maximum="255"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: OffsetLoadCell2 (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">OffsetLoadCell2</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Offset value for Load Cell channel 2.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding OffsetLoadCell2}" 
-                     Minimum="-255" 
-                     Maximum="255"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: OffsetLoadCell3 (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">OffsetLoadCell3</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Offset value for Load Cell channel 3.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding OffsetLoadCell3}" 
-                     Minimum="-255" 
-                     Maximum="255"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: OffsetLoadCell4 (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">OffsetLoadCell4</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Offset value for Load Cell channel 4.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding OffsetLoadCell4}" 
-                     Minimum="-255" 
-                     Maximum="255"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: OffsetLoadCell5 (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">OffsetLoadCell5</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Offset value for Load Cell channel 5.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding OffsetLoadCell5}" 
-                     Minimum="-255" 
-                     Maximum="255"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: OffsetLoadCell6 (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">OffsetLoadCell6</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Offset value for Load Cell channel 6.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding OffsetLoadCell6}" 
-                     Minimum="-255" 
-                     Maximum="255"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: OffsetLoadCell7 (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">OffsetLoadCell7</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Offset value for Load Cell channel 7.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <NumericUpDown Value="{Binding OffsetLoadCell7}" 
-                     Minimum="-255" 
-                     Maximum="255"
-                     Increment="1"
-                     FormatString="F0"
-                     Width="200"
-                     HorizontalAlignment="Left"
-                     Margin="0,5,0,0" />
-    </StackPanel>
-    <!-- Register: SyncOutputState (Read-Only, Event) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">SyncOutputState</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Status of the digital output pin 0. An periodic event will be emitted when DO0Sync == ToggleEachSecond.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <controls:VisualStatus Status="{Binding IsDO0Enabled_SyncOutputState}"
-                                  Width="15" Height="15" />
-            <TextBlock Text="DO0" VerticalAlignment="Center"/>
-        </StackPanel>
-    </StackPanel>
-            </StackPanel>
+              
+              
 
-            <StackPanel Grid.Row="1" Grid.Column="2" Margin="10,0,0,0">
-              
-              
-                 <!-- Register: AcquisitionState (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
-        <StackPanel Orientation="Horizontal" Spacing="5">
-            <Label FontWeight="Bold" FontSize="14" Padding="0">AcquisitionState</Label>
-            <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
-                                Foreground="{Binding IconColor}"
-                                VerticalAlignment="Top">
-                <ToolTip.Tip>Enables the data acquisition.</ToolTip.Tip>
-            </heroIcons:HeroIcon>
-        </StackPanel>
-        <CheckBox IsChecked="{Binding AcquisitionState,
-                  Mode=TwoWay,
-                  Converter={StaticResource EnableFlagConverter},
-                  ConverterParameter='EnableFlag'}" 
-                Content="Enable"
-                IsEnabled="True"
-                HorizontalAlignment="Left" />
-    </StackPanel>
     <!-- Register: DI0Trigger (Write) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
+    <StackPanel Orientation="Vertical" Spacing="5" Margin="0,0,0,20">
         <StackPanel Orientation="Horizontal" Spacing="5">
             <Label FontWeight="Bold" FontSize="14" Padding="0">DI0Trigger</Label>
             <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
@@ -1424,7 +264,7 @@
         </ComboBox>
     </StackPanel>
     <!-- Register: DigitalInputState (Read-Only, Event) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
+    <StackPanel Orientation="Vertical" Spacing="5" Margin="0,0,0,20">
         <StackPanel Orientation="Horizontal" Spacing="5">
             <Label FontWeight="Bold" FontSize="14" Padding="0">DigitalInputState</Label>
             <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
@@ -1441,7 +281,7 @@
     </StackPanel>
               
                 <!-- Register: SyncOutputState (Read-Only, Event) -->
-    <StackPanel Orientation="Vertical" Spacing="10">
+    <StackPanel Orientation="Vertical" Spacing="5" Margin="0,0,0,20">
         <StackPanel Orientation="Horizontal" Spacing="5">
             <Label FontWeight="Bold" FontSize="14" Padding="0">SyncOutputState</Label>
             <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
@@ -1460,20 +300,69 @@
             
             
 <!-- Digital Outputs Grid Overview -->
-<StackPanel Grid.Row="1" Grid.Column="4" Margin="10,0,0,0">
-  <TextBlock Text="Digital Outputs" FontSize="16" FontWeight="SemiBold" Margin="10,10,10,10"/>
-  <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+<StackPanel Grid.Row="1" Grid.Column="2" Margin="30,10,0,0">
+  <!--<TextBlock Text="Digital Outputs" FontSize="16" FontWeight="SemiBold" Margin="10,10,10,10"/>-->
+  <Grid ColumnDefinitions="Auto,120,150,150,150,120,"
         RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+    
     <!-- Header Row -->
-    <TextBlock Grid.Row="0" Grid.Column="0" Text="DO" FontWeight="Bold" Margin="0,0,10,0"/>
-    <TextBlock Grid.Row="0" Grid.Column="1" Text="Channel" FontWeight="Bold" Margin="0,0,10,0"/>
-    <TextBlock Grid.Row="0" Grid.Column="2" Text="Threshold" FontWeight="Bold" Margin="0,0,10,0"/>
-    <TextBlock Grid.Row="0" Grid.Column="3" Text="Time Above" FontWeight="Bold" Margin="0,0,10,0"/>
-    <TextBlock Grid.Row="0" Grid.Column="4" Text="Time Below" FontWeight="Bold" Margin="0,0,10,0"/>
-    <TextBlock Grid.Row="0" Grid.Column="5" Text="Clear" FontWeight="Bold" Margin="0,0,10,0"/>
-    <TextBlock Grid.Row="0" Grid.Column="6" Text="Set" FontWeight="Bold" Margin="0,0,10,0"/>
-    <TextBlock Grid.Row="0" Grid.Column="7" Text="State" FontWeight="Bold" Margin="0,0,10,0"/>
-    <TextBlock Grid.Row="0" Grid.Column="8" Text="Toggle" FontWeight="Bold"/>
+    <TextBlock Grid.Row="0" Grid.Column="0" Text="DO" FontWeight="Bold" Margin="0,0,20,10"/>
+    <!--<TextBlock Grid.Row="0" Grid.Column="1" Text="Channel" FontWeight="Bold" Margin="0,0,20,0"/>-->
+    <!--<TextBlock Grid.Row="0" Grid.Column="2" Text="Threshold" FontWeight="Bold" Margin="0,0,20,0"/>-->
+    <!--<TextBlock Grid.Row="0" Grid.Column="3" Text="Time Above" FontWeight="Bold" Margin="0,0,10,0"/>
+    <TextBlock Grid.Row="0" Grid.Column="4" Text="Time Below" FontWeight="Bold" Margin="0,0,10,0"/>-->
+        <StackPanel Orientation="Horizontal" Spacing="5" Grid.Row="0" Grid.Column="1" Margin="0,0,20,10">
+        <Label FontWeight="Bold" FontSize="14" Padding="0">Target LoadCell</Label>
+        <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
+                            Foreground="{Binding IconColor}"
+                            VerticalAlignment="Top">
+            <ToolTip.Tip>Target Load Cell that will be used to trigger a threshold event on DO1 pin.</ToolTip.Tip>
+        </heroIcons:HeroIcon>
+    </StackPanel>
+        <!-- DO1Threshold -->
+    <StackPanel Orientation="Horizontal" Spacing="5" Grid.Row="0" Grid.Column="2" Margin="0,0,20,10">
+        <Label FontWeight="Bold" FontSize="14" Padding="0">Threshold</Label>
+        <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
+                            Foreground="{Binding IconColor}"
+                            VerticalAlignment="Top">
+            <ToolTip.Tip>Value used to threshold a Load Cell read, and trigger DO1 pin.</ToolTip.Tip>
+        </heroIcons:HeroIcon>
+    </StackPanel>
+    
+    <!-- DO1TimeAboveThreshold -->
+    <StackPanel Orientation="Horizontal" Spacing="5" Grid.Row="0" Grid.Column="3" Margin="0,0,20,10">
+        <Label FontWeight="Bold" FontSize="14" Padding="0">Time Above</Label>
+        <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
+                            Foreground="{Binding IconColor}"
+                            VerticalAlignment="Top">
+            <ToolTip.Tip>Time (ms) above threshold value that is required to trigger a DO1 pin event.</ToolTip.Tip>
+        </heroIcons:HeroIcon>
+    </StackPanel>
+
+    <!-- DO1TimeBelowThreshold -->
+    <StackPanel Orientation="Horizontal" Spacing="5" Grid.Row="0" Grid.Column="4">
+        <Label FontWeight="Bold" FontSize="14" Padding="0">Time Below</Label>
+        <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
+                            Foreground="{Binding IconColor}"
+                            VerticalAlignment="Top">
+            <ToolTip.Tip>Time (ms) below threshold value that is required to trigger a DO1 pin event.</ToolTip.Tip>
+        </heroIcons:HeroIcon>
+    </StackPanel>
+    
+    <!--<TextBlock Grid.Row="0" Grid.Column="5" Text="Clear" FontWeight="Bold" Margin="0,0,20,10"/>
+    <TextBlock Grid.Row="0" Grid.Column="6" Text="Set" FontWeight="Bold" Margin="0,0,201,0"/>-->
+    <!--<TextBlock Grid.Row="0" Grid.Column="7" Text="State" FontWeight="Bold" Margin="0,0,20,0"/>-->
+    
+        <!-- DigitalOutputState -->
+    <StackPanel Orientation="Horizontal" Spacing="5" Grid.Row="0" Grid.Column="5">
+        <Label FontWeight="Bold" FontSize="14" Padding="0">State</Label>
+        <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
+                            Foreground="{Binding IconColor}"
+                            VerticalAlignment="Top">
+            <ToolTip.Tip>Write the state of all digital output lines. An event will be emitted when the value of any pin was changed by a threshold event.</ToolTip.Tip>
+        </heroIcons:HeroIcon>
+    </StackPanel>
+    <!--<TextBlock Grid.Row="0" Grid.Column="8" Text="Toggle" FontWeight="Bold"/>-->
 
     <!-- DO1 -->
     <TextBlock Grid.Row="1" Grid.Column="0" Text="DO1" Margin="0,4"/>
@@ -1488,13 +377,13 @@
       <x:Static Member="local:LoadCellChannel.Channel7" />
       <x:Static Member="local:LoadCellChannel.None" />
     </ComboBox>
-    <NumericUpDown Grid.Row="1" Grid.Column="2" Value="{Binding DO1Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="1" Grid.Column="3" Value="{Binding DO1TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="1" Grid.Column="4" Value="{Binding DO1TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <CheckBox Grid.Row="1" Grid.Column="5" IsChecked="{Binding IsDO1Enabled_DigitalOutputClear}" Margin="0,4"/>
-    <CheckBox Grid.Row="1" Grid.Column="6" IsChecked="{Binding IsDO1Enabled_DigitalOutputSet}" Margin="0,4"/>
-    <CheckBox Grid.Row="1" Grid.Column="7" IsChecked="{Binding IsDO1Enabled_DigitalOutputState}" Margin="0,4"/>
-    <CheckBox Grid.Row="1" Grid.Column="8" IsChecked="{Binding IsDO1Enabled_DigitalOutputToggle}" Margin="0,4"/>
+    <NumericUpDown Grid.Row="1" Grid.Column="2" Value="{Binding DO1Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="1" Grid.Column="3" Value="{Binding DO1TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="1" Grid.Column="4" Value="{Binding DO1TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <!--eckBox Grid.Row="1" Grid.Column="5" IsChecked="{Binding IsDO1Enabled_DigitalOutputClear}" Margin="0,4"/>
+    <CheckBox Grid.Row="1" Grid.Column="6" IsChecked="{Binding IsDO1Enabled_DigitalOutputSet}" Margin="0,4"/>-->
+    <CheckBox Grid.Row="1" Grid.Column="5" IsChecked="{Binding IsDO1Enabled_DigitalOutputState}" Margin="0,4"/>
+    <!--<CheckBox Grid.Row="1" Grid.Column="8" IsChecked="{Binding IsDO1Enabled_DigitalOutputToggle}" Margin="0,4"/>-->
 
     <!-- DO2 -->
     <TextBlock Grid.Row="2" Grid.Column="0" Text="DO2" Margin="0,4"/>
@@ -1509,13 +398,13 @@
       <x:Static Member="local:LoadCellChannel.Channel7" />
       <x:Static Member="local:LoadCellChannel.None" />
     </ComboBox>
-    <NumericUpDown Grid.Row="2" Grid.Column="2" Value="{Binding DO2Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="2" Grid.Column="3" Value="{Binding DO2TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="2" Grid.Column="4" Value="{Binding DO2TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <CheckBox Grid.Row="2" Grid.Column="5" IsChecked="{Binding IsDO2Enabled_DigitalOutputClear}" Margin="0,4"/>
-    <CheckBox Grid.Row="2" Grid.Column="6" IsChecked="{Binding IsDO2Enabled_DigitalOutputSet}" Margin="0,4"/>
-    <CheckBox Grid.Row="2" Grid.Column="7" IsChecked="{Binding IsDO2Enabled_DigitalOutputState}" Margin="0,4"/>
-    <CheckBox Grid.Row="2" Grid.Column="8" IsChecked="{Binding IsDO2Enabled_DigitalOutputToggle}" Margin="0,4"/>
+    <NumericUpDown Grid.Row="2" Grid.Column="2" Value="{Binding DO2Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="2" Grid.Column="3" Value="{Binding DO2TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="2" Grid.Column="4" Value="{Binding DO2TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <!--<CheckBox Grid.Row="2" Grid.Column="5" IsChecked="{Binding IsDO2Enabled_DigitalOutputClear}" Margin="0,4"/>
+    <CheckBox Grid.Row="2" Grid.Column="6" IsChecked="{Binding IsDO2Enabled_DigitalOutputSet}" Margin="0,4"/>-->
+    <CheckBox Grid.Row="2" Grid.Column="5" IsChecked="{Binding IsDO2Enabled_DigitalOutputState}" Margin="0,4"/>
+    <!--<CheckBox Grid.Row="2" Grid.Column="8" IsChecked="{Binding IsDO2Enabled_DigitalOutputToggle}" Margin="0,4"/>-->
 
     <!-- DO3 -->
     <TextBlock Grid.Row="3" Grid.Column="0" Text="DO3" Margin="0,4"/>
@@ -1530,13 +419,13 @@
       <x:Static Member="local:LoadCellChannel.Channel7" />
       <x:Static Member="local:LoadCellChannel.None" />
     </ComboBox>
-    <NumericUpDown Grid.Row="3" Grid.Column="2" Value="{Binding DO3Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="3" Grid.Column="3" Value="{Binding DO3TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="3" Grid.Column="4" Value="{Binding DO3TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <CheckBox Grid.Row="3" Grid.Column="5" IsChecked="{Binding IsDO3Enabled_DigitalOutputClear}" Margin="0,4"/>
-    <CheckBox Grid.Row="3" Grid.Column="6" IsChecked="{Binding IsDO3Enabled_DigitalOutputSet}" Margin="0,4"/>
-    <CheckBox Grid.Row="3" Grid.Column="7" IsChecked="{Binding IsDO3Enabled_DigitalOutputState}" Margin="0,4"/>
-    <CheckBox Grid.Row="3" Grid.Column="8" IsChecked="{Binding IsDO3Enabled_DigitalOutputToggle}" Margin="0,4"/>
+    <NumericUpDown Grid.Row="3" Grid.Column="2" Value="{Binding DO3Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="3" Grid.Column="3" Value="{Binding DO3TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="3" Grid.Column="4" Value="{Binding DO3TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <!--<CheckBox Grid.Row="3" Grid.Column="5" IsChecked="{Binding IsDO3Enabled_DigitalOutputClear}" Margin="0,4"/>
+    <CheckBox Grid.Row="3" Grid.Column="6" IsChecked="{Binding IsDO3Enabled_DigitalOutputSet}" Margin="0,4"/>-->
+    <CheckBox Grid.Row="3" Grid.Column="5" IsChecked="{Binding IsDO3Enabled_DigitalOutputState}" Margin="0,4"/>
+    <!--<CheckBox Grid.Row="3" Grid.Column="8" IsChecked="{Binding IsDO3Enabled_DigitalOutputToggle}" Margin="0,4"/>-->
 
     <!-- DO4 -->
     <TextBlock Grid.Row="4" Grid.Column="0" Text="DO4" Margin="0,4"/>
@@ -1551,13 +440,13 @@
       <x:Static Member="local:LoadCellChannel.Channel7" />
       <x:Static Member="local:LoadCellChannel.None" />
     </ComboBox>
-    <NumericUpDown Grid.Row="4" Grid.Column="2" Value="{Binding DO4Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="4" Grid.Column="3" Value="{Binding DO4TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="4" Grid.Column="4" Value="{Binding DO4TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <CheckBox Grid.Row="4" Grid.Column="5" IsChecked="{Binding IsDO4Enabled_DigitalOutputClear}" Margin="0,4"/>
-    <CheckBox Grid.Row="4" Grid.Column="6" IsChecked="{Binding IsDO4Enabled_DigitalOutputSet}" Margin="0,4"/>
-    <CheckBox Grid.Row="4" Grid.Column="7" IsChecked="{Binding IsDO4Enabled_DigitalOutputState}" Margin="0,4"/>
-    <CheckBox Grid.Row="4" Grid.Column="8" IsChecked="{Binding IsDO4Enabled_DigitalOutputToggle}" Margin="0,4"/>
+    <NumericUpDown Grid.Row="4" Grid.Column="2" Value="{Binding DO4Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="4" Grid.Column="3" Value="{Binding DO4TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="4" Grid.Column="4" Value="{Binding DO4TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <!--<CheckBox Grid.Row="4" Grid.Column="5" IsChecked="{Binding IsDO4Enabled_DigitalOutputClear}" Margin="0,4"/>
+    <CheckBox Grid.Row="4" Grid.Column="6" IsChecked="{Binding IsDO4Enabled_DigitalOutputSet}" Margin="0,4"/>-->
+    <CheckBox Grid.Row="4" Grid.Column="5" IsChecked="{Binding IsDO4Enabled_DigitalOutputState}" Margin="0,4"/>
+    <!--<CheckBox Grid.Row="4" Grid.Column="8" IsChecked="{Binding IsDO4Enabled_DigitalOutputToggle}" Margin="0,4"/>-->
 
     <!-- DO5 -->
     <TextBlock Grid.Row="5" Grid.Column="0" Text="DO5" Margin="0,4"/>
@@ -1572,13 +461,13 @@
       <x:Static Member="local:LoadCellChannel.Channel7" />
       <x:Static Member="local:LoadCellChannel.None" />
     </ComboBox>
-    <NumericUpDown Grid.Row="5" Grid.Column="2" Value="{Binding DO5Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="5" Grid.Column="3" Value="{Binding DO5TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="5" Grid.Column="4" Value="{Binding DO5TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <CheckBox Grid.Row="5" Grid.Column="5" IsChecked="{Binding IsDO5Enabled_DigitalOutputClear}" Margin="0,4"/>
-    <CheckBox Grid.Row="5" Grid.Column="6" IsChecked="{Binding IsDO5Enabled_DigitalOutputSet}" Margin="0,4"/>
-    <CheckBox Grid.Row="5" Grid.Column="7" IsChecked="{Binding IsDO5Enabled_DigitalOutputState}" Margin="0,4"/>
-    <CheckBox Grid.Row="5" Grid.Column="8" IsChecked="{Binding IsDO5Enabled_DigitalOutputToggle}" Margin="0,4"/>
+    <NumericUpDown Grid.Row="5" Grid.Column="2" Value="{Binding DO5Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="5" Grid.Column="3" Value="{Binding DO5TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="5" Grid.Column="4" Value="{Binding DO5TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <!--<CheckBox Grid.Row="5" Grid.Column="5" IsChecked="{Binding IsDO5Enabled_DigitalOutputClear}" Margin="0,4"/>
+    <CheckBox Grid.Row="5" Grid.Column="6" IsChecked="{Binding IsDO5Enabled_DigitalOutputSet}" Margin="0,4"/>-->
+    <CheckBox Grid.Row="5" Grid.Column="5" IsChecked="{Binding IsDO5Enabled_DigitalOutputState}" Margin="0,4"/>
+    <!--<CheckBox Grid.Row="5" Grid.Column="8" IsChecked="{Binding IsDO5Enabled_DigitalOutputToggle}" Margin="0,4"/>-->
 
     <!-- DO6 -->
     <TextBlock Grid.Row="6" Grid.Column="0" Text="DO6" Margin="0,4"/>
@@ -1593,13 +482,13 @@
       <x:Static Member="local:LoadCellChannel.Channel7" />
       <x:Static Member="local:LoadCellChannel.None" />
     </ComboBox>
-    <NumericUpDown Grid.Row="6" Grid.Column="2" Value="{Binding DO6Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="6" Grid.Column="3" Value="{Binding DO6TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="6" Grid.Column="4" Value="{Binding DO6TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <CheckBox Grid.Row="6" Grid.Column="5" IsChecked="{Binding IsDO6Enabled_DigitalOutputClear}" Margin="0,4"/>
-    <CheckBox Grid.Row="6" Grid.Column="6" IsChecked="{Binding IsDO6Enabled_DigitalOutputSet}" Margin="0,4"/>
-    <CheckBox Grid.Row="6" Grid.Column="7" IsChecked="{Binding IsDO6Enabled_DigitalOutputState}" Margin="0,4"/>
-    <CheckBox Grid.Row="6" Grid.Column="8" IsChecked="{Binding IsDO6Enabled_DigitalOutputToggle}" Margin="0,4"/>
+    <NumericUpDown Grid.Row="6" Grid.Column="2" Value="{Binding DO6Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="6" Grid.Column="3" Value="{Binding DO6TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="6" Grid.Column="4" Value="{Binding DO6TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <!--<CheckBox Grid.Row="6" Grid.Column="5" IsChecked="{Binding IsDO6Enabled_DigitalOutputClear}" Margin="0,4"/>
+    <CheckBox Grid.Row="6" Grid.Column="6" IsChecked="{Binding IsDO6Enabled_DigitalOutputSet}" Margin="0,4"/>-->
+    <CheckBox Grid.Row="6" Grid.Column="5" IsChecked="{Binding IsDO6Enabled_DigitalOutputState}" Margin="0,4"/>
+    <!--<CheckBox Grid.Row="6" Grid.Column="8" IsChecked="{Binding IsDO6Enabled_DigitalOutputToggle}" Margin="0,4"/>-->
 
     <!-- DO7 -->
     <TextBlock Grid.Row="7" Grid.Column="0" Text="DO7" Margin="0,4"/>
@@ -1614,13 +503,13 @@
       <x:Static Member="local:LoadCellChannel.Channel7" />
       <x:Static Member="local:LoadCellChannel.None" />
     </ComboBox>
-    <NumericUpDown Grid.Row="7" Grid.Column="2" Value="{Binding DO7Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="7" Grid.Column="3" Value="{Binding DO7TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="7" Grid.Column="4" Value="{Binding DO7TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <CheckBox Grid.Row="7" Grid.Column="5" IsChecked="{Binding IsDO7Enabled_DigitalOutputClear}" Margin="0,4"/>
-    <CheckBox Grid.Row="7" Grid.Column="6" IsChecked="{Binding IsDO7Enabled_DigitalOutputSet}" Margin="0,4"/>
-    <CheckBox Grid.Row="7" Grid.Column="7" IsChecked="{Binding IsDO7Enabled_DigitalOutputState}" Margin="0,4"/>
-    <CheckBox Grid.Row="7" Grid.Column="8" IsChecked="{Binding IsDO7Enabled_DigitalOutputToggle}" Margin="0,4"/>
+    <NumericUpDown Grid.Row="7" Grid.Column="2" Value="{Binding DO7Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="7" Grid.Column="3" Value="{Binding DO7TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="7" Grid.Column="4" Value="{Binding DO7TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <!--<CheckBox Grid.Row="7" Grid.Column="5" IsChecked="{Binding IsDO7Enabled_DigitalOutputClear}" Margin="0,4"/>
+    <CheckBox Grid.Row="7" Grid.Column="6" IsChecked="{Binding IsDO7Enabled_DigitalOutputSet}" Margin="0,4"/>-->
+    <CheckBox Grid.Row="7" Grid.Column="5" IsChecked="{Binding IsDO7Enabled_DigitalOutputState}" Margin="0,4"/>
+    <!--<CheckBox Grid.Row="7" Grid.Column="8" IsChecked="{Binding IsDO7Enabled_DigitalOutputToggle}" Margin="0,4"/>-->
 
     <!-- DO8 -->
     <TextBlock Grid.Row="8" Grid.Column="0" Text="DO8" Margin="0,4"/>
@@ -1635,15 +524,18 @@
       <x:Static Member="local:LoadCellChannel.Channel7" />
       <x:Static Member="local:LoadCellChannel.None" />
     </ComboBox>
-    <NumericUpDown Grid.Row="8" Grid.Column="2" Value="{Binding DO8Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="8" Grid.Column="3" Value="{Binding DO8TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <NumericUpDown Grid.Row="8" Grid.Column="4" Value="{Binding DO8TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4"/>
-    <CheckBox Grid.Row="8" Grid.Column="5" IsChecked="{Binding IsDO8Enabled_DigitalOutputClear}" Margin="0,4"/>
-    <CheckBox Grid.Row="8" Grid.Column="6" IsChecked="{Binding IsDO8Enabled_DigitalOutputSet}" Margin="0,4"/>
-    <CheckBox Grid.Row="8" Grid.Column="7" IsChecked="{Binding IsDO8Enabled_DigitalOutputState}" Margin="0,4"/>
-    <CheckBox Grid.Row="8" Grid.Column="8" IsChecked="{Binding IsDO8Enabled_DigitalOutputToggle}" Margin="0,4"/>
+    <NumericUpDown Grid.Row="8" Grid.Column="2" Value="{Binding DO8Threshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="8" Grid.Column="3" Value="{Binding DO8TimeAboveThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <NumericUpDown Grid.Row="8" Grid.Column="4" Value="{Binding DO8TimeBelowThreshold}" Minimum="0" Maximum="100" Increment="1" FormatString="F0" Width="120" Margin="0,4" HorizontalAlignment="Left"/>
+    <!--<CheckBox Grid.Row="8" Grid.Column="5" IsChecked="{Binding IsDO8Enabled_DigitalOutputClear}" Margin="0,4"/>
+    <CheckBox Grid.Row="8" Grid.Column="6" IsChecked="{Binding IsDO8Enabled_DigitalOutputSet}" Margin="0,4"/>-->
+    <CheckBox Grid.Row="8" Grid.Column="5" IsChecked="{Binding IsDO8Enabled_DigitalOutputState}" Margin="0,4" />
+    <!--<CheckBox Grid.Row="8" Grid.Column="8" IsChecked="{Binding IsDO8Enabled_DigitalOutputToggle}" Margin="0,4"/>-->
   </Grid>
 </StackPanel>
+            
+            
+              
             <!-- Message Control -->
             <StackPanel Grid.Row="0" Grid.Column="2" Grid.RowSpan="2">
               <controls:WriteMessagesControl MinWidth="500" IsVisible="{Binding ShowWriteMessages}" />
@@ -1659,69 +551,102 @@
 <Grid ColumnDefinitions="Auto,Auto,Auto">
   <!-- Data/Offset/Show Table on the left -->
   <StackPanel Grid.Column="0" Orientation="Vertical" Spacing="10">
-    <StackPanel Orientation="Horizontal" Spacing="5">
-      <Label FontWeight="Bold" FontSize="14" Padding="0">LoadCellData and Offsets</Label>
+    <StackPanel Orientation="Horizontal" Spacing="10">
+      <Label FontWeight="SemiBold" FontSize="16" Padding="5">Data and Offsets</Label>
+      <!--<TextBlock Grid.Row="0" Grid.Column="1" Text="Other" FontSize="16" FontWeight="SemiBold" />
       <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
                           Foreground="{Binding IconColor}"
                           VerticalAlignment="Top">
         <ToolTip.Tip>Current value, offset, and graph visibility for each load cell channel.</ToolTip.Tip>
-      </heroIcons:HeroIcon>
+      </heroIcons:HeroIcon>-->
     </StackPanel>
-    <Grid ColumnDefinitions="Auto,100,Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+    <Grid ColumnDefinitions="100,100,170,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
       <!-- Header -->
-      <TextBlock Grid.Row="0" Grid.Column="0" Text="Channel" FontWeight="Bold" Margin="0,0,10,0"/>
-      <TextBlock Grid.Row="0" Grid.Column="1" Text="Value" FontWeight="Bold" Margin="0,0,10,0"/>
-      <TextBlock Grid.Row="0" Grid.Column="2" Text="Offset" FontWeight="Bold" Margin="0,0,10,0"/>
-      <TextBlock Grid.Row="0" Grid.Column="3" Text="Show on Graph" FontWeight="Bold"/>
+      <TextBlock Grid.Row="0" Grid.Column="0" Text="" FontWeight="Bold" Margin="0,0,20,0"/>
+      <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,20,0" Spacing="4">
+        <TextBlock Text="Value" FontWeight="Bold"/>
+        <heroIcons:HeroIcon Type="InformationCircle" Width="14" Height="14"
+                            Foreground="{Binding IconColor}"
+                            VerticalAlignment="Center">
+          <ToolTip.Tip>Value of single ADC read from all load cell channels.</ToolTip.Tip>
+        </heroIcons:HeroIcon>
+      </StackPanel>
+      <TextBlock Grid.Row="0" Grid.Column="2" Text="Offset" FontWeight="Bold" Margin="0,0,20,0"/>
+      <TextBlock Grid.Row="0" Grid.Column="3" Text="Visualize" FontWeight="Bold"/>
       <!-- Channel rows (0-7) -->
-      <TextBlock Grid.Row="1" Grid.Column="0" Text="Channel0:" VerticalAlignment="Center" Margin="0,5,10,5"/>
+      <TextBlock Grid.Row="1" Grid.Column="0" Text="Channel 0:" VerticalAlignment="Center" Margin="0,5,10,5"/>
       <TextBlock Grid.Row="1" Grid.Column="1"
                  Text="{Binding LoadCellData, Converter={StaticResource PayloadFieldConverter}, ConverterParameter='Channel0'}"
                  VerticalAlignment="Center" Margin="0,5,10,5" FontSize="14"/>
-      <NumericUpDown Grid.Row="1" Grid.Column="2" Value="{Binding OffsetLoadCell0}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="100" Margin="0,5,0,5"/>
-      <CheckBox Grid.Row="1" Grid.Column="3" IsChecked="{Binding Show0}" VerticalAlignment="Center"/>
-      <TextBlock Grid.Row="2" Grid.Column="0" Text="Channel1:" VerticalAlignment="Center" Margin="0,5,10,5"/>
+      <NumericUpDown Grid.Row="1" Grid.Column="2" Value="{Binding OffsetLoadCell0}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="150" Margin="0,5,0,5" HorizontalAlignment="Left"/>
+      <!--<CheckBox Grid.Row="1" Grid.Column="3" IsChecked="{Binding Show0}" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
+      <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Rectangle Width="20" Height="4" Fill="Blue" VerticalAlignment="Center"/>
+    <CheckBox IsChecked="{Binding Show0}" Margin="8,0,0,0"/>
+</StackPanel>
+      <TextBlock Grid.Row="2" Grid.Column="0" Text="Channel 1:" VerticalAlignment="Center" Margin="0,5,10,5"/>
       <TextBlock Grid.Row="2" Grid.Column="1"
                  Text="{Binding LoadCellData, Converter={StaticResource PayloadFieldConverter}, ConverterParameter='Channel1'}"
                  VerticalAlignment="Center" Margin="0,5,10,5" FontSize="14"/>
-      <NumericUpDown Grid.Row="2" Grid.Column="2" Value="{Binding OffsetLoadCell1}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="100" Margin="0,5,0,5"/>
-      <CheckBox Grid.Row="2" Grid.Column="3" IsChecked="{Binding Show1}" VerticalAlignment="Center"/>
-      <TextBlock Grid.Row="3" Grid.Column="0" Text="Channel2:" VerticalAlignment="Center" Margin="0,5,10,5"/>
+      <NumericUpDown Grid.Row="2" Grid.Column="2" Value="{Binding OffsetLoadCell1}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="150" Margin="0,5,0,5" HorizontalAlignment="Left"/>
+      <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+  <Rectangle Width="20" Height="4" Fill="Red" VerticalAlignment="Center"/>
+  <CheckBox IsChecked="{Binding Show1}" Margin="8,0,0,0"/>
+</StackPanel>
+      <TextBlock Grid.Row="3" Grid.Column="0" Text="Channel 2:" VerticalAlignment="Center" Margin="0,5,10,5"/>
       <TextBlock Grid.Row="3" Grid.Column="1"
                  Text="{Binding LoadCellData, Converter={StaticResource PayloadFieldConverter}, ConverterParameter='Channel2'}"
                  VerticalAlignment="Center" Margin="0,5,10,5" FontSize="14"/>
-      <NumericUpDown Grid.Row="3" Grid.Column="2" Value="{Binding OffsetLoadCell2}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="100" Margin="0,5,0,5"/>
-      <CheckBox Grid.Row="3" Grid.Column="3" IsChecked="{Binding Show2}" VerticalAlignment="Center"/>
-      <TextBlock Grid.Row="4" Grid.Column="0" Text="Channel3:" VerticalAlignment="Center" Margin="0,5,10,5"/>
+      <NumericUpDown Grid.Row="3" Grid.Column="2" Value="{Binding OffsetLoadCell2}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="150" Margin="0,5,0,5" HorizontalAlignment="Left"/>
+   <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+  <Rectangle Width="20" Height="4" Fill="Green" VerticalAlignment="Center"/>
+  <CheckBox IsChecked="{Binding Show2}" Margin="8,0,0,0"/>
+</StackPanel>
+      <TextBlock Grid.Row="4" Grid.Column="0" Text="Channel 3:" VerticalAlignment="Center" Margin="0,5,10,5"/>
       <TextBlock Grid.Row="4" Grid.Column="1"
                  Text="{Binding LoadCellData, Converter={StaticResource PayloadFieldConverter}, ConverterParameter='Channel3'}"
                  VerticalAlignment="Center" Margin="0,5,10,5" FontSize="14"/>
-      <NumericUpDown Grid.Row="4" Grid.Column="2" Value="{Binding OffsetLoadCell3}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="100" Margin="0,5,0,5"/>
-      <CheckBox Grid.Row="4" Grid.Column="3" IsChecked="{Binding Show3}" VerticalAlignment="Center"/>
-      <TextBlock Grid.Row="5" Grid.Column="0" Text="Channel4:" VerticalAlignment="Center" Margin="0,5,10,5"/>
+      <NumericUpDown Grid.Row="4" Grid.Column="2" Value="{Binding OffsetLoadCell3}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="150" Margin="0,5,0,5" HorizontalAlignment="Left"/>
+      <StackPanel Grid.Row="4" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+  <Rectangle Width="20" Height="4" Fill="Orange" VerticalAlignment="Center"/>
+  <CheckBox IsChecked="{Binding Show3}" Margin="8,0,0,0"/>
+</StackPanel>
+      <TextBlock Grid.Row="5" Grid.Column="0" Text="Channel 4:" VerticalAlignment="Center" Margin="0,5,10,5"/>
       <TextBlock Grid.Row="5" Grid.Column="1"
                  Text="{Binding LoadCellData, Converter={StaticResource PayloadFieldConverter}, ConverterParameter='Channel4'}"
                  VerticalAlignment="Center" Margin="0,5,10,5" FontSize="14"/>
-      <NumericUpDown Grid.Row="5" Grid.Column="2" Value="{Binding OffsetLoadCell4}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="100" Margin="0,5,0,5"/>
-      <CheckBox Grid.Row="5" Grid.Column="3" IsChecked="{Binding Show4}" VerticalAlignment="Center"/>
-      <TextBlock Grid.Row="6" Grid.Column="0" Text="Channel5:" VerticalAlignment="Center" Margin="0,5,10,5"/>
+      <NumericUpDown Grid.Row="5" Grid.Column="2" Value="{Binding OffsetLoadCell4}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="150" Margin="0,5,0,5" HorizontalAlignment="Left"/>
+      <StackPanel Grid.Row="5" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+  <Rectangle Width="20" Height="4" Fill="Purple" VerticalAlignment="Center"/>
+  <CheckBox IsChecked="{Binding Show4}" Margin="8,0,0,0"/>
+</StackPanel>
+      <TextBlock Grid.Row="6" Grid.Column="0" Text="Channel 5:" VerticalAlignment="Center" Margin="0,5,10,5"/>
       <TextBlock Grid.Row="6" Grid.Column="1"
                  Text="{Binding LoadCellData, Converter={StaticResource PayloadFieldConverter}, ConverterParameter='Channel5'}"
                  VerticalAlignment="Center" Margin="0,5,10,5" FontSize="14"/>
-      <NumericUpDown Grid.Row="6" Grid.Column="2" Value="{Binding OffsetLoadCell5}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="100" Margin="0,5,0,5"/>
-      <CheckBox Grid.Row="6" Grid.Column="3" IsChecked="{Binding Show5}" VerticalAlignment="Center"/>
-      <TextBlock Grid.Row="7" Grid.Column="0" Text="Channel6:" VerticalAlignment="Center" Margin="0,5,10,5"/>
+      <NumericUpDown Grid.Row="6" Grid.Column="2" Value="{Binding OffsetLoadCell5}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="150" Margin="0,5,0,5" HorizontalAlignment="Left"/>
+<StackPanel Grid.Row="6" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+  <Rectangle Width="20" Height="4" Fill="Brown" VerticalAlignment="Center"/>
+  <CheckBox IsChecked="{Binding Show5}" Margin="8,0,0,0"/>
+</StackPanel>
+      <TextBlock Grid.Row="7" Grid.Column="0" Text="Channel 6:" VerticalAlignment="Center" Margin="0,5,10,5"/>
       <TextBlock Grid.Row="7" Grid.Column="1"
                  Text="{Binding LoadCellData, Converter={StaticResource PayloadFieldConverter}, ConverterParameter='Channel6'}"
                  VerticalAlignment="Center" Margin="0,5,10,5" FontSize="14"/>
-      <NumericUpDown Grid.Row="7" Grid.Column="2" Value="{Binding OffsetLoadCell6}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="100" Margin="0,5,0,5"/>
-      <CheckBox Grid.Row="7" Grid.Column="3" IsChecked="{Binding Show6}" VerticalAlignment="Center"/>
-      <TextBlock Grid.Row="8" Grid.Column="0" Text="Channel7:" VerticalAlignment="Center" Margin="0,5,10,5"/>
+      <NumericUpDown Grid.Row="7" Grid.Column="2" Value="{Binding OffsetLoadCell6}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="150" Margin="0,5,0,5" HorizontalAlignment="Left"/>
+      <StackPanel Grid.Row="7" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+  <Rectangle Width="20" Height="4" Fill="Cyan" VerticalAlignment="Center"/>
+  <CheckBox IsChecked="{Binding Show6}" Margin="8,0,0,0"/>
+</StackPanel>
+      <TextBlock Grid.Row="8" Grid.Column="0" Text="Channel 7:" VerticalAlignment="Center" Margin="0,5,10,5"/>
       <TextBlock Grid.Row="8" Grid.Column="1"
                  Text="{Binding LoadCellData, Converter={StaticResource PayloadFieldConverter}, ConverterParameter='Channel7'}"
-                 VerticalAlignment="Center" Margin="10,5,10,5" FontSize="14"/>
-      <NumericUpDown Grid.Row="8" Grid.Column="2" Value="{Binding OffsetLoadCell7}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="100" Margin="0,5,0,5"/>
-      <CheckBox Grid.Row="8" Grid.Column="3" IsChecked="{Binding Show7}" VerticalAlignment="Center"/>
+                 VerticalAlignment="Center" Margin="0,5,10,5" FontSize="14"/>
+      <NumericUpDown Grid.Row="8" Grid.Column="2" Value="{Binding OffsetLoadCell7}" Minimum="-255" Maximum="255" Increment="1" FormatString="F0" Width="150" Margin="0,5,0,5" HorizontalAlignment="Left"/>
+      <StackPanel Grid.Row="8" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+  <Rectangle Width="20" Height="4" Fill="Magenta" VerticalAlignment="Center"/>
+  <CheckBox IsChecked="{Binding Show7}" Margin="8,0,0,0"/>
+</StackPanel>
     </Grid>
   </StackPanel>
   <!-- Spacer -->
