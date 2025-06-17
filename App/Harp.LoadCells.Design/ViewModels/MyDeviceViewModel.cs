@@ -17,10 +17,7 @@ using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
-/*using System;*/
 using System.Collections.Generic;
-/*using System.Collections.ObjectModel;
-using System.Threading.Tasks;*/
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
@@ -1721,21 +1718,7 @@ public class LoadCellsViewModel : ViewModelBase
             Value = value;
         }
     }
-    private void UpdateArrayCollection<T>(T[] array, ObservableCollection<ArrayItemWrapper<T>> collection)
-    {
-        if (array == null)
-            return;
 
-        RxApp.MainThreadScheduler.Schedule(() =>
-        {
-            collection.Clear();
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                collection.Add(new ArrayItemWrapper<T>(i, array[i]));
-            }
-        });
-    }
 
     // Add these fields for each channel
     private readonly List<DateTimePoint> _values_0 = [];
@@ -1747,18 +1730,7 @@ public class LoadCellsViewModel : ViewModelBase
     private readonly List<DateTimePoint> _values_6 = [];
     private readonly List<DateTimePoint> _values_7 = [];
 
-    private readonly DateTimeAxis _customAxis; /*new DateTimeAxis
-    {
-        Position = AxisPosition.Bottom,
-        StringFormat = "HH:mm:ss",
-        IntervalType = DateTimeIntervalType.Seconds,
-        Interval = 1,
-        Title = "Time"
-    };
-*/
-
-    //private readonly Random _random = new();
-    // Add show/hide properties for each channel 
+    private readonly DateTimeAxis _customAxis; 
 
     private bool _show0 = true, _show1 = true, _show2 = true, _show3 = true, _show4 = true, _show5 = true, _show6 = true, _show7 = true;
     public bool Show0 { get => _show0; set { if (_show0 != value) { _show0 = value; this.RaisePropertyChanged(nameof(Show0)); UpdateSeries(); } } }
@@ -1778,34 +1750,6 @@ public class LoadCellsViewModel : ViewModelBase
     public object Sync { get; } = new object();
 
     public bool IsReading { get; set; } = true;
-
-/*    public bool ShowBlue
-    {
-        get => _showBlue;
-        set
-        {
-            if (_showBlue != value)
-            {
-                _showBlue = value;
-                this.RaisePropertyChanged(nameof(ShowBlue)); // Use ReactiveUI's RaisePropertyChanged method
-                UpdateSeries();
-            }
-        }
-    }
-
-    public bool ShowRed
-    {
-        get => _showRed;
-        set
-        {
-            if (_showRed != value)
-            {
-                _showRed = value;
-                this.RaisePropertyChanged(nameof(ShowRed)); // Use ReactiveUI's RaisePropertyChanged method
-                UpdateSeries();
-            }
-        }
-    }*/
 
 
     // Update the UpdateSeries method:
@@ -1863,6 +1807,7 @@ public class LoadCellsViewModel : ViewModelBase
         }
     }
 
+    // GetSeparators generates a set of custom ticks for the DateTimeAxis
     private static double[] GetSeparators()
     {
         var now = DateTime.Now;
@@ -1882,7 +1827,7 @@ public class LoadCellsViewModel : ViewModelBase
         var secsAgo = (DateTime.Now - date).TotalSeconds;
 
         return secsAgo < 1
-            ? "now"
+            ? "0"
             : $"{secsAgo:N0}s ago";
     }
 
