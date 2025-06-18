@@ -1114,12 +1114,7 @@ public class LoadCellsViewModel : ViewModelBase
                 if (isConnected && _deviceEventsObservable != null)
                 {
                     // Subscribe on the UI thread so that the HarpEvents collection can be updated safely.
-                    _deviceEventsSubscription = _deviceEventsObservable
-                        .ObserveOn(RxApp.MainThreadScheduler)
-                        .Subscribe(
-                            msg => HarpEvents.Add(msg.ToString()),
-                            ex => Debug.WriteLine($"Error in device events: {ex}")
-                        );
+                    SubscribeToEvents();
                 }
                 else
                 {
@@ -1245,8 +1240,7 @@ public class LoadCellsViewModel : ViewModelBase
 
         try
         {
-            using var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(500));
-            _device = await Harp.LoadCells.Device.CreateAsync(SelectedPort, cts.Token);
+            _device = await Harp.LoadCells.Device.CreateAsync(SelectedPort);
         }
         catch (OperationCanceledException ex)
         {
@@ -1424,7 +1418,7 @@ public class LoadCellsViewModel : ViewModelBase
                         observer.OnNext($"SyncOutput: {result}");
                     }
 
-                    // Check if Thresholds event is enabled
+/*                    // Check if Thresholds event is enabled
                     if (IsThresholdsEnabled)
                     {
                         // NOTE: This is a fallback approach since no matching register was found!
@@ -1434,7 +1428,59 @@ public class LoadCellsViewModel : ViewModelBase
                         // var result = await device.ReadXXXXXAsync(cancellationToken);
                         // observer.OnNext($"XXXXXX: {result}");
                         //throw new NotImplementedException("Thresholds event handling is not implemented yet");
+                        //observer.OnNext("Thresholds event handling is not implemented yet");
+
+                        observer.OnNext("Thresholds event handling is not implemented yet");
+    
+
                     }
+*/
+                    // Check if Thresholds event is enabled
+                    if (IsThresholdsEnabled)
+                    {
+                        // Read all threshold-related registers and notify the observer
+                        var doThresholds = new[]
+                        {
+                            await device.ReadDO1ThresholdAsync(cancellationToken),
+                            await device.ReadDO2ThresholdAsync(cancellationToken),
+                            await device.ReadDO3ThresholdAsync(cancellationToken),
+                            await device.ReadDO4ThresholdAsync(cancellationToken),
+                            await device.ReadDO5ThresholdAsync(cancellationToken),
+                            await device.ReadDO6ThresholdAsync(cancellationToken),
+                            await device.ReadDO7ThresholdAsync(cancellationToken),
+                            await device.ReadDO8ThresholdAsync(cancellationToken)
+                        };
+                        var doTimeAbove = new[]
+                        {
+                            await device.ReadDO1TimeAboveThresholdAsync(cancellationToken),
+                            await device.ReadDO2TimeAboveThresholdAsync(cancellationToken),
+                            await device.ReadDO3TimeAboveThresholdAsync(cancellationToken),
+                            await device.ReadDO4TimeAboveThresholdAsync(cancellationToken),
+                            await device.ReadDO5TimeAboveThresholdAsync(cancellationToken),
+                            await device.ReadDO6TimeAboveThresholdAsync(cancellationToken),
+                            await device.ReadDO7TimeAboveThresholdAsync(cancellationToken),
+                            await device.ReadDO8TimeAboveThresholdAsync(cancellationToken)
+                        };
+                        var doTimeBelow = new[]
+                        {
+                            await device.ReadDO1TimeBelowThresholdAsync(cancellationToken),
+                            await device.ReadDO2TimeBelowThresholdAsync(cancellationToken),
+                            await device.ReadDO3TimeBelowThresholdAsync(cancellationToken),
+                            await device.ReadDO4TimeBelowThresholdAsync(cancellationToken),
+                            await device.ReadDO5TimeBelowThresholdAsync(cancellationToken),
+                            await device.ReadDO6TimeBelowThresholdAsync(cancellationToken),
+                            await device.ReadDO7TimeBelowThresholdAsync(cancellationToken),
+                            await device.ReadDO8TimeBelowThresholdAsync(cancellationToken)
+                        };
+
+                        for (int i = 0; i < 8; i++)
+                        {
+                            observer.OnNext($"DO{i + 1}Threshold: {doThresholds[i]}");
+                            observer.OnNext($"DO{i + 1}TimeAboveThreshold: {doTimeAbove[i]}");
+                            observer.OnNext($"DO{i + 1}TimeBelowThreshold: {doTimeBelow[i]}");
+                        }
+                    }
+
 
 
                     // NOTE: Move the below entries to the correct event validation.
@@ -1667,10 +1713,20 @@ public class LoadCellsViewModel : ViewModelBase
             // Save the configuration to the device permanently
             if (savePermanently)
             {
+                // To prevent multiple calls to the device while it is resetting
+                _deviceEventsSubscription?.Dispose();
+                _deviceEventsSubscription = null;
+
                 await WriteAndLogAsync(
                     value => _device.WriteResetDeviceAsync(value),
                     ResetFlags.Save,
                     "SavePermanently");
+
+                // Wait to ensure the device is ready after the reset
+                await Task.Delay(4000);
+
+                // Re-subscribe to the device events observable
+                SubscribeToEvents();
             }
         });
     }
@@ -1687,6 +1743,16 @@ public class LoadCellsViewModel : ViewModelBase
                     "ResetDevice");
             }
         });
+    }
+
+    private void SubscribeToEvents()
+    {
+        _deviceEventsSubscription = _deviceEventsObservable
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe(
+                msg => HarpEvents.Add(msg.ToString()),
+                ex => Debug.WriteLine($"Error in device events: {ex}")
+            );
     }
 
     private async Task WriteAndLogAsync<T>(Func<T, Task> writeFunc, T value, string registerName)
