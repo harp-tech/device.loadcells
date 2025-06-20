@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO.Ports;
@@ -7,21 +8,19 @@ using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Bonsai.Harp;
 using Harp.LoadCells.Design.Views;
-using MsBox.Avalonia;
-using MsBox.Avalonia.Enums;
-using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
-using System.Collections.Generic;
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using SkiaSharp;
 namespace Harp.LoadCells.Design.ViewModels;
 
@@ -1191,20 +1190,19 @@ public class LoadCellsViewModel : ViewModelBase
             // force initial population of currently connected ports
             LoadUsbInformation();
 
-            Series = new ObservableCollection<ISeries>();
-            _customAxis = new DateTimeAxis(TimeSpan.FromSeconds(1), Formatter)
-            {
-                CustomSeparators = GetSeparators(),
-                AnimationsSpeed = TimeSpan.FromMilliseconds(0),
-                SeparatorsPaint = new SolidColorPaint(SKColors.Black.WithAlpha(100))
-            };
+            CreateSeries();
+            Console.WriteLine("Connected to device");
+       
+        this.WhenAnyValue(x => x.Show0).Subscribe(x => Series[0].IsVisible = x);
+        this.WhenAnyValue(x => x.Show1).Subscribe(x => Series[1].IsVisible = x);
+        this.WhenAnyValue(x => x.Show2).Subscribe(x => Series[2].IsVisible = x);
+        this.WhenAnyValue(x => x.Show3).Subscribe(x => Series[3].IsVisible = x);
+        this.WhenAnyValue(x => x.Show4).Subscribe(x => Series[4].IsVisible = x);
+        this.WhenAnyValue(x => x.Show5).Subscribe(x => Series[5].IsVisible = x);
+        this.WhenAnyValue(x => x.Show6).Subscribe(x => Series[6].IsVisible = x);
+        this.WhenAnyValue(x => x.Show7).Subscribe(x => Series[7].IsVisible = x);
 
-            XAxes = [_customAxis];
 
-            UpdateSeries();
-
-
-            _ = ReadData();
     }
 
     private IObservable<Unit> LoadUsbInformation()
@@ -1305,9 +1303,6 @@ public class LoadCellsViewModel : ViewModelBase
             // Device does not have a serial number, simply continue by ignoring the exception
         }
 
-        /*****************************************************************
-        * TODO: Please REVIEW all these registers and update the values
-        * ****************************************************************/
         AcquisitionState = await _device.ReadAcquisitionStateAsync();
         LoadCellData = await _device.ReadLoadCellDataAsync();
         DigitalInputState = await _device.ReadDigitalInputStateAsync();
@@ -1368,7 +1363,10 @@ public class LoadCellsViewModel : ViewModelBase
         Connected = true;
 
         //Log.Information("Connected to device");
-        Console.WriteLine("Connected to device");
+       
+
+
+        _ = ReadData();
     }
 
     public IObservable<string> GenerateEventMessages()
@@ -1418,23 +1416,6 @@ public class LoadCellsViewModel : ViewModelBase
                         observer.OnNext($"SyncOutput: {result}");
                     }
 
-/*                    // Check if Thresholds event is enabled
-                    if (IsThresholdsEnabled)
-                    {
-                        // NOTE: This is a fallback approach since no matching register was found!
-                        // TODO: Implement reading the correct event register and update the observer
-                        // Example for each register associated with this event. 
-                        // In case there are multiple registers associated with this event, repeat for each register
-                        // var result = await device.ReadXXXXXAsync(cancellationToken);
-                        // observer.OnNext($"XXXXXX: {result}");
-                        //throw new NotImplementedException("Thresholds event handling is not implemented yet");
-                        //observer.OnNext("Thresholds event handling is not implemented yet");
-
-                        observer.OnNext("Thresholds event handling is not implemented yet");
-    
-
-                    }
-*/
                     // Check if Thresholds event is enabled
                     if (IsThresholdsEnabled)
                     {
@@ -1513,10 +1494,6 @@ public class LoadCellsViewModel : ViewModelBase
         {
             if (_device == null)
                 throw new Exception("You need to connect to the device first");
-
-            /*****************************************************************
-            * TODO: Please REVIEW all these registers and update the values
-            * ****************************************************************/
             await WriteAndLogAsync(
                 value => _device.WriteAcquisitionStateAsync(value),
                 AcquisitionState,
@@ -1771,102 +1748,94 @@ public class LoadCellsViewModel : ViewModelBase
 
 
 
-    public class ArrayItemWrapper<T> : ReactiveObject
-    {
-        public int Index { get; }
-
-        [Reactive]
-        public T Value { get; set; }
-
-        public ArrayItemWrapper(int index, T value)
-        {
-            Index = index;
-            Value = value;
-        }
-    }
-
-
     // Add these fields for each channel
-    private readonly List<DateTimePoint> _values_0 = [];
-    private readonly List<DateTimePoint> _values_1 = [];
-    private readonly List<DateTimePoint> _values_2 = [];
-    private readonly List<DateTimePoint> _values_3 = [];
-    private readonly List<DateTimePoint> _values_4 = [];
-    private readonly List<DateTimePoint> _values_5 = [];
-    private readonly List<DateTimePoint> _values_6 = [];
-    private readonly List<DateTimePoint> _values_7 = [];
+    private readonly List<DateTimePoint> _values0 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values1 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values2 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values3 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values4 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values5 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values6 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values7 = new List<DateTimePoint>(250);
 
-    private readonly DateTimeAxis _customAxis; 
+    public DateTimeAxis _customAxis;
 
-    private bool _show0 = true, _show1 = true, _show2 = true, _show3 = true, _show4 = true, _show5 = true, _show6 = true, _show7 = true;
-    public bool Show0 { get => _show0; set { if (_show0 != value) { _show0 = value; this.RaisePropertyChanged(nameof(Show0)); UpdateSeries(); } } }
-    public bool Show1 { get => _show1; set { if (_show1 != value) { _show1 = value; this.RaisePropertyChanged(nameof(Show1)); UpdateSeries(); } } }
-    public bool Show2 { get => _show2; set { if (_show2 != value) { _show2 = value; this.RaisePropertyChanged(nameof(Show2)); UpdateSeries(); } } }
-    public bool Show3 { get => _show3; set { if (_show3 != value) { _show3 = value; this.RaisePropertyChanged(nameof(Show3)); UpdateSeries(); } } }
-    public bool Show4 { get => _show4; set { if (_show4 != value) { _show4 = value; this.RaisePropertyChanged(nameof(Show4)); UpdateSeries(); } } }
-    public bool Show5 { get => _show5; set { if (_show5 != value) { _show5 = value; this.RaisePropertyChanged(nameof(Show5)); UpdateSeries(); } } }
-    public bool Show6 { get => _show6; set { if (_show6 != value) { _show6 = value; this.RaisePropertyChanged(nameof(Show6)); UpdateSeries(); } } }
-    public bool Show7 { get => _show7; set { if (_show7 != value) { _show7 = value; this.RaisePropertyChanged(nameof(Show7)); UpdateSeries(); } } }
+    [Reactive] public bool Show0 { get; set; } = true;
+    [Reactive] public bool Show1 { get; set; } = true;
+    [Reactive] public bool Show2 { get; set; } = true;
+    [Reactive] public bool Show3 { get; set; } = true;
+    [Reactive] public bool Show4 { get; set; } = true;
+    [Reactive] public bool Show5 { get; set; } = true;
+    [Reactive] public bool Show6 { get; set; } = true;
+    [Reactive] public bool Show7 { get; set; } = true;
 
-
-    public ObservableCollection<ISeries> Series { get; set; }
+    public ObservableCollection<ISeries> Series { get; set; } 
 
     public Axis[] XAxes { get; set; }
 
-    public object Sync { get; } = new object();
-
-    public bool IsReading { get; set; } = true;
+    public object SyncChart { get; } = new object();
 
 
     // Update the UpdateSeries method:
-    private void UpdateSeries()
+    private void CreateSeries()
     {
-        Series.Clear();
+
+        Series = new ObservableCollection<ISeries>();
+
+        _customAxis = new DateTimeAxis(TimeSpan.FromSeconds(1), Formatter)
+        {
+            CustomSeparators = GetSeparators(),
+            AnimationsSpeed = TimeSpan.FromMilliseconds(0),
+            SeparatorsPaint = new SolidColorPaint(SKColors.Black.WithAlpha(100))
+        };
+
+        XAxes = [_customAxis];
+
         if (Show0)
-            Series.Add(new LineSeries<DateTimePoint> { Values = _values_0, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Blue, 2) });
+            Series.Add(new LineSeries<DateTimePoint> { Values = _values0, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Blue, 2) });
         if (Show1)
-            Series.Add(new LineSeries<DateTimePoint> { Values = _values_1, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Red, 2) });
+            Series.Add(new LineSeries<DateTimePoint> { Values = _values1, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Red, 2) });
         if (Show2)
-            Series.Add(new LineSeries<DateTimePoint> { Values = _values_2, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Green, 2) });
+            Series.Add(new LineSeries<DateTimePoint> { Values = _values2, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Green, 2) });
         if (Show3)
-            Series.Add(new LineSeries<DateTimePoint> { Values = _values_3, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Orange, 2) });
+            Series.Add(new LineSeries<DateTimePoint> { Values = _values3, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Orange, 2) });
         if (Show4)
-            Series.Add(new LineSeries<DateTimePoint> { Values = _values_4, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Purple, 2) });
+            Series.Add(new LineSeries<DateTimePoint> { Values = _values4, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Purple, 2) });
         if (Show5)
-            Series.Add(new LineSeries<DateTimePoint> { Values = _values_5, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Brown, 2) });
+            Series.Add(new LineSeries<DateTimePoint> { Values = _values5, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Brown, 2) });
         if (Show6)
-            Series.Add(new LineSeries<DateTimePoint> { Values = _values_6, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Cyan, 2) });
+            Series.Add(new LineSeries<DateTimePoint> { Values = _values6, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Cyan, 2) });
         if (Show7)
-            Series.Add(new LineSeries<DateTimePoint> { Values = _values_7, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Magenta, 2) });
+            Series.Add(new LineSeries<DateTimePoint> { Values = _values7, Fill = null, GeometryFill = null, GeometryStroke = null, Stroke = new SolidColorPaint(SKColors.Magenta, 2) });
     }
 
     // Update ReadData to add data for all 8 channels
     private async Task ReadData()
     {
-        while (IsReading)
+        while (Connected)
         {
-            await Task.Delay(10);
+            await Task.Delay(30);
 
-            lock (Sync)
+            lock (SyncChart)
             {
                 var now = DateTime.Now;
-                _values_0.Add(new DateTimePoint(now, LoadCellData.Channel0));
-                _values_1.Add(new DateTimePoint(now, LoadCellData.Channel1));
-                _values_2.Add(new DateTimePoint(now, LoadCellData.Channel2));
-                _values_3.Add(new DateTimePoint(now, LoadCellData.Channel3));
-                _values_4.Add(new DateTimePoint(now, LoadCellData.Channel4));
-                _values_5.Add(new DateTimePoint(now, LoadCellData.Channel5));
-                _values_6.Add(new DateTimePoint(now, LoadCellData.Channel6));
-                _values_7.Add(new DateTimePoint(now, LoadCellData.Channel7));
+                _values0.Add(new DateTimePoint(now, LoadCellData.Channel0));
+                _values1.Add(new DateTimePoint(now, LoadCellData.Channel1));
+                _values2.Add(new DateTimePoint(now, LoadCellData.Channel2));
+                _values3.Add(new DateTimePoint(now, LoadCellData.Channel3));
+                _values4.Add(new DateTimePoint(now, LoadCellData.Channel4));
+                _values5.Add(new DateTimePoint(now, LoadCellData.Channel5));
+                _values6.Add(new DateTimePoint(now, LoadCellData.Channel6));
+                _values7.Add(new DateTimePoint(now, LoadCellData.Channel7));
 
-                if (_values_0.Count > 250) _values_0.RemoveAt(0);
-                if (_values_1.Count > 250) _values_1.RemoveAt(0);
-                if (_values_2.Count > 250) _values_2.RemoveAt(0);
-                if (_values_3.Count > 250) _values_3.RemoveAt(0);
-                if (_values_4.Count > 250) _values_4.RemoveAt(0);
-                if (_values_5.Count > 250) _values_5.RemoveAt(0);
-                if (_values_6.Count > 250) _values_6.RemoveAt(0);
-                if (_values_7.Count > 250) _values_7.RemoveAt(0);
+                if (_values0.Count > 250) _values0.RemoveAt(0);
+                if (_values1.Count > 250) _values1.RemoveAt(0);
+                if (_values2.Count > 250) _values2.RemoveAt(0);
+                if (_values3.Count > 250) _values3.RemoveAt(0);
+                if (_values4.Count > 250) _values4.RemoveAt(0);
+                if (_values5.Count > 250) _values5.RemoveAt(0);
+                if (_values6.Count > 250) _values6.RemoveAt(0);
+                if (_values7.Count > 250) _values7.RemoveAt(0);
 
                 _customAxis.CustomSeparators = GetSeparators();
             }
