@@ -1039,6 +1039,36 @@ public class LoadCellsViewModel : ViewModelBase
 
     #endregion
 
+    #region Chart state
+
+    // Public chart properties
+    [Reactive] public bool Show0 { get; set; } = true;
+    [Reactive] public bool Show1 { get; set; } = true;
+    [Reactive] public bool Show2 { get; set; } = true;
+    [Reactive] public bool Show3 { get; set; } = true;
+    [Reactive] public bool Show4 { get; set; } = true;
+    [Reactive] public bool Show5 { get; set; } = true;
+    [Reactive] public bool Show6 { get; set; } = true;
+    [Reactive] public bool Show7 { get; set; } = true;
+
+    public ObservableCollection<ISeries> Series { get; set; }
+    public Axis[] XAxes { get; set; }
+    public object SyncChart { get; } = new object();
+    public DateTimeAxis _customAxis;
+
+    // Private chart data fields
+    private readonly List<DateTimePoint> _values0 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values1 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values2 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values3 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values4 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values5 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values6 = new List<DateTimePoint>(250);
+    private readonly List<DateTimePoint> _values7 = new List<DateTimePoint>(250);
+
+    #endregion
+
+
     private Harp.LoadCells.AsyncDevice? _device;
     private IObservable<string> _deviceEventsObservable;
     private IDisposable? _deviceEventsSubscription;
@@ -1187,12 +1217,12 @@ public class LoadCellsViewModel : ViewModelBase
                 IsDO8Enabled_DigitalOutputState = x.HasFlag(DigitalOutputs.DO8);
             });
 
-            // force initial population of currently connected ports
-            LoadUsbInformation();
+        // force initial population of currently connected ports
+        LoadUsbInformation();
 
-            CreateSeries();
-            Console.WriteLine("Connected to device");
-       
+        CreateSeries();
+        Console.WriteLine("Connected to device");
+
         this.WhenAnyValue(x => x.Show0).Subscribe(x => Series[0].IsVisible = x);
         this.WhenAnyValue(x => x.Show1).Subscribe(x => Series[1].IsVisible = x);
         this.WhenAnyValue(x => x.Show2).Subscribe(x => Series[2].IsVisible = x);
@@ -1363,7 +1393,7 @@ public class LoadCellsViewModel : ViewModelBase
         Connected = true;
 
         //Log.Information("Connected to device");
-       
+
 
 
         _ = ReadData();
@@ -1746,36 +1776,6 @@ public class LoadCellsViewModel : ViewModelBase
         });
     }
 
-
-
-    // Add these fields for each channel
-    private readonly List<DateTimePoint> _values0 = new List<DateTimePoint>(250);
-    private readonly List<DateTimePoint> _values1 = new List<DateTimePoint>(250);
-    private readonly List<DateTimePoint> _values2 = new List<DateTimePoint>(250);
-    private readonly List<DateTimePoint> _values3 = new List<DateTimePoint>(250);
-    private readonly List<DateTimePoint> _values4 = new List<DateTimePoint>(250);
-    private readonly List<DateTimePoint> _values5 = new List<DateTimePoint>(250);
-    private readonly List<DateTimePoint> _values6 = new List<DateTimePoint>(250);
-    private readonly List<DateTimePoint> _values7 = new List<DateTimePoint>(250);
-
-    public DateTimeAxis _customAxis;
-
-    [Reactive] public bool Show0 { get; set; } = true;
-    [Reactive] public bool Show1 { get; set; } = true;
-    [Reactive] public bool Show2 { get; set; } = true;
-    [Reactive] public bool Show3 { get; set; } = true;
-    [Reactive] public bool Show4 { get; set; } = true;
-    [Reactive] public bool Show5 { get; set; } = true;
-    [Reactive] public bool Show6 { get; set; } = true;
-    [Reactive] public bool Show7 { get; set; } = true;
-
-    public ObservableCollection<ISeries> Series { get; set; } 
-
-    public Axis[] XAxes { get; set; }
-
-    public object SyncChart { get; } = new object();
-
-
     // Update the UpdateSeries method:
     private void CreateSeries()
     {
@@ -1828,14 +1828,22 @@ public class LoadCellsViewModel : ViewModelBase
                 _values6.Add(new DateTimePoint(now, LoadCellData.Channel6));
                 _values7.Add(new DateTimePoint(now, LoadCellData.Channel7));
 
-                if (_values0.Count > 250) _values0.RemoveAt(0);
-                if (_values1.Count > 250) _values1.RemoveAt(0);
-                if (_values2.Count > 250) _values2.RemoveAt(0);
-                if (_values3.Count > 250) _values3.RemoveAt(0);
-                if (_values4.Count > 250) _values4.RemoveAt(0);
-                if (_values5.Count > 250) _values5.RemoveAt(0);
-                if (_values6.Count > 250) _values6.RemoveAt(0);
-                if (_values7.Count > 250) _values7.RemoveAt(0);
+                if (_values0.Count > 250)
+                    _values0.RemoveAt(0);
+                if (_values1.Count > 250)
+                    _values1.RemoveAt(0);
+                if (_values2.Count > 250)
+                    _values2.RemoveAt(0);
+                if (_values3.Count > 250)
+                    _values3.RemoveAt(0);
+                if (_values4.Count > 250)
+                    _values4.RemoveAt(0);
+                if (_values5.Count > 250)
+                    _values5.RemoveAt(0);
+                if (_values6.Count > 250)
+                    _values6.RemoveAt(0);
+                if (_values7.Count > 250)
+                    _values7.RemoveAt(0);
 
                 _customAxis.CustomSeparators = GetSeparators();
             }
