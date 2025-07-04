@@ -182,7 +182,7 @@ typedef struct
 	int16_t REG_OFFSET_CH6;
 	int16_t REG_OFFSET_CH7;
 	uint8_t REG_RESERVED4;
-	uint8_t REG_RESERVED5;
+	uint8_t REG_DOS_TH_INV;
 	uint8_t REG_DO0_CH;
 	uint8_t REG_DO1_CH;
 	uint8_t REG_DO2_CH;
@@ -247,7 +247,7 @@ typedef struct
 #define ADD_REG_OFFSET_CH6                  54 // I16    Offset value of Load Cell channel 6 [-255:255]
 #define ADD_REG_OFFSET_CH7                  55 // I16    Offset value of Load Cell channel 7 [-255:255]
 #define ADD_REG_RESERVED4                   56 // U8     Reserved for future purposes
-#define ADD_REG_RESERVED5                   57 // U8     Reserved for future purposes
+#define ADD_REG_DOS_TH_INV                   57 // U8     Reserved for future purposes
 #define ADD_REG_DO0_CH                      58 // U8     Load Cell channel to be used to feed the threshold filter
 #define ADD_REG_DO1_CH                      59 // U8     
 #define ADD_REG_DO2_CH                      60 // U8     
@@ -298,7 +298,15 @@ typedef struct
 /************************************************************************/
 #define B_START                            (1<<0)       // 
 #define B_DI0                              (1<<0)       // 
-#define B_DO0                              (1<<0)       // 
+#define B_DO0                              (1<<0)       //
+#define B_TH_DO1                           (1<<0)       //
+#define B_TH_DO2                           (1<<1)       //  
+#define B_TH_DO3                           (1<<2)       //  
+#define B_TH_DO4                           (1<<3)       //  
+#define B_TH_DO5                           (1<<4)       //  
+#define B_TH_DO6                           (1<<5)       //  
+#define B_TH_DO7                           (1<<6)       //  
+#define B_TH_DO8                           (1<<7)       //   
 #define MSK_DI0_SEL                        (3<<0)       // 
 #define GM_DI0_SYNC                        (0<<0)       // Use as a pure digital input
 #define GM_DI0_RISE_START_ACQ              (1<<0)       // Start acquisition when rising edge and stop when falling edge
