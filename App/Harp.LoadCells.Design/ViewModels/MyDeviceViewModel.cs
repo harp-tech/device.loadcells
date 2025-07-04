@@ -1490,17 +1490,12 @@ public class LoadCellsViewModel : ViewModelBase
                             observer.OnNext($"DO{i + 1}TimeAboveThreshold: {doTimeAbove[i]}");
                             observer.OnNext($"DO{i + 1}TimeBelowThreshold: {doTimeBelow[i]}");
                         }
+
+                        var DigitalOutputStateResult = await device.ReadDigitalOutputStateAsync(cancellationToken);
+                        DigitalOutputState = DigitalOutputStateResult;
+                        observer.OnNext($"DigitalOutputState: {DigitalOutputStateResult}");
+
                     }
-
-
-
-                    // NOTE: Move the below entries to the correct event validation.
-                    // The following registers have Event access but don't have a direct mapping to event flags
-                    // These should be moved to appropriate event validation sections once their triggering events are identified
-                    var DigitalOutputStateResult = await device.ReadDigitalOutputStateAsync(cancellationToken);
-
-                    DigitalOutputState = DigitalOutputStateResult;
-                    observer.OnNext($"DigitalOutputState: {DigitalOutputStateResult}");
 
                     // Wait a short while before polling again. Adjust delay as necessary.
                     await Task.Delay(TimeSpan.FromMilliseconds(10), cancellationToken);
