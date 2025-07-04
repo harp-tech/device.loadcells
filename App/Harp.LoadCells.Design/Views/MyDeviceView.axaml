@@ -386,7 +386,7 @@
                       <NumericUpDown Grid.Row="1" Grid.Column="2" Value="{Binding DO1Threshold}" Minimum="-32768" Maximum="32767" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="1" Grid.Column="3" Value="{Binding DO1TimeAboveThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="1" Grid.Column="4" Value="{Binding DO1TimeBelowThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
-                      <CheckBox Grid.Row="1" Grid.Column="5" IsChecked="{Binding IsDO1Enabled_DigitalOutputState}" HorizontalAlignment="Center" Margin="0,4"/>
+                      <controls:VisualStatus Status="{Binding IsDO1Enabled_DigitalOutputState}" Width="15" Height="15" HorizontalAlignment="Center" Margin="0,4" Grid.Row="1" Grid.Column="5"/>
                       <!-- DO2 -->
                       <TextBlock Grid.Row="2" Grid.Column="0" Text="DO2" Margin="0,4" VerticalAlignment="Center"/>
                       <ComboBox Grid.Row="2" Grid.Column="1" SelectedItem="{Binding DO2TargetLoadCell}" Width="120" Margin="0,4">
@@ -403,7 +403,7 @@
                       <NumericUpDown Grid.Row="2" Grid.Column="2" Value="{Binding DO2Threshold}" Minimum="-32768" Maximum="32767" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="2" Grid.Column="3" Value="{Binding DO2TimeAboveThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="2" Grid.Column="4" Value="{Binding DO2TimeBelowThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
-                      <CheckBox Grid.Row="2" Grid.Column="5" IsChecked="{Binding IsDO2Enabled_DigitalOutputState}" HorizontalAlignment="Center"/>
+                      <controls:VisualStatus Status="{Binding IsDO2Enabled_DigitalOutputState}" Width="15" Height="15" HorizontalAlignment="Center" Margin="0,4" Grid.Row="2" Grid.Column="5"/>
                       <!-- DO3 -->
                       <TextBlock Grid.Row="3" Grid.Column="0" Text="DO3" Margin="0,4" VerticalAlignment="Center"/>
                       <ComboBox Grid.Row="3" Grid.Column="1" SelectedItem="{Binding DO3TargetLoadCell}" Width="120" Margin="0,4">
@@ -420,7 +420,7 @@
                       <NumericUpDown Grid.Row="3" Grid.Column="2" Value="{Binding DO3Threshold}" Minimum="-32768" Maximum="32767" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="3" Grid.Column="3" Value="{Binding DO3TimeAboveThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="3" Grid.Column="4" Value="{Binding DO3TimeBelowThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
-                      <CheckBox Grid.Row="3" Grid.Column="5" IsChecked="{Binding IsDO3Enabled_DigitalOutputState}" HorizontalAlignment="Center" Margin="0,4"/>
+                      <controls:VisualStatus Status="{Binding IsDO3Enabled_DigitalOutputState}" Width="15" Height="15" HorizontalAlignment="Center" Margin="0,4" Grid.Row="3" Grid.Column="5"/>
                       <!-- DO4 -->
                       <TextBlock Grid.Row="4" Grid.Column="0" Text="DO4" Margin="0,4" VerticalAlignment="Center"/>
                       <ComboBox Grid.Row="4" Grid.Column="1" SelectedItem="{Binding DO4TargetLoadCell}" Width="120" Margin="0,4">
@@ -437,7 +437,7 @@
                       <NumericUpDown Grid.Row="4" Grid.Column="2" Value="{Binding DO4Threshold}" Minimum="-32768" Maximum="32767" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="4" Grid.Column="3" Value="{Binding DO4TimeAboveThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="4" Grid.Column="4" Value="{Binding DO4TimeBelowThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
-                      <CheckBox Grid.Row="4" Grid.Column="5" IsChecked="{Binding IsDO4Enabled_DigitalOutputState}" HorizontalAlignment="Center" Margin="0,4"/>
+                      <controls:VisualStatus Status="{Binding IsDO4Enabled_DigitalOutputState}" Width="15" Height="15" HorizontalAlignment="Center" Margin="0,4" Grid.Row="4" Grid.Column="5"/>
                       <!-- DO5 -->
                       <TextBlock Grid.Row="5" Grid.Column="0" Text="DO5" Margin="0,4" VerticalAlignment="Center"/>
                       <ComboBox Grid.Row="5" Grid.Column="1" SelectedItem="{Binding DO5TargetLoadCell}" Width="120" Margin="0,4">
@@ -454,7 +454,7 @@
                       <NumericUpDown Grid.Row="5" Grid.Column="2" Value="{Binding DO5Threshold}" Minimum="-32768" Maximum="32767" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="5" Grid.Column="3" Value="{Binding DO5TimeAboveThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="5" Grid.Column="4" Value="{Binding DO5TimeBelowThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
-                      <CheckBox Grid.Row="5" Grid.Column="5" IsChecked="{Binding IsDO5Enabled_DigitalOutputState}" HorizontalAlignment="Center" Margin="0,4"/>
+                      <controls:VisualStatus Status="{Binding IsDO5Enabled_DigitalOutputState}" Width="15" Height="15" HorizontalAlignment="Center" Margin="0,4" Grid.Row="5" Grid.Column="5"/>
                       <!-- DO6 -->
                       <TextBlock Grid.Row="6" Grid.Column="0" Text="DO6" Margin="0,4" VerticalAlignment="Center"/>
                       <ComboBox Grid.Row="6" Grid.Column="1" SelectedItem="{Binding DO6TargetLoadCell}" Width="120" Margin="0,4">
@@ -471,7 +471,7 @@
                       <NumericUpDown Grid.Row="6" Grid.Column="2" Value="{Binding DO6Threshold}" Minimum="-32768" Maximum="32767" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="6" Grid.Column="3" Value="{Binding DO6TimeAboveThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="6" Grid.Column="4" Value="{Binding DO6TimeBelowThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
-                      <CheckBox Grid.Row="6" Grid.Column="5" IsChecked="{Binding IsDO6Enabled_DigitalOutputState}" HorizontalAlignment="Center" Margin="0,4"/>
+                      <controls:VisualStatus Status="{Binding IsDO6Enabled_DigitalOutputState}" Width="15" Height="15" HorizontalAlignment="Center" Margin="0,4" Grid.Row="6" Grid.Column="5"/>
                       <!-- DO7 -->
                       <TextBlock Grid.Row="7" Grid.Column="0" Text="DO7" Margin="0,4" VerticalAlignment="Center"/>
                       <ComboBox Grid.Row="7" Grid.Column="1" SelectedItem="{Binding DO7TargetLoadCell}" Width="120" Margin="0,4">
@@ -488,7 +488,7 @@
                       <NumericUpDown Grid.Row="7" Grid.Column="2" Value="{Binding DO7Threshold}" Minimum="-32768" Maximum="32768" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="7" Grid.Column="3" Value="{Binding DO7TimeAboveThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="7" Grid.Column="4" Value="{Binding DO7TimeBelowThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
-                      <CheckBox Grid.Row="7" Grid.Column="5" IsChecked="{Binding IsDO7Enabled_DigitalOutputState}" HorizontalAlignment="Center" Margin="0,4"/>
+                      <controls:VisualStatus Status="{Binding IsDO7Enabled_DigitalOutputState}" Width="15" Height="15" HorizontalAlignment="Center" Margin="0,4" Grid.Row="7" Grid.Column="5"/>
                       <!-- DO8 -->
                       <TextBlock Grid.Row="8" Grid.Column="0" Text="DO8" Margin="0,4" VerticalAlignment="Center"/>
                       <ComboBox Grid.Row="8" Grid.Column="1" SelectedItem="{Binding DO8TargetLoadCell}" Width="120" Margin="0,4">
@@ -505,7 +505,7 @@
                       <NumericUpDown Grid.Row="8" Grid.Column="2" Value="{Binding DO8Threshold}" Minimum="-32768" Maximum="32767" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="8" Grid.Column="3" Value="{Binding DO8TimeAboveThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
                       <NumericUpDown Grid.Row="8" Grid.Column="4" Value="{Binding DO8TimeBelowThreshold}" Minimum="0" Maximum="65535" Increment="1" FormatString="F0" Width="150" Margin="0,4" HorizontalAlignment="Left" ClipValueToMinMax="True"/>
-                      <CheckBox Grid.Row="8" Grid.Column="5" IsChecked="{Binding IsDO8Enabled_DigitalOutputState}" HorizontalAlignment="Center" Margin="0,4" />
+                      <controls:VisualStatus Status="{Binding IsDO8Enabled_DigitalOutputState}" Width="15" Height="15" HorizontalAlignment="Center" Margin="0,4" Grid.Row="8" Grid.Column="5"/>
                     </Grid>
                     <StackPanel Margin="0,10,0,0" MaxWidth="750">
                       <TextBlock TextWrapping="Wrap" FontSize="14" Margin="0,8,0,0">
