@@ -573,7 +573,7 @@ void process_thresholds(void)
 			if (output_thresholds[0] >= app_regs.REG_DO0_TH_VALUE)
 			{
 				if (++ch0_up_counter == app_regs.REG_DO0_TH_UP_MS + 1)
-				do_set |= (1<<(1+0));
+				do_set |= (1<<(0));
 				if (ch0_up_counter > app_regs.REG_DO0_TH_UP_MS)
 				ch0_up_counter--;
          
@@ -582,7 +582,7 @@ void process_thresholds(void)
 			else
 			{
 				if (++ch0_down_counter == app_regs.REG_DO0_TH_DOWN_MS + 1)
-				do_clr |= (1<<(1+0));
+				do_clr |= (1<<(0));
 				if (ch0_down_counter > app_regs.REG_DO0_TH_DOWN_MS)
 				ch0_down_counter--;
          
@@ -593,7 +593,7 @@ void process_thresholds(void)
 			if (output_thresholds[0] <= app_regs.REG_DO0_TH_VALUE)
 			{
 				if (++ch0_up_counter == app_regs.REG_DO0_TH_UP_MS + 1)
-				do_set |= (1<<(1+0));
+				do_set |= (1<<(0));
 				if (ch0_up_counter > app_regs.REG_DO0_TH_UP_MS)
 				ch0_up_counter--;
 				
@@ -602,7 +602,7 @@ void process_thresholds(void)
 			else
 			{
 				if (++ch0_down_counter == app_regs.REG_DO0_TH_DOWN_MS + 1)
-				do_clr |= (1<<(1+0));
+				do_clr |= (1<<(0));
 				if (ch0_down_counter > app_regs.REG_DO0_TH_DOWN_MS)
 				ch0_down_counter--;
 					
@@ -619,7 +619,7 @@ void process_thresholds(void)
 		  if (output_thresholds[1] >= app_regs.REG_DO1_TH_VALUE)
 		  {
 			 if (++ch1_up_counter == app_regs.REG_DO1_TH_UP_MS + 1)
-			 do_set |= (1<<(1+1));
+			 do_set |= (1<<(1));
 			 if (ch1_up_counter > app_regs.REG_DO1_TH_UP_MS)
 			 ch1_up_counter--;
          
@@ -628,7 +628,7 @@ void process_thresholds(void)
 		  else
 		  {
 			 if (++ch1_down_counter == app_regs.REG_DO1_TH_DOWN_MS + 1)
-			 do_clr |= (1<<(1+1));
+			 do_clr |= (1<<(1));
 			 if (ch1_down_counter > app_regs.REG_DO1_TH_DOWN_MS)
 			 ch1_down_counter--;
          
@@ -639,7 +639,7 @@ void process_thresholds(void)
 	  	  if (output_thresholds[1] <= app_regs.REG_DO1_TH_VALUE)
 	  	  {
 		  	  if (++ch1_up_counter == app_regs.REG_DO1_TH_UP_MS + 1)
-		  	  do_set |= (1<<(1+1));
+		  	  do_set |= (1<<(1));
 		  	  if (ch1_up_counter > app_regs.REG_DO1_TH_UP_MS)
 		  	  ch1_up_counter--;
 		  	  
@@ -648,7 +648,7 @@ void process_thresholds(void)
 	  	  else
 	  	  {
 		  	  if (++ch1_down_counter == app_regs.REG_DO1_TH_DOWN_MS + 1)
-		  	  do_clr |= (1<<(1+1));
+		  	  do_clr |= (1<<(1));
 		  	  if (ch1_down_counter > app_regs.REG_DO1_TH_DOWN_MS)
 		  	  ch1_down_counter--;
 		  	  
@@ -664,7 +664,7 @@ void process_thresholds(void)
 		  if (output_thresholds[2] >= app_regs.REG_DO2_TH_VALUE)
 		  {
 			 if (++ch2_up_counter == app_regs.REG_DO2_TH_UP_MS + 1)
-			 do_set |= (1<<(1+2));
+			 do_set |= (1<<(2));
 			 if (ch2_up_counter > app_regs.REG_DO2_TH_UP_MS)
 			 ch2_up_counter--;
          
@@ -673,7 +673,7 @@ void process_thresholds(void)
 		  else
 		  {
 			 if (++ch2_down_counter == app_regs.REG_DO2_TH_DOWN_MS + 1)
-			 do_clr |= (1<<(1+2));
+			 do_clr |= (1<<(2));
 			 if (ch2_down_counter > app_regs.REG_DO2_TH_DOWN_MS)
 			 ch2_down_counter--;
          
@@ -684,7 +684,7 @@ void process_thresholds(void)
 	   	  if (output_thresholds[2] <= app_regs.REG_DO2_TH_VALUE)
 	   	  {
 		   	  if (++ch2_up_counter == app_regs.REG_DO2_TH_UP_MS + 1)
-		   	  do_set |= (1<<(1+2));
+		   	  do_set |= (1<<(2));
 		   	  if (ch2_up_counter > app_regs.REG_DO2_TH_UP_MS)
 		   	  ch2_up_counter--;
 		   	  
@@ -693,7 +693,7 @@ void process_thresholds(void)
 	   	  else
 	   	  {
 		   	  if (++ch2_down_counter == app_regs.REG_DO2_TH_DOWN_MS + 1)
-		   	  do_clr |= (1<<(1+2));
+		   	  do_clr |= (1<<(2));
 		   	  if (ch2_down_counter > app_regs.REG_DO2_TH_DOWN_MS)
 		   	  ch2_down_counter--;
 		   	  
@@ -710,7 +710,7 @@ void process_thresholds(void)
 		  if (output_thresholds[3] >= app_regs.REG_DO3_TH_VALUE)
 		  {
 			  if (++ch3_up_counter == app_regs.REG_DO3_TH_UP_MS + 1)
-			  do_set |= (1<<(1+3));
+			  do_set |= (1<<(3));
 			  if (ch3_up_counter > app_regs.REG_DO3_TH_UP_MS)
 			  ch3_up_counter--;
 			  
@@ -719,7 +719,7 @@ void process_thresholds(void)
 		  else
 		  {
 			  if (++ch3_down_counter == app_regs.REG_DO3_TH_DOWN_MS + 1)
-			  do_clr |= (1<<(1+3));
+			  do_clr |= (1<<(3));
 			  if (ch3_down_counter > app_regs.REG_DO3_TH_DOWN_MS)
 			  ch3_down_counter--;
 			  
@@ -730,7 +730,7 @@ void process_thresholds(void)
 		  if (output_thresholds[3] <= app_regs.REG_DO3_TH_VALUE)
 		  {
 			  if (++ch3_up_counter == app_regs.REG_DO3_TH_UP_MS + 1)
-			  do_set |= (1<<(1+3));
+			  do_set |= (1<<(3));
 			  if (ch3_up_counter > app_regs.REG_DO3_TH_UP_MS)
 			  ch3_up_counter--;
 			  
@@ -739,7 +739,7 @@ void process_thresholds(void)
 		  else
 		  {
 			  if (++ch3_down_counter == app_regs.REG_DO3_TH_DOWN_MS + 1)
-			  do_clr |= (1<<(1+3));
+			  do_clr |= (1<<(3));
 			  if (ch3_down_counter > app_regs.REG_DO3_TH_DOWN_MS)
 			  ch3_down_counter--;
 			  
@@ -756,7 +756,7 @@ void process_thresholds(void)
 		  if (output_thresholds[4] >= app_regs.REG_DO4_TH_VALUE)
 		  {
 			  if (++ch4_up_counter == app_regs.REG_DO4_TH_UP_MS + 1)
-			  do_set |= (1<<(1+4));
+			  do_set |= (1<<(4));
 			  if (ch4_up_counter > app_regs.REG_DO4_TH_UP_MS)
 			  ch4_up_counter--;
 			  
@@ -765,7 +765,7 @@ void process_thresholds(void)
 		  else
 		  {
 			  if (++ch4_down_counter == app_regs.REG_DO4_TH_DOWN_MS + 1)
-			  do_clr |= (1<<(1+4));
+			  do_clr |= (1<<(4));
 			  if (ch4_down_counter > app_regs.REG_DO4_TH_DOWN_MS)
 			  ch4_down_counter--;
 			  
@@ -776,7 +776,7 @@ void process_thresholds(void)
         if (output_thresholds[4] <= app_regs.REG_DO4_TH_VALUE)
         {
 	        if (++ch4_up_counter == app_regs.REG_DO4_TH_UP_MS + 1)
-	        do_set |= (1<<(1+4));
+	        do_set |= (1<<(4));
 	        if (ch4_up_counter > app_regs.REG_DO4_TH_UP_MS)
 	        ch4_up_counter--;
 	        
@@ -785,7 +785,7 @@ void process_thresholds(void)
         else
         {
 	        if (++ch4_down_counter == app_regs.REG_DO4_TH_DOWN_MS + 1)
-	        do_clr |= (1<<(1+4));
+	        do_clr |= (1<<(4));
 	        if (ch4_down_counter > app_regs.REG_DO4_TH_DOWN_MS)
 	        ch4_down_counter--;
 	        
@@ -802,7 +802,7 @@ void process_thresholds(void)
 		  if (output_thresholds[5] >= app_regs.REG_DO5_TH_VALUE)
 		  {
 			  if (++ch5_up_counter == app_regs.REG_DO5_TH_UP_MS + 1)
-			  do_set |= (1<<(1+5));
+			  do_set |= (1<<(5));
 			  if (ch5_up_counter > app_regs.REG_DO5_TH_UP_MS)
 			  ch5_up_counter--;
 			  
@@ -811,7 +811,7 @@ void process_thresholds(void)
 		  else
 		  {
 			  if (++ch5_down_counter == app_regs.REG_DO5_TH_DOWN_MS + 1)
-			  do_clr |= (1<<(1+5));
+			  do_clr |= (1<<(5));
 			  if (ch5_down_counter > app_regs.REG_DO5_TH_DOWN_MS)
 			  ch5_down_counter--;
 			  
@@ -822,7 +822,7 @@ void process_thresholds(void)
 		  if (output_thresholds[5] <= app_regs.REG_DO5_TH_VALUE)
 		  {
 			  if (++ch5_up_counter == app_regs.REG_DO5_TH_UP_MS + 1)
-			  do_set |= (1<<(1+5));
+			  do_set |= (1<<(5));
 			  if (ch5_up_counter > app_regs.REG_DO5_TH_UP_MS)
 			  ch5_up_counter--;
 			  
@@ -831,7 +831,7 @@ void process_thresholds(void)
 		  else
 		  {
 			  if (++ch5_down_counter == app_regs.REG_DO5_TH_DOWN_MS + 1)
-			  do_clr |= (1<<(1+5));
+			  do_clr |= (1<<(5));
 			  if (ch5_down_counter > app_regs.REG_DO5_TH_DOWN_MS)
 			  ch5_down_counter--;
 			  
@@ -847,7 +847,7 @@ void process_thresholds(void)
 		  if (output_thresholds[6] >= app_regs.REG_DO6_TH_VALUE)
 		  {
 			 if (++ch6_up_counter == app_regs.REG_DO6_TH_UP_MS + 1)
-			 do_set |= (1<<(1+6));
+			 do_set |= (1<<(6));
 			 if (ch6_up_counter > app_regs.REG_DO6_TH_UP_MS)
 			 ch6_up_counter--;
          
@@ -856,7 +856,7 @@ void process_thresholds(void)
 		  else
 		  {
 			 if (++ch6_down_counter == app_regs.REG_DO6_TH_DOWN_MS + 1)
-			 do_clr |= (1<<(1+6));
+			 do_clr |= (1<<(6));
 			 if (ch6_down_counter > app_regs.REG_DO6_TH_DOWN_MS)
 			 ch6_down_counter--;
          
@@ -867,7 +867,7 @@ void process_thresholds(void)
 		  if (output_thresholds[6] <= app_regs.REG_DO6_TH_VALUE)
 		  {
 			  if (++ch6_up_counter == app_regs.REG_DO6_TH_UP_MS + 1)
-			  do_set |= (1<<(1+6));
+			  do_set |= (1<<(6));
 			  if (ch6_up_counter > app_regs.REG_DO6_TH_UP_MS)
 			  ch6_up_counter--;
 			  
@@ -876,7 +876,7 @@ void process_thresholds(void)
 		  else
 		  {
 			  if (++ch6_down_counter == app_regs.REG_DO6_TH_DOWN_MS + 1)
-			  do_clr |= (1<<(1+6));
+			  do_clr |= (1<<(6));
 			  if (ch6_down_counter > app_regs.REG_DO6_TH_DOWN_MS)
 			  ch6_down_counter--;
 			  
@@ -893,7 +893,7 @@ void process_thresholds(void)
 		  if (output_thresholds[7] >= app_regs.REG_DO7_TH_VALUE)
 		  {
 			 if (++ch7_up_counter == app_regs.REG_DO7_TH_UP_MS + 1)
-			 do_set |= (1<<(1+7));
+			 do_set |= (1<<(7));
 			 if (ch7_up_counter > app_regs.REG_DO7_TH_UP_MS)
 			 ch7_up_counter--;
          
@@ -902,7 +902,7 @@ void process_thresholds(void)
 		  else
 		  {
 			 if (++ch7_down_counter == app_regs.REG_DO7_TH_DOWN_MS + 1)
-			 do_clr |= (1<<(1+7));
+			 do_clr |= (1<<(7));
 			 if (ch7_down_counter > app_regs.REG_DO7_TH_DOWN_MS)
 			 ch7_down_counter--;
          
@@ -913,7 +913,7 @@ void process_thresholds(void)
           if (output_thresholds[7] <= app_regs.REG_DO7_TH_VALUE)
           {
 	          if (++ch7_up_counter == app_regs.REG_DO7_TH_UP_MS + 1)
-	          do_set |= (1<<(1+7));
+	          do_set |= (1<<(7));
 	          if (ch7_up_counter > app_regs.REG_DO7_TH_UP_MS)
 	          ch7_up_counter--;
 	          
@@ -922,7 +922,7 @@ void process_thresholds(void)
           else
           {
 	          if (++ch7_down_counter == app_regs.REG_DO7_TH_DOWN_MS + 1)
-	          do_clr |= (1<<(1+7));
+	          do_clr |= (1<<(7));
 	          if (ch7_down_counter > app_regs.REG_DO7_TH_DOWN_MS)
 	          ch7_down_counter--;
 	          
