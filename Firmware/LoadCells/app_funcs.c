@@ -37,7 +37,7 @@ void (*app_func_rd_pointer[])(void) = {
 	&app_read_REG_OFFSET_CH6,
 	&app_read_REG_OFFSET_CH7,
 	&app_read_REG_RESERVED4,
-	&app_read_REG_RESERVED5,
+	&app_read_REG_DOS_TH_INV,
 	&app_read_REG_DO0_CH,
 	&app_read_REG_DO1_CH,
 	&app_read_REG_DO2_CH,
@@ -99,7 +99,7 @@ bool (*app_func_wr_pointer[])(void*) = {
 	&app_write_REG_OFFSET_CH6,
 	&app_write_REG_OFFSET_CH7,
 	&app_write_REG_RESERVED4,
-	&app_write_REG_RESERVED5,
+	&app_write_REG_DOS_TH_INV,
 	&app_write_REG_DO0_CH,
 	&app_write_REG_DO1_CH,
 	&app_write_REG_DO2_CH,
@@ -518,12 +518,12 @@ bool app_write_REG_RESERVED4(void *a)
 
 
 /************************************************************************/
-/* REG_RESERVED5                                                        */
+/* REG_DOS_TH_INV                                                       */
 /************************************************************************/
-void app_read_REG_RESERVED5(void) {}
-bool app_write_REG_RESERVED5(void *a)
+void app_read_REG_DOS_TH_INV(void) {}
+bool app_write_REG_DOS_TH_INV(void *a)
 {
-	app_regs.REG_RESERVED5 = *((uint8_t*)a);
+	app_regs.REG_DOS_TH_INV = *((uint8_t*)a);
 	return true;
 }
 

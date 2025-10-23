@@ -212,7 +212,7 @@ uint8_t *app_regs_pointer[] = {
 	(uint8_t*)(&app_regs.REG_OFFSET_CH6),
 	(uint8_t*)(&app_regs.REG_OFFSET_CH7),
 	(uint8_t*)(&app_regs.REG_RESERVED4),
-	(uint8_t*)(&app_regs.REG_RESERVED5),
+	(uint8_t*)(&app_regs.REG_DOS_TH_INV),
 	(uint8_t*)(&app_regs.REG_DO0_CH),
 	(uint8_t*)(&app_regs.REG_DO1_CH),
 	(uint8_t*)(&app_regs.REG_DO2_CH),
