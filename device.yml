@@ -3,7 +3,7 @@
 # yaml-language-server: $schema=https://harp-tech.org/draft-02/schema/device.json
 device: LoadCells
 whoAmI: 1232
-firmwareVersion: "1.1"
+firmwareVersion: "1.2"
 hardwareTargets: "1.0"
 registers:
   AcquisitionState:
