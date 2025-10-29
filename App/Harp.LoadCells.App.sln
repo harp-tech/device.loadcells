@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{EB0D5F63-BC4F-49DC-B7B3-02E48F1B0C64}") = "Harp.LoadCells.App", "Harp.LoadCells.App\Harp.LoadCells.App.csproj", "{0E27295C-F856-47ED-B978-D4C4202A0F22}"
+EndProject
+Project("{EB0D5F63-BC4F-49DC-B7B3-02E48F1B0C64}") = "Harp.LoadCells.Design", "Harp.LoadCells.Design\Harp.LoadCells.Design.csproj", "{744754F8-E47C-44F9-A451-2DD93C0AF6E7}"
+EndProject
+Project("{EB0D5F63-BC4F-49DC-B7B3-02E48F1B0C64}") = "Harp.LoadCells", "..\Interface\Harp.LoadCells\Harp.LoadCells.csproj", "{DB9716D6-0BD7-41A1-BA65-51D820BBB89B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A4CB54F2-2C25-437E-B829-23DC9B47619A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Harp.LoadCells.nsi = Harp.LoadCells.nsi
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E27295C-F856-47ED-B978-D4C4202A0F22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E27295C-F856-47ED-B978-D4C4202A0F22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E27295C-F856-47ED-B978-D4C4202A0F22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E27295C-F856-47ED-B978-D4C4202A0F22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{744754F8-E47C-44F9-A451-2DD93C0AF6E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{744754F8-E47C-44F9-A451-2DD93C0AF6E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{744754F8-E47C-44F9-A451-2DD93C0AF6E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{744754F8-E47C-44F9-A451-2DD93C0AF6E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB9716D6-0BD7-41A1-BA65-51D820BBB89B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB9716D6-0BD7-41A1-BA65-51D820BBB89B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB9716D6-0BD7-41A1-BA65-51D820BBB89B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB9716D6-0BD7-41A1-BA65-51D820BBB89B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
